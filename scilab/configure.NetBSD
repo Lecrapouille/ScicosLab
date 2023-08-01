@@ -1,0 +1,18 @@
+# This file is not executable ``ON PURPOSE''.
+
+# It should be sourced via the `.' shell build-in as follows:
+# $ . ./configure.NetBSD
+
+# If this file were executable the bindings it defines could only be valid for
+# the duration of the of this very script execution, which is far from enough!
+
+# This script defines the global environement variable necessary to run
+# the script autogen.sh for a NetBSD box.
+
+PATH=/usr/pkg/bin:/usr/local/bin:$PATH
+
+export PKG_CONFIG_PATH=/usr/pkg/lib/pkgconfig:/usr/X11R7/lib/pkgconfig
+
+#export LD_LIBRARY_PATH=/lib:/usr/lib:/usr/X11R7/lib:/usr/pkg/lib:/usr/local/lib
+
+./autogen.sh

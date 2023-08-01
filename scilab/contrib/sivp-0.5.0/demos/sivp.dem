@@ -1,0 +1,39 @@
+
+mode(-1)
+
+if ~with_tk() then
+  x_message('Sorry this version has not been built with tcl/tk interface')
+  return
+end
+
+oldln=lines();
+lines(0)
+
+deff('[]=demoex(num)','execstr(demolist(num,2))')
+
+sivpdemopath=SIVP_PATH+'/demos/'
+
+if MSDOS then sivpdemopath=strsubst(sivpdemopath,'/','\'),end
+
+demolist=[
+'Image reading and showing', 'exec(sivpdemopath+''image.sce'')';
+'Canny edge detector',       'exec(sivpdemopath+''canny.sce'')';
+'Add Gussian noise',         'exec(sivpdemopath+''noise.sce'')';
+'Video reading and showing', 'exec(sivpdemopath+''video.sce'')';
+'Grab frames from a camera', 'exec(sivpdemopath+''camera.sce'')';
+'Track object using CamShift', 'exec(sivpdemopath+''camshift.sce'')';
+'Foreground detection', 'exec(sivpdemopath+''bgfg.sce'')';
+'Face detection', 'exec(sivpdemopath+''face.sce'')';
+'Eye detection', 'exec(sivpdemopath+''eye.sce'')';
+]
+
+while %t then
+  num=x_choose(demolist(:,1),'Demos of SIVP');
+  if num==0 then 
+     lines(oldln(1))
+     return
+  else
+     demoex(num)
+
+  end,
+end

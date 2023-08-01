@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>plus  </TITLE>
+  <TYPE>Maxplus Function  </TYPE>
+  <DATE>   </DATE>
+  <SHORT_DESCRIPTION name="plus"> (+) maxplus matrix plus operator  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>B=plus(A)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>A  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : maxplus full square matrix
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>B  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : A+A^2+..... 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Compute A*A^*=A+A^2+..... of a maxplus matrix A.
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+plus(#(1))
+plus(#(-1))
+plus(#([1,2;3,4]))
+a=#([-3,-2;-1,0]); b=plus(a); b==a*star(a)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>star</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>maxplus</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>shift  </TITLE>
+  <TYPE>Maxplus Function  </TYPE>
+  <DATE>   </DATE>
+  <SHORT_DESCRIPTION name="shift"> shift maxplus linear system   </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[s]=shift(n,d)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>n : integer larger or equal to 1 which is  shift in counting  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>d : real which is a  shift in dating  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>s : maxplus linear system  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    shift  defines an  implicit dynamic linear maxplus system 
+    associated to a shift in counting and dating.
+  </P>
+  <VERBATIM><![CDATA[
+x(t)=u(t-n), y=d*x(t).
+   ]]></VERBATIM>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+s=shift(2,3)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>mpsyslin</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

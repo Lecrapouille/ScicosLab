@@ -1,0 +1,5 @@
+#define  IN_intcutilcos  35 
+{"data2sig",		IN_intcutilcos,	1,	2},
+{"sig2data",		IN_intcutilcos,	2,	2},
+{"model2blk",		IN_intcutilcos,	3,	2},
+{"callblk",		IN_intcutilcos,	4,	2},

@@ -1,0 +1,81 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>imread</title>
+</head>
+<body bgcolor="#FFFFFF">
+<center>SIVP Toolbox</center>
+<div align="right">Last update : July, 2005</div>
+<p><b>imread</b> - Reads image file</p>
+<h3><font color="blue">Calling Sequence</font></h3>
+<dl><dd><tt>im = imread(filename)</tt></dd></dl>
+<h3><font color="blue">Parameters</font></h3>
+<ul>
+<li>
+<b><tt>filename</tt></b>:
+   A string, the image filename to be read. The extension determines the type of the image.
+   </li>
+<li>
+<b><tt>im</tt></b>:
+   All images will be converted to gray images or RGB images. For gray images, this is a MxN unsigned char matrix; For RGB images, this is a MxNx3 unsigned char matrix.
+   </li>
+</ul>
+<h3><font color="blue">Description</font></h3>
+<p><tt>imread</tt> reads many types of image files into Scilab. The format of the  file is inferred from the extension in the filename parameter. Currently the following file formats are supported:</p>
+<dl>
+<dt><b></b></dt>
+<dd>
+       * Windows bitmaps - BMP, DIB;
+     </dd>
+<dt><b></b></dt>
+<dd>
+       * JPEG files - JPEG, JPG, JPE;
+     </dd>
+<dt><b></b></dt>
+<dd>
+       * Portable Network Graphics - PNG;
+     </dd>
+<dt><b></b></dt>
+<dd>
+       * Portable image format - PBM, PGM, PPM;
+     </dd>
+<dt><b></b></dt>
+<dd>
+       * Sun rasters - SR, RAS;
+     </dd>
+<dt><b></b></dt>
+<dd>
+       * TIFF files - TIFF, TIF. 
+     </dd>
+</dl>
+<dl>
+<dt><b>im = imread(filename)</b></dt>
+<dd>
+      reads image in filename into <tt>im</tt>
+      matrix. If filename contains a truecolor image, <tt>im</tt> is a
+   MxNx3 hypermatrix, so for example <tt>im(:,:,1)</tt> stands for  the
+   red channel. For gray images, im is a MxNx1 unsigned char matrix.
+   </dd>
+</dl>
+<h3><font color="blue">Examples</font></h3>
+<pre>
+
+    im = imread(SCI + '/contrib/sivp/images/lena.png');
+    imshow(im);
+
+</pre>
+<h3><font color="blue">Bugs and Shortcomings</font></h3>
+<p>
+Images with a palette are not supported.
+All kinds of images are converted to gray images or RGB images.
+</p>
+<h3><font color="blue">Authors</font></h3>
+<dl><dd>
+<b></b> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </dd></dl>
+<h3><font color="blue">Availability</font></h3>
+The latest version of SIVP can be found at
+<p><a href="http://sivp.sourceforge.net">http://sivp.sourceforge.net</a></p>
+<h3><font color="blue">See Also</font></h3>
+<p><a href="imwrite.htm"><tt><b>imwrite</b></tt></a>,&nbsp;&nbsp;<a href="imshow.htm"><tt><b>imshow</b></tt></a>,&nbsp;&nbsp;<a href="imfinfo.htm"><tt><b>imfinfo</b></tt></a>,&nbsp;&nbsp;</p>
+</body>
+</html>

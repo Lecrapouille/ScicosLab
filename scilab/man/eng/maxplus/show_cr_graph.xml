@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>show_cr_graph  </TITLE>
+  <TYPE>Maxplus Function  </TYPE>
+  <DATE>   </DATE>
+  <SHORT_DESCRIPTION name="show_cr_graph ">  flowshop critical graph (maxplus)  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>gh=show_cr_graph(g)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>g  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    :  flowshop graph built with flowshop_graph
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>gh  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : graph of the flowshop with critical graph highlighted
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Shows the critical graph (bottleneck) of a flowshop described
+    by g in a metanet window.
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+PT=#([2,1;%0,1;4,%0]);
+xsetech([0 0 0.5 0.5]);
+[g,T,N]=flowshop_graph(PT,[1,1,1],[2,2],50);
+show_cr_graph(g);
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>flowshop_graph</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>flowshop</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>saturation_graph</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

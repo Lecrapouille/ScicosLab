@@ -1,0 +1,2453 @@
+ BlockInterfaces {
+  Block {
+        BlockType "S-Function"
+        SourceType "BUSCREATOR"
+        SourceBlock "scsbranchinglib"
+        Ports    [2,1,0,0]
+        BlockInterfaceParameters {
+        Signals : "string"
+        inputbus : "string"
+        InheritSignal : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "CLKGotoTagVisibility"
+        SourceBlock "scsbranchinglib"
+        Ports    [0,0,0,0]
+        BlockInterfaceParameters {
+        tag : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "CLKGOTO"
+        SourceBlock "scsbranchinglib"
+        Ports    [0,0,1,0]
+        BlockInterfaceParameters {
+        tag : "string"
+        tagvis : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "CLKFROM"
+        SourceBlock "scsbranchinglib"
+        Ports    [0,0,0,1]
+        BlockInterfaceParameters {
+        tag : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "DEMUX"
+        SourceBlock "scsbranchinglib"
+        Ports    [1,2,0,0]
+        BlockInterfaceParameters {
+        out : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "DEMUX_f"
+        SourceBlock "scsbranchinglib"
+        Ports    [1,2,0,0]
+        BlockInterfaceParameters {
+        out : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "EXTRACTOR"
+        SourceBlock "scsbranchinglib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+        ind : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "ESELECT_f"
+        SourceBlock "scsbranchinglib"
+        Ports    [1,0,1,2]
+        BlockInterfaceParameters {
+        out : "string"
+        inh : "string"
+        nmod : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "FROM"
+        SourceBlock "scsbranchinglib"
+        Ports    [0,1,0,0]
+        BlockInterfaceParameters {
+        tag : "string"
+        BS : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "FROMMO"
+        SourceBlock "scsbranchinglib"
+        Ports    [0,1,0,0]
+        BlockInterfaceParameters {
+        tag : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "GotoTagVisibility"
+        SourceBlock "scsbranchinglib"
+        Ports    [0,0,0,0]
+        BlockInterfaceParameters {
+        tag : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "GotoTagVisibilityMO"
+        SourceBlock "scsbranchinglib"
+        Ports    [0,0,0,0]
+        BlockInterfaceParameters {
+        tag : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "GOTO"
+        SourceBlock "scsbranchinglib"
+        Ports    [1,0,0,0]
+        BlockInterfaceParameters {
+        tag : "string"
+        tagvis : "string"
+        BS : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "GOTOMO"
+        SourceBlock "scsbranchinglib"
+        Ports    [1,0,0,0]
+        BlockInterfaceParameters {
+        tag : "string"
+        tagvis : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "ISELECT_m"
+        SourceBlock "scsbranchinglib"
+        Ports    [1,2,2,0]
+        BlockInterfaceParameters {
+        typ : "string"
+        nout : "string"
+        z0 : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "ISELECT_f"
+        SourceBlock "scsbranchinglib"
+        Ports    [1,2,2,0]
+        BlockInterfaceParameters {
+        nout : "string"
+        z0 : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "MUX"
+        SourceBlock "scsbranchinglib"
+        Ports    [2,1,0,0]
+        BlockInterfaceParameters {
+        in : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "MUX_f"
+        SourceBlock "scsbranchinglib"
+        Ports    [2,1,0,0]
+        BlockInterfaceParameters {
+        in : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "M_SWITCH"
+        SourceBlock "scsbranchinglib"
+        Ports    [3,1,0,0]
+        BlockInterfaceParameters {
+        nin : "string"
+        base : "string"
+        rule : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "NRMSOM_f"
+        SourceBlock "scsbranchinglib"
+        Ports    [2,1,0,0]
+        BlockInterfaceParameters {
+        nin : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "RELAY_f"
+        SourceBlock "scsbranchinglib"
+        Ports    [2,1,2,0]
+        BlockInterfaceParameters {
+        nin : "string"
+        z0 : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "SWITCH_f"
+        SourceBlock "scsbranchinglib"
+        Ports    [2,1,0,0]
+        BlockInterfaceParameters {
+        nin : "string"
+        z0 : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "SWITCH2_s"
+        SourceBlock "scsbranchinglib"
+        Ports    [3,1,0,0]
+        BlockInterfaceParameters {
+        ot : "string"
+        rule : "string"
+        thra : "string"
+        nzz : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "SWITCH2"
+        SourceBlock "scsbranchinglib"
+        Ports    [3,1,0,0]
+        BlockInterfaceParameters {
+        rule : "string"
+        thra : "string"
+        nzz : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "SWITCH2_m"
+        SourceBlock "scsbranchinglib"
+        Ports    [3,1,0,0]
+        BlockInterfaceParameters {
+        ot : "string"
+        rule : "string"
+        thra : "string"
+        nzz : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "SELECT_m"
+        SourceBlock "scsbranchinglib"
+        Ports    [2,1,2,0]
+        BlockInterfaceParameters {
+        typ : "string"
+        nin : "string"
+        z0 : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "SELECT_f"
+        SourceBlock "scsbranchinglib"
+        Ports    [2,1,2,0]
+        BlockInterfaceParameters {
+        nin : "string"
+        z0 : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "SCALAR2VECTOR"
+        SourceBlock "scsbranchinglib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+        nout : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "TKSWITCH"
+        SourceBlock "scsbranchinglib"
+        Ports    [2,1,1,0]
+        BlockInterfaceParameters {
+        ch : "string"
+        inh : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "ANDLOG_f"
+        SourceBlock "scseventslib"
+        Ports    [0,1,2,0]
+        BlockInterfaceParameters {
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "ANDBLK"
+        SourceBlock "scseventslib"
+        Ports    [0,0,2,1]
+        BlockInterfaceParameters {
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "CLKSPLIT_f"
+        SourceBlock "scseventslib"
+        Ports    [0,0,1,2]
+        BlockInterfaceParameters {
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "CLKSOMV_f"
+        SourceBlock "scseventslib"
+        Ports    [0,0,3,1]
+        BlockInterfaceParameters {
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "CLKSOM_f"
+        SourceBlock "scseventslib"
+        Ports    [0,0,3,1]
+        BlockInterfaceParameters {
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "EVTVARDLY"
+        SourceBlock "scseventslib"
+        Ports    [1,0,1,1]
+        BlockInterfaceParameters {
+        fir : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "EVTGEN_f"
+        SourceBlock "scseventslib"
+        Ports    [0,0,0,1]
+        BlockInterfaceParameters {
+        tt : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "EVTDLY_f"
+        SourceBlock "scseventslib"
+        Ports    [0,0,1,1]
+        BlockInterfaceParameters {
+        dt : "string"
+        ff : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "EVTDLY_c"
+        SourceBlock "scseventslib"
+        Ports    [0,0,1,1]
+        BlockInterfaceParameters {
+        dt : "string"
+        ff : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "END_c"
+        SourceBlock "scseventslib"
+        Ports    [0,0,1,1]
+        BlockInterfaceParameters {
+        tf : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "EVTDLY"
+        SourceBlock "scseventslib"
+        Ports    [0,0,1,1]
+        BlockInterfaceParameters {
+        dt : "string"
+        ff : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "freq_div"
+        SourceBlock "scseventslib"
+        Ports    [0,0,1,1]
+        BlockInterfaceParameters {
+        %ph : "string"
+        %df : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "FreqDiv"
+        SourceBlock "scseventslib"
+        Ports    [0,0,1,1]
+        BlockInterfaceParameters {
+        scicos_context.i : "string"
+        scicos_context.n : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "HALT_f"
+        SourceBlock "scseventslib"
+        Ports    [0,0,1,0]
+        BlockInterfaceParameters {
+        n : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "IFTHEL_f"
+        SourceBlock "scseventslib"
+        Ports    [1,0,1,2]
+        BlockInterfaceParameters {
+        inh : "string"
+        nmod : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "M_freq"
+        SourceBlock "scseventslib"
+        Ports    [0,0,1,3]
+        BlockInterfaceParameters {
+        frequ : "string"
+        offset : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "MFCLCK_f"
+        SourceBlock "scseventslib"
+        Ports    [0,0,1,2]
+        BlockInterfaceParameters {
+        dt : "string"
+        nn : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "MCLOCK_f"
+        SourceBlock "scseventslib"
+        Ports    [0,0,0,2]
+        BlockInterfaceParameters {
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "SyncTag"
+        SourceBlock "scseventslib"
+        Ports    [0,0,0,0]
+        BlockInterfaceParameters {
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "VirtualCLK0"
+        SourceBlock "scseventslib"
+        Ports    [0,0,1,0]
+        BlockInterfaceParameters {
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "AFFICH_m"
+        SourceBlock "scssinkslib"
+        Ports    [1,0,1,0]
+        BlockInterfaceParameters {
+        in : "string"
+        font : "string"
+        fontsize : "string"
+        colr : "string"
+        nt : "string"
+        nd : "string"
+        herit : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "AFFICH_f"
+        SourceBlock "scssinkslib"
+        Ports    [1,0,1,0]
+        BlockInterfaceParameters {
+        font : "string"
+        fontsize : "string"
+        colr : "string"
+        nt : "string"
+        nd : "string"
+        herit : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "ACTUATOR_f"
+        SourceBlock "scssinkslib"
+        Ports    [1,0,1,0]
+        BlockInterfaceParameters {
+        insz : "string"
+        intyp : "string"
+        heritance : "string"
+        nb : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "BUSOUT_f"
+        SourceBlock "scssinkslib"
+        Ports    [1,0,0,0]
+        BlockInterfaceParameters {
+        prt : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "CSCOPXY"
+        SourceBlock "scssinkslib"
+        Ports    [2,0,1,0]
+        BlockInterfaceParameters {
+        nbr_curves : "string"
+        clrs : "string"
+        siz : "string"
+        win : "string"
+        wpos : "string"
+        wdim : "string"
+        xmin : "string"
+        xmax : "string"
+        ymin : "string"
+        ymax : "string"
+        N : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "CSCOPXY3D"
+        SourceBlock "scssinkslib"
+        Ports    [3,0,1,0]
+        BlockInterfaceParameters {
+        nbr_curves : "string"
+        clrs : "string"
+        siz : "string"
+        win : "string"
+        wpos : "string"
+        wdim : "string"
+        vec_x : "string"
+        vec_y : "string"
+        vec_z : "string"
+        param3ds : "string"
+        N : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "CSCOPE"
+        SourceBlock "scssinkslib"
+        Ports    [1,0,0,0]
+        BlockInterfaceParameters {
+        clrs : "string"
+        win : "string"
+        wpos : "string"
+        wdim : "string"
+        ymin : "string"
+        ymax : "string"
+        per : "string"
+        N : "string"
+        heritance : "string"
+        nom : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "CMSCOPE"
+        SourceBlock "scssinkslib"
+        Ports    [2,0,0,0]
+        BlockInterfaceParameters {
+        in : "string"
+        clrs : "string"
+        win : "string"
+        wpos : "string"
+        wdim : "string"
+        ymin : "string"
+        ymax : "string"
+        per : "string"
+        N : "string"
+        heritance : "string"
+        nom : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "CMATVIEW"
+        SourceBlock "scssinkslib"
+        Ports    [1,0,1,0]
+        BlockInterfaceParameters {
+        colormap : "string"
+        cmin : "string"
+        cmax : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "CMAT3D"
+        SourceBlock "scssinkslib"
+        Ports    [1,0,1,0]
+        BlockInterfaceParameters {
+        vec_x : "string"
+        vec_y : "string"
+        colormap : "string"
+        cmin : "string"
+        cmax : "string"
+        al : "string"
+        th : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "CLKOUTV_f"
+        SourceBlock "scssinkslib"
+        Ports    [0,0,1,0]
+        BlockInterfaceParameters {
+        prt : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "CLKOUT_f"
+        SourceBlock "scssinkslib"
+        Ports    [0,0,1,0]
+        BlockInterfaceParameters {
+        prt : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "CFSCOPE"
+        SourceBlock "scssinkslib"
+        Ports    [0,0,1,0]
+        BlockInterfaceParameters {
+        clrs : "string"
+        win : "string"
+        wpos : "string"
+        wdim : "string"
+        ymin : "string"
+        ymax : "string"
+        per : "string"
+        N : "string"
+        wu : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "CEVENTSCOPE"
+        SourceBlock "scssinkslib"
+        Ports    [0,0,1,0]
+        BlockInterfaceParameters {
+        nclock : "string"
+        clrs : "string"
+        win : "string"
+        wpos : "string"
+        wdim : "string"
+        per : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "CANIMXY"
+        SourceBlock "scssinkslib"
+        Ports    [2,0,1,0]
+        BlockInterfaceParameters {
+        nbr_curves : "string"
+        clrs : "string"
+        siz : "string"
+        win : "string"
+        wpos : "string"
+        wdim : "string"
+        xmin : "string"
+        xmax : "string"
+        ymin : "string"
+        ymax : "string"
+        N : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "CANIMXY3D"
+        SourceBlock "scssinkslib"
+        Ports    [3,0,1,0]
+        BlockInterfaceParameters {
+        nbr_curves : "string"
+        clrs : "string"
+        siz : "string"
+        win : "string"
+        wpos : "string"
+        wdim : "string"
+        vec_x : "string"
+        vec_y : "string"
+        vec_z : "string"
+        param3ds : "string"
+        N : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "OUTIMPL_f"
+        SourceBlock "scssinkslib"
+        Ports    [1,0,0,0]
+        BlockInterfaceParameters {
+        prt : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "OUT_f"
+        SourceBlock "scssinkslib"
+        Ports    [1,0,0,0]
+        BlockInterfaceParameters {
+        prt : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "TRASH_f"
+        SourceBlock "scssinkslib"
+        Ports    [1,0,1,0]
+        BlockInterfaceParameters {
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "TOWS_c"
+        SourceBlock "scssinkslib"
+        Ports    [1,0,1,0]
+        BlockInterfaceParameters {
+        nz : "string"
+        varnam : "string"
+        herit : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "WRITEC_f"
+        SourceBlock "scssinkslib"
+        Ports    [1,0,1,0]
+        BlockInterfaceParameters {
+        in : "string"
+        fname1 : "string"
+        frmt1 : "string"
+        N : "string"
+        swap : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "WRITEAU_f"
+        SourceBlock "scssinkslib"
+        Ports    [1,0,1,0]
+        BlockInterfaceParameters {
+        N : "string"
+        swap : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "WFILE"
+        SourceBlock "scssinkslib"
+        Ports    [1,0,1,0]
+        BlockInterfaceParameters {
+        in : "string"
+        fname1 : "string"
+        frmt1 : "string"
+        N : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "WFILE_f"
+        SourceBlock "scssinkslib"
+        Ports    [1,0,1,0]
+        BlockInterfaceParameters {
+        in : "string"
+        fname1 : "string"
+        frmt1 : "string"
+        N : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "BUSIN_f"
+        SourceBlock "scssourceslib"
+        Ports    [0,1,0,0]
+        BlockInterfaceParameters {
+        prt : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "CURV_f"
+        SourceBlock "scssourceslib"
+        Ports    [0,1,0,0]
+        BlockInterfaceParameters {
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "CURVE_c"
+        SourceBlock "scssourceslib"
+        Ports    [0,1,1,1]
+        BlockInterfaceParameters {
+        Method : "string"
+        xx : "string"
+        yy : "string"
+        PeriodicOption : "string"
+        graf : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "Counter"
+        SourceBlock "scssourceslib"
+        Ports    [0,1,1,0]
+        BlockInterfaceParameters {
+        minim : "string"
+        maxim : "string"
+        rule : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "CONST"
+        SourceBlock "scssourceslib"
+        Ports    [0,1,0,0]
+        BlockInterfaceParameters {
+        C : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "CONST_m"
+        SourceBlock "scssourceslib"
+        Ports    [0,1,0,0]
+        BlockInterfaceParameters {
+        C : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "CONST_f"
+        SourceBlock "scssourceslib"
+        Ports    [0,1,0,0]
+        BlockInterfaceParameters {
+        C : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "CLOCK_f"
+        SourceBlock "scssourceslib"
+        Ports    [0,0,0,1]
+        BlockInterfaceParameters {
+        dt : "string"
+        t0 : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "CLOCK_c"
+        SourceBlock "scssourceslib"
+        Ports    [0,0,0,1]
+        BlockInterfaceParameters {
+        dt : "string"
+        t0 : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "CLKINV_f"
+        SourceBlock "scssourceslib"
+        Ports    [0,0,0,1]
+        BlockInterfaceParameters {
+        prt : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "CLKIN_f"
+        SourceBlock "scssourceslib"
+        Ports    [0,0,0,1]
+        BlockInterfaceParameters {
+        prt : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "FROMWS_c"
+        SourceBlock "scssourceslib"
+        Ports    [0,1,1,1]
+        BlockInterfaceParameters {
+        varnam : "string"
+        Method : "string"
+        ZC : "string"
+        OutEnd : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "FROMWSB"
+        SourceBlock "scssourceslib"
+        Ports    [0,1,0,0]
+        BlockInterfaceParameters {
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "FromWS"
+        SourceBlock "scssourceslib"
+        Ports    [0,1,0,0]
+        BlockInterfaceParameters {
+        scicos_context.v : "string"
+        scicos_context.IM : "string"
+        scicos_context.zcr : "string"
+        scicos_context.O : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "Ground_g"
+        SourceBlock "scssourceslib"
+        Ports    [0,1,0,0]
+        BlockInterfaceParameters {
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "GEN_SQR"
+        SourceBlock "scssourceslib"
+        Ports    [0,1,0,0]
+        BlockInterfaceParameters {
+        scicos_context.Amin : "string"
+        scicos_context.Amax : "string"
+        scicos_context.rule : "string"
+        scicos_context.F : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "GENSQR_f"
+        SourceBlock "scssourceslib"
+        Ports    [0,1,1,0]
+        BlockInterfaceParameters {
+        Amplitude : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "GENSIN_f"
+        SourceBlock "scssourceslib"
+        Ports    [0,1,0,0]
+        BlockInterfaceParameters {
+        M : "string"
+        F : "string"
+        P : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "INIMPL_f"
+        SourceBlock "scssourceslib"
+        Ports    [0,1,0,0]
+        BlockInterfaceParameters {
+        prt : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "IN_f"
+        SourceBlock "scssourceslib"
+        Ports    [0,1,0,0]
+        BlockInterfaceParameters {
+        prt : "string"
+        otsz : "string"
+        ot : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "Modulo_Count"
+        SourceBlock "scssourceslib"
+        Ports    [0,1,1,0]
+        BlockInterfaceParameters {
+        ini_c : "string"
+        base : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "PULSE_SC"
+        SourceBlock "scssourceslib"
+        Ports    [0,1,0,0]
+        BlockInterfaceParameters {
+        scicos_context.E : "string"
+        scicos_context.W : "string"
+        scicos_context.F : "string"
+        scicos_context.A : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "PULSE_SD"
+        SourceBlock "scssourceslib"
+        Ports    [0,1,0,0]
+        BlockInterfaceParameters {
+        scicos_context.E : "string"
+        scicos_context.W : "string"
+        scicos_context.F : "string"
+        scicos_context.A : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "RFILE"
+        SourceBlock "scssourceslib"
+        Ports    [0,1,1,0]
+        BlockInterfaceParameters {
+        tmask1 : "string"
+        outmask : "string"
+        fname1 : "string"
+        frmt1 : "string"
+        N : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "RFILE_f"
+        SourceBlock "scssourceslib"
+        Ports    [0,1,1,0]
+        BlockInterfaceParameters {
+        tmask1 : "string"
+        outmask : "string"
+        fname1 : "string"
+        frmt1 : "string"
+        N : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "READC_f"
+        SourceBlock "scssourceslib"
+        Ports    [0,1,1,0]
+        BlockInterfaceParameters {
+        tmask1 : "string"
+        outmask : "string"
+        fname1 : "string"
+        frmt1 : "string"
+        M : "string"
+        N : "string"
+        offset : "string"
+        swap : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "READAU_f"
+        SourceBlock "scssourceslib"
+        Ports    [0,1,1,0]
+        BlockInterfaceParameters {
+        fname1 : "string"
+        N : "string"
+        swap : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "RAND_m"
+        SourceBlock "scssourceslib"
+        Ports    [0,1,1,0]
+        BlockInterfaceParameters {
+        typ : "string"
+        flag : "string"
+        a : "string"
+        b : "string"
+        seed_c : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "RAND_f"
+        SourceBlock "scssourceslib"
+        Ports    [0,1,1,0]
+        BlockInterfaceParameters {
+        flag : "string"
+        a : "string"
+        b : "string"
+        seed_c : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "RAMP"
+        SourceBlock "scssourceslib"
+        Ports    [0,1,0,0]
+        BlockInterfaceParameters {
+        slope : "string"
+        stt : "string"
+        iout : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "STEP"
+        SourceBlock "scssourceslib"
+        Ports    [0,1,1,1]
+        BlockInterfaceParameters {
+        temps : "string"
+        in : "string"
+        fi : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "STEP_FUNCTION"
+        SourceBlock "scssourceslib"
+        Ports    [0,1,0,0]
+        BlockInterfaceParameters {
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "SLIDER_f"
+        SourceBlock "scssourceslib"
+        Ports    [1,0,1,0]
+        BlockInterfaceParameters {
+        min_r : "string"
+        max_r : "string"
+        sl_type : "string"
+        color : "string"
+        herit : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "Sigbuilder"
+        SourceBlock "scssourceslib"
+        Ports    [0,1,0,1]
+        BlockInterfaceParameters {
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "SENSOR_f"
+        SourceBlock "scssourceslib"
+        Ports    [0,1,1,0]
+        BlockInterfaceParameters {
+        outsz : "string"
+        outtyp : "string"
+        nb : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "SAWTOOTH_f"
+        SourceBlock "scssourceslib"
+        Ports    [0,1,1,0]
+        BlockInterfaceParameters {
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "SampleCLK"
+        SourceBlock "scssourceslib"
+        Ports    [0,0,0,1]
+        BlockInterfaceParameters {
+        frequ : "string"
+        offset : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "STEP_FUNC"
+        SourceBlock "scssourceslib"
+        Ports    [0,1,0,0]
+        BlockInterfaceParameters {
+        scicos_context.s1 : "string"
+        scicos_context.s2 : "string"
+        scicos_context.s3 : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "TKSCALE"
+        SourceBlock "scssourceslib"
+        Ports    [0,1,1,0]
+        BlockInterfaceParameters {
+        a : "string"
+        b : "string"
+        f : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "TIME_f"
+        SourceBlock "scssourceslib"
+        Ports    [0,1,0,0]
+        BlockInterfaceParameters {
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "BIGSOM_f"
+        SourceBlock "scslinearlib"
+        Ports    [2,1,0,0]
+        BlockInterfaceParameters {
+        sgn : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "CLSS"
+        SourceBlock "scslinearlib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+        A : "string"
+        B : "string"
+        C : "string"
+        D : "string"
+        x0 : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "CLSS_f"
+        SourceBlock "scslinearlib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+        A : "string"
+        B : "string"
+        C : "string"
+        D : "string"
+        x0 : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "CLR"
+        SourceBlock "scslinearlib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+        num : "string"
+        den : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "CLR_f"
+        SourceBlock "scslinearlib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+        num : "string"
+        den : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "CLINDUMMY_f"
+        SourceBlock "scslinearlib"
+        Ports    [0,0,0,0]
+        BlockInterfaceParameters {
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "DOLLAR"
+        SourceBlock "scslinearlib"
+        Ports    [1,1,1,0]
+        BlockInterfaceParameters {
+        a : "string"
+        inh : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "DOLLAR_m"
+        SourceBlock "scslinearlib"
+        Ports    [1,1,1,0]
+        BlockInterfaceParameters {
+        a : "string"
+        inh : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "DOLLAR_f"
+        SourceBlock "scslinearlib"
+        Ports    [1,1,1,0]
+        BlockInterfaceParameters {
+        a : "string"
+        inh : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "DLSS"
+        SourceBlock "scslinearlib"
+        Ports    [1,1,1,0]
+        BlockInterfaceParameters {
+        A : "string"
+        B : "string"
+        C : "string"
+        D : "string"
+        x0 : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "DLSS_f"
+        SourceBlock "scslinearlib"
+        Ports    [1,1,1,0]
+        BlockInterfaceParameters {
+        A : "string"
+        B : "string"
+        C : "string"
+        D : "string"
+        x0 : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "DLR"
+        SourceBlock "scslinearlib"
+        Ports    [1,1,1,0]
+        BlockInterfaceParameters {
+        num : "string"
+        den : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "DLR_f"
+        SourceBlock "scslinearlib"
+        Ports    [1,1,1,0]
+        BlockInterfaceParameters {
+        num : "string"
+        den : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "DIFF_c"
+        SourceBlock "scslinearlib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+        x0 : "string"
+        xd0 : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "DERIV"
+        SourceBlock "scslinearlib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "DELAYV_f"
+        SourceBlock "scslinearlib"
+        Ports    [2,1,1,2]
+        BlockInterfaceParameters {
+        nin : "string"
+        zz0 : "string"
+        T : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "DELAY_f"
+        SourceBlock "scslinearlib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+        dt : "string"
+        z0 : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "GAIN_f"
+        SourceBlock "scslinearlib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+        gain : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "GAINBLK"
+        SourceBlock "scslinearlib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+        gain : "string"
+        over : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "GAINBLK_f"
+        SourceBlock "scslinearlib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+        gain : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "INTEGRAL"
+        SourceBlock "scslinearlib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+        x0 : "string"
+        reinit : "string"
+        satur : "string"
+        maxp : "string"
+        lowp : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "INTEGRAL_m"
+        SourceBlock "scslinearlib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+        x0 : "string"
+        reinit : "string"
+        satur : "string"
+        maxp : "string"
+        lowp : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "INTEGRAL_f"
+        SourceBlock "scslinearlib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+        x0 : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "PID"
+        SourceBlock "scslinearlib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+        p : "string"
+        i : "string"
+        d : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "PID2"
+        SourceBlock "scslinearlib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+        scicos_context.p : "string"
+        scicos_context.i : "string"
+        scicos_context.d : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "REGISTER"
+        SourceBlock "scslinearlib"
+        Ports    [1,1,1,0]
+        BlockInterfaceParameters {
+        z0 : "string"
+        it : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "REGISTER_f"
+        SourceBlock "scslinearlib"
+        Ports    [1,1,1,0]
+        BlockInterfaceParameters {
+        z0 : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "SUMMATION"
+        SourceBlock "scslinearlib"
+        Ports    [2,1,0,0]
+        BlockInterfaceParameters {
+        Datatype : "string"
+        sgn : "string"
+        satur : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "SUM_f"
+        SourceBlock "scslinearlib"
+        Ports    [3,1,0,0]
+        BlockInterfaceParameters {
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "SOM_f"
+        SourceBlock "scslinearlib"
+        Ports    [3,1,0,0]
+        BlockInterfaceParameters {
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "SAMPLEHOLD_f"
+        SourceBlock "scslinearlib"
+        Ports    [1,1,1,0]
+        BlockInterfaceParameters {
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "SAMPHOLD"
+        SourceBlock "scslinearlib"
+        Ports    [1,1,1,0]
+        BlockInterfaceParameters {
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "SAMPHOLD_m"
+        SourceBlock "scslinearlib"
+        Ports    [1,1,1,0]
+        BlockInterfaceParameters {
+        it : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "TIME_DELAY"
+        SourceBlock "scslinearlib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+        T : "string"
+        init : "string"
+        N : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "TCLSS"
+        SourceBlock "scslinearlib"
+        Ports    [2,1,1,0]
+        BlockInterfaceParameters {
+        A : "string"
+        B : "string"
+        C : "string"
+        D : "string"
+        x0 : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "TCLSS_f"
+        SourceBlock "scslinearlib"
+        Ports    [2,1,1,0]
+        BlockInterfaceParameters {
+        A : "string"
+        B : "string"
+        C : "string"
+        D : "string"
+        x0 : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "VARIABLE_DELAY"
+        SourceBlock "scslinearlib"
+        Ports    [2,1,0,0]
+        BlockInterfaceParameters {
+        T : "string"
+        init : "string"
+        N : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "ABS_VALUE"
+        SourceBlock "scsnonlinearlib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+        zcr : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "ABS_VALUEi"
+        SourceBlock "scsnonlinearlib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+        zcr : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "ABSBLK_f"
+        SourceBlock "scsnonlinearlib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "COSBLK_f"
+        SourceBlock "scsnonlinearlib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "DLRADAPT_f"
+        SourceBlock "scsnonlinearlib"
+        Ports    [2,1,1,0]
+        BlockInterfaceParameters {
+        p : "string"
+        rn : "string"
+        rd : "string"
+        g : "string"
+        last_u : "string"
+        last_y : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "EXPBLK_m"
+        SourceBlock "scsnonlinearlib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+        a : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "EXPBLK_f"
+        SourceBlock "scsnonlinearlib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+        a : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "FSV_f"
+        SourceBlock "scsnonlinearlib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "INVBLK"
+        SourceBlock "scsnonlinearlib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "INVBLK_f"
+        SourceBlock "scsnonlinearlib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "INTRPLBLK_f"
+        SourceBlock "scsnonlinearlib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+        a : "string"
+        b : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "INTRP2BLK_f"
+        SourceBlock "scsnonlinearlib"
+        Ports    [2,1,0,0]
+        BlockInterfaceParameters {
+        a : "string"
+        b : "string"
+        c : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "LOOKUP_f"
+        SourceBlock "scsnonlinearlib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "LOOKUP_c"
+        SourceBlock "scsnonlinearlib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+        Method : "string"
+        xx : "string"
+        yy : "string"
+        extrapo : "string"
+        graf : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "LOOKUP2D"
+        SourceBlock "scsnonlinearlib"
+        Ports    [2,1,0,0]
+        BlockInterfaceParameters {
+        xx : "string"
+        yy : "string"
+        zz : "string"
+        Method : "string"
+        graf : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "LOGBLK_f"
+        SourceBlock "scsnonlinearlib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+        a : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "MIN_f"
+        SourceBlock "scsnonlinearlib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "MAXMIN"
+        SourceBlock "scsnonlinearlib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+        mm : "string"
+        nin : "string"
+        zcr : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "MAX_f"
+        SourceBlock "scsnonlinearlib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "PRODUCT"
+        SourceBlock "scsnonlinearlib"
+        Ports    [2,1,0,0]
+        BlockInterfaceParameters {
+        sgn : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "PROD_f"
+        SourceBlock "scsnonlinearlib"
+        Ports    [2,1,0,0]
+        BlockInterfaceParameters {
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "POWBLK_f"
+        SourceBlock "scsnonlinearlib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+        a : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "QUANT_f"
+        SourceBlock "scsnonlinearlib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+        pas : "string"
+        meth : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "SINBLK_f"
+        SourceBlock "scsnonlinearlib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "SIGNUM"
+        SourceBlock "scsnonlinearlib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+        zcr : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "SATURATION"
+        SourceBlock "scsnonlinearlib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+        maxp : "string"
+        minp : "string"
+        zeroc : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "SAT_f"
+        SourceBlock "scsnonlinearlib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+        minp : "string"
+        maxp : "string"
+        pente : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "TrigFun"
+        SourceBlock "scsnonlinearlib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+        fun : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "TANBLK_f"
+        SourceBlock "scsnonlinearlib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "AUTOMAT"
+        SourceBlock "scsmisclib"
+        Ports    [2,2,1,1]
+        BlockInterfaceParameters {
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "anim_pen"
+        SourceBlock "scsmisclib"
+        Ports    []
+        BlockInterfaceParameters {
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "BUSSPLIT"
+        SourceBlock "scsmisclib"
+        Ports    [1,3,0,0]
+        BlockInterfaceParameters {
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "BPLATFORM"
+        SourceBlock "scsmisclib"
+        Ports    [2,0,1,0]
+        BlockInterfaceParameters {
+        plen : "string"
+        csiz : "string"
+        phi : "string"
+        xmin : "string"
+        xmax : "string"
+        ymin : "string"
+        ymax : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "bplatform2"
+        SourceBlock "scsmisclib"
+        Ports    []
+        BlockInterfaceParameters {
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "BOUNCEXY"
+        SourceBlock "scsmisclib"
+        Ports    [2,0,1,0]
+        BlockInterfaceParameters {
+        clrs : "string"
+        siz : "string"
+        win : "string"
+        imode : "string"
+        xmin : "string"
+        xmax : "string"
+        ymin : "string"
+        ymax : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "BACKLASH"
+        SourceBlock "scsmisclib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+        ini : "string"
+        gap : "string"
+        zcr : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "BOUNCE"
+        SourceBlock "scsmisclib"
+        Ports    [0,2,0,0]
+        BlockInterfaceParameters {
+        rpar1 : "string"
+        rpar2 : "string"
+        walls : "string"
+        xt : "string"
+        xd : "string"
+        y : "string"
+        yd : "string"
+        g : "string"
+        C : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "CONSTRAINT_c"
+        SourceBlock "scsmisclib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+        x0 : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "CONSTRAINT2_c"
+        SourceBlock "scsmisclib"
+        Ports    [1,2,0,0]
+        BlockInterfaceParameters {
+        x0 : "string"
+        xd0 : "string"
+        id : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "CBLOCK"
+        SourceBlock "scsmisclib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+        junction_name : "string"
+        impli : "string"
+        i : "string"
+        o : "string"
+        ci : "string"
+        co : "string"
+        xx : "string"
+        ng : "string"
+        z : "string"
+        rpar : "string"
+        ipar : "string"
+        auto0 : "string"
+        depu : "string"
+        dept : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "c_block"
+        SourceBlock "scsmisclib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+        i : "string"
+        o : "string"
+        rpar : "string"
+        funam : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "CBLOCK4"
+        SourceBlock "scsmisclib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+        junction_name : "string"
+        impli : "string"
+        in : "string"
+        it : "string"
+        out : "string"
+        ot : "string"
+        ci : "string"
+        co : "string"
+        xx : "string"
+        z : "string"
+        oz : "string"
+        rpar : "string"
+        ipar : "string"
+        opar : "string"
+        nmode : "string"
+        nzcr : "string"
+        auto0 : "string"
+        depu : "string"
+        dept : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "DSUPER"
+        SourceBlock "scsmisclib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "DIFF_f"
+        SourceBlock "scsmisclib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+        x0 : "string"
+        xd0 : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "DEADBAND"
+        SourceBlock "scsmisclib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+        maxp : "string"
+        minp : "string"
+        zeroc : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "DEBUG_SCICOS"
+        SourceBlock "scsmisclib"
+        Ports    [0,0,0,0]
+        BlockInterfaceParameters {
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "Extract_Activation"
+        SourceBlock "scsmisclib"
+        Ports    [1,0,0,1]
+        BlockInterfaceParameters {
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "EXPRESSION"
+        SourceBlock "scsmisclib"
+        Ports    [2,1,0,0]
+        BlockInterfaceParameters {
+        %nin : "string"
+        %exx : "string"
+        %usenz : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "ENDBLK"
+        SourceBlock "scsmisclib"
+        Ports    [0,0,0,0]
+        BlockInterfaceParameters {
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "EDGETRIGGER"
+        SourceBlock "scsmisclib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+        edge : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "EDGE_TRIGGER"
+        SourceBlock "scsmisclib"
+        Ports    [1,0,0,1]
+        BlockInterfaceParameters {
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "ENDBLOCK"
+        SourceBlock "scsmisclib"
+        Ports    [0,0,0,0]
+        BlockInterfaceParameters {
+        scicos_context.tf : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "Edge_Trig"
+        SourceBlock "scsmisclib"
+        Ports    [1,0,0,1]
+        BlockInterfaceParameters {
+        scicos_context.i : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "func_block"
+        SourceBlock "scsmisclib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "fortran_block"
+        SourceBlock "scsmisclib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+        i : "string"
+        o : "string"
+        rpar : "string"
+        funam : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "generic_block"
+        SourceBlock "scsmisclib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+        junction_name : "string"
+        funtyp : "string"
+        i : "string"
+        o : "string"
+        ci : "string"
+        co : "string"
+        xx : "string"
+        z : "string"
+        rpar : "string"
+        ipar : "string"
+        auto0 : "string"
+        depu : "string"
+        dept : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "generic_block2"
+        SourceBlock "scsmisclib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+        junction_name : "string"
+        funtyp : "string"
+        i : "string"
+        o : "string"
+        ci : "string"
+        co : "string"
+        xx : "string"
+        z : "string"
+        rpar : "string"
+        ipar : "string"
+        nmode : "string"
+        nzcr : "string"
+        auto0 : "string"
+        depu : "string"
+        dept : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "generic_block3"
+        SourceBlock "scsmisclib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+        junction_name : "string"
+        funtyp : "string"
+        in : "string"
+        it : "string"
+        out : "string"
+        ot : "string"
+        ci : "string"
+        co : "string"
+        xx : "string"
+        z : "string"
+        oz : "string"
+        rpar : "string"
+        ipar : "string"
+        opar : "string"
+        nmode : "string"
+        nzcr : "string"
+        auto0 : "string"
+        depu : "string"
+        dept : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "HYSTHERESIS"
+        SourceBlock "scsmisclib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+        high_lim : "string"
+        low_lim : "string"
+        out_high : "string"
+        out_low : "string"
+        nzz : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "IMPSPLIT_f"
+        SourceBlock "scsmisclib"
+        Ports    [1,2,0,0]
+        BlockInterfaceParameters {
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "LOGICAL_OP"
+        SourceBlock "scsmisclib"
+        Ports    [2,1,0,0]
+        BlockInterfaceParameters {
+        nin : "string"
+        rule : "string"
+        Datatype : "string"
+        tp : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "Loop_Breaker"
+        SourceBlock "scsmisclib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "m_sin"
+        SourceBlock "scsmisclib"
+        Ports    []
+        BlockInterfaceParameters {
+        gain : "string"
+        phase : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "MPBLOCK"
+        SourceBlock "scsmisclib"
+        Ports    [1,2,0,0]
+        BlockInterfaceParameters {
+        Tin : "string"
+        Tintype : "string"
+        Tout : "string"
+        Touttype : "string"
+        Tparam : "string"
+        pprop : "string"
+        Tfunam : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "MEMORY_f"
+        SourceBlock "scsmisclib"
+        Ports    [1,1,1,0]
+        BlockInterfaceParameters {
+        a : "string"
+        inh : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "MBLOCK"
+        SourceBlock "scsmisclib"
+        Ports    [1,2,0,0]
+        BlockInterfaceParameters {
+        Tin : "string"
+        Tintype : "string"
+        Tout : "string"
+        Touttype : "string"
+        Tparam : "string"
+        pprop : "string"
+        Tfunam : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "PENDULUM_ANIM"
+        SourceBlock "scsmisclib"
+        Ports    [2,0,1,0]
+        BlockInterfaceParameters {
+        plen : "string"
+        csiz : "string"
+        phi : "string"
+        xmin : "string"
+        xmax : "string"
+        ymin : "string"
+        ymax : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "PAL_f"
+        SourceBlock "scsmisclib"
+        Ports    [0,0,0,0]
+        BlockInterfaceParameters {
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "RELATIONALOP"
+        SourceBlock "scsmisclib"
+        Ports    [2,1,0,0]
+        BlockInterfaceParameters {
+        rule : "string"
+        zcr : "string"
+        Datatype : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "RATELIMITER"
+        SourceBlock "scsmisclib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+        maxp : "string"
+        minp : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "SUPER_f"
+        SourceBlock "scsmisclib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "scifunc_block_m"
+        SourceBlock "scsmisclib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+        i : "string"
+        o : "string"
+        ci : "string"
+        co : "string"
+        xx : "string"
+        z : "string"
+        rpar : "string"
+        auto0 : "string"
+        deptime : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "scifunc_block5"
+        SourceBlock "scsmisclib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+        junction_name : "string"
+        impli : "string"
+        in : "string"
+        it : "string"
+        out : "string"
+        ot : "string"
+        ci : "string"
+        co : "string"
+        xx : "string"
+        z : "string"
+        oz : "string"
+        rpar : "string"
+        ipar : "string"
+        opar : "string"
+        nmode : "string"
+        nzcr : "string"
+        auto0 : "string"
+        depu : "string"
+        dept : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "SPLIT_f"
+        SourceBlock "scsmisclib"
+        Ports    [1,3,0,0]
+        BlockInterfaceParameters {
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "scifunc_block"
+        SourceBlock "scsmisclib"
+        Ports    [1,1,0,0]
+        BlockInterfaceParameters {
+        i : "string"
+        o : "string"
+        ci : "string"
+        co : "string"
+        xx : "string"
+        z : "string"
+        rpar : "string"
+        auto0 : "string"
+        deptime : "string"
+  }
+ }
+  Block {
+        BlockType "S-Function"
+        SourceType "TEXT_f"
+        SourceBlock "scsmisclib"
+        Ports    [0,0,0,0]
+        BlockInterfaceParameters {
+        txt : "string"
+        font : "string"
+        siz : "string"
+  }
+ }
+ }

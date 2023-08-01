@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>wardrop  </TITLE>
+  <TYPE>Maxplus Function  </TYPE>
+  <DATE>   </DATE>
+  <SHORT_DESCRIPTION name="Wardrop "> Wardrop equilibrium ( Newton hybrid method )  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[v,f,err]=Wardrop(H,d,l,r,a,eps,niter)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>H  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : incidence matrix nodes-arcs of size  mxn
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>d  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : nodes inputs-outputs for the p different classes  (matrix mxp) 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>l  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : constant term of the travelling time (vector of size n)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <P>
+    r : admittance term of the travelling time (vector of size n)
+  </P>
+  <PARAM_ITEM>
+  <PARAM_NAME>a  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : regularization coefficient (small number)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>eps  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : precision of the convergence test (small number)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>niter  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : maximal number of iteration
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>v  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : sum of the p potentials
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>F  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : sum of the p flows
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <P>
+    q : (nxp) matrice of the flows
+  </P>
+  <PARAM_ITEM>
+  <PARAM_NAME>w  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : (mxp) matrice of the potentials  
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Compute the Wardrop equilibrium of a transport
+    assignment problem by solving the following optimization
+    problem:
+  </P>
+  <P>
+    Min_q  1/2 f&apos;If+l&apos;f
+  </P>
+  <P>
+    f=Sum_i q_i
+  </P>
+  <P>
+    I=diag(r)^(-1)
+  </P>
+  <P>
+    Hq_i=d_i
+  </P>
+  <P>
+    O&lt;=q_i
+  </P>
+  <P>
+    i=1,...,p
+  </P>
+  <P>
+    The method used is a decomposed newton method
+    in the space (q_i,v_i) i=1,p, where the v_i denote the dual
+    variables associated to the constraints Hq_i=d_i .
+  </P>
+  <P>
+    v=Sum_i v_i.
+  </P>
+  <P>
+    a must be taken small. It regularizes
+    the  matrices giving the potentials.
+  </P>
+  <P>
+    It exists a Scilab toolbox (called CiudadSim) dedicated
+    to this problem. See Scilab Contributions.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+m=25; n=100; p=100;
+// generates a random admittance matrix
+r=max(rand(n,1),0.1);l=rand(n,1);
+// generates a random incidence matrix
+H=spzeros(m,n);
+
+
+
+
+for j=1:n
+  ij=ceil(m*rand(2,1));
+  H(ij(1),j)=1;
+  H(ij(2),j)=-1;
+end
+// generates random inputs-outputs
+d=spzeros(m,p);
+for j=1:p
+  ij=ceil(m*rand(2,1));
+  d(ij(1),j)=1;
+  d(ij(2),j)=-1;
+end
+// computes the wardrop equilibrium and gives
+// the computation time.
+timer();[V,f,pre]=Wardrop(H,d,l,r,0.01,1.e-7,20);timer() 
+
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>costo</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>howard</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>fluide</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

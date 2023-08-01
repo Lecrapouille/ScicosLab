@@ -1,0 +1,57 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>filter2</title>
+</head>
+<body bgcolor="#FFFFFF">
+<center>SIVP Toolbox</center>
+<div align="right">Last update : July, 2006</div>
+<p><b>filter2</b> - 2D digital filtering</p>
+<h3><font color="blue">Calling Sequence</font></h3>
+<dl><dd><tt>C = filter2(F,im)</tt></dd></dl>
+<h3><font color="blue">Parameters</font></h3>
+<ul>
+<li>
+<b><tt>im</tt></b>:
+       An image/matrix which will be filterd. The image can be INT8, UINT8, INT16, UINT16, INT32, DOUBLE.
+     </li>
+<li>
+<b><tt>F</tt></b>:
+       A double 2D filter.
+     </li>
+<li>
+<b><tt>imf</tt></b>:
+       The filtered image which has the same size with <tt>imf</tt> and the class double.
+     </li>
+</ul>
+<h3><font color="blue">Description</font></h3>
+<p><tt>filter2</tt> filters an image <tt>im</tt> with filter <tt>F</tt>. 
+When <tt>im</tt> is a mult-channel image, each channel can be filtered with <tt>F</tt> seperately.
+Input image pixel values outside the bounds of the image are assumed to 
+equal the nearest array border value.
+</p>
+<p>
+The only diffence of <tt>filter2</tt> with <tt>imfilter</tt> is 
+the output of <tt>filter2</tt> is double matrix,
+and the output of <tt>imfilter</tt> has the same type as input 
+and the elements in the output matrix that 
+exceed the range of the integer type will be truncated.
+</p>
+<h3><font color="blue">Examples</font></h3>
+<pre>
+
+    im = imread('lena.png');
+    filter = fspecial('sobel');
+    imf = filter2(filter,im);
+
+</pre>
+<h3><font color="blue">Authors</font></h3>
+<dl><dd>
+<b></b> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </dd></dl>
+<h3><font color="blue">Availability</font></h3>
+The latest version of SIVP can be found at
+<p><a href="http://sivp.sourceforge.net">http://sivp.sourceforge.net</a></p>
+<h3><font color="blue">See Also</font></h3>
+<p><a href="fspecial.htm"><tt><b>fspecial</b></tt></a>,&nbsp;&nbsp;<a href="imfilter.htm"><tt><b>imfilter</b></tt></a>,&nbsp;&nbsp;</p>
+</body>
+</html>

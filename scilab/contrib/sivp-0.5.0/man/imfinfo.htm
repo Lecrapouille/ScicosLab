@@ -1,0 +1,68 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>imfinfo</title>
+</head>
+<body bgcolor="#FFFFFF">
+<center>SIVP Toolbox</center>
+<div align="right">Last update : July, 2006</div>
+<p><b>imfinfo</b> - Get the information about image file</p>
+<h3><font color="blue">Calling Sequence</font></h3>
+<dl><dd><tt>info = imfinfo(filename)</tt></dd></dl>
+<h3><font color="blue">Parameters</font></h3>
+<ul>
+<li>
+<b><tt>filename</tt></b>:
+   A string, the image filename to be read.
+   </li>
+<li>
+<b><tt>info</tt></b>:
+   A mlist. The set of fields in the <tt>info</tt> structure is shown as follows:
+    <div align="center"><table border="2">
+<tr align="center">
+<td>Field Name</td>
+<td>Description</td>
+</tr>
+<tr align="center">
+<td>Filename</td>
+<td>String containing the image file name.</td>
+</tr>
+<tr align="center">
+<td>FileSize</td>
+<td>Integer indicating the size of the image file in bytes.</td>
+</tr>
+<tr align="center">
+<td>Width</td>
+<td>Integer indicating image width in pixels.</td>
+</tr>
+<tr align="center">
+<td>Height</td>
+<td>Integer indicating image height in pixels.</td>
+</tr>
+<tr align="center">
+<td>BitDepth</td>
+<td>Integer indicating the number of bits per pixel .</td>
+</tr>
+<tr align="center">
+<td>ColorType</td>
+<td>String containing the color type of the image file, which can be 'grayscale' or 'truecolor'.</td>
+</tr>
+</table></div>
+</li>
+</ul>
+<h3><font color="blue">Examples</font></h3>
+<pre>
+	
+    info = imfinfo(SCI+'/contrib/sivp/images/lena.png')
+
+</pre>
+<h3><font color="blue">Authors</font></h3>
+<dl><dd>
+<b></b> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </dd></dl>
+<h3><font color="blue">Availability</font></h3>
+The latest version of SIVP can be found at
+<p><a href="http://sivp.sourceforge.net">http://sivp.sourceforge.net</a></p>
+<h3><font color="blue">See Also</font></h3>
+<p><a href="imread.htm"><tt><b>imread</b></tt></a>,&nbsp;&nbsp;<a href="imwrite.htm"><tt><b>imwrite</b></tt></a>,&nbsp;&nbsp;<a href="imshow.htm"><tt><b>imshow</b></tt></a>,&nbsp;&nbsp;</p>
+</body>
+</html>

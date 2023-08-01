@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mpkernel  </TITLE>
+  <TYPE>Maxplus Function  </TYPE>
+  <DATE>   </DATE>
+  <SHORT_DESCRIPTION name="mpkernel"> maxplus matrix kernel  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[V,W]=mpkernel(A)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>A  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : full maxplus matrix 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>V  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : full maxplus matrix 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>W  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : full maxplus matrix 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Computes a weak basis of the solutions of the maxplus linear system
+    AV=AW.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+a=#([1,0;0,1]);[V,W]=mpkernel(a)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>maxplus</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>equalspan</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>includespan</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>weakbasis</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>mpsolve</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

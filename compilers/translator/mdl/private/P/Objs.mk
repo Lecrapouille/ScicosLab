@@ -1,0 +1,30 @@
+POLISH_BYT_OBJS=\
+ ast_print.cmo\
+ ast_pprint.cmo\
+ lexer.cmo\
+ parser.cmo\
+ scoping.cmo\
+ transl.cmo\
+ deep_ast_print.cmo\
+ deep_ast_pprint.cmo\
+ splice_ast_print.cmo\
+ splice_ast_pprint.cmo\
+ splicing.cmo\
+ machine_print.cmo\
+ exec.cmo\
+ compile.cmo\
+ polish.cmo\
+ print_polish.cmo\
+ treat_polish.cmo\
+ main_polish.cmo\
+
+POLISH_CAML_FILES=\
+ ast.mli\
+ ast_pprint.mli\
+ deep_ast_pprint.mli\
+ scoping.mli\
+ deep_ast.mli\
+ splice_ast_pprint.mli\
+ machine.mli\
+ treat_polish.mli\
+ $(POLISH_BYT_OBJS:.cmo=.ml)

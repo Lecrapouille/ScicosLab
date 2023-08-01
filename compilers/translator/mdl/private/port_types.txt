@@ -1,0 +1,102 @@
+Port types other than regular input and output in Simulink:
+----------------------------------------------------------
+
+State Port:
+-----------
+ Ports		  [2, 1, 0, 0, 1]
+The fifth port is "state" port. It is an output port. Ex:
+	Line {
+	  SrcBlock		  "Engine\nIntegrator"
+	  SrcPort		  state
+	  DstBlock		  "Goto"
+	  DstPort		  1
+	}
+It gives direct access to the internal state of a block.
+
+Enable Port:
+-------------
+ Ports		      [1, 1, 1]
+The third port is "enable" port. It is a special input port placed
+on top of the block.
+Only one or zero enable ports per Super block.
+Super block has enable port if it contains a EnablePort block. 
+Example:
+		Block {
+		  BlockType		  EnablePort
+		  Name			  "Enable"
+		  SID			  45
+		  Ports			  []
+		  Position		  [150, 70, 170, 90]
+Note that EnablePort has no input or output.
+The "enable" port is connected to a regular (boolean type) output
+port, e.g.:
+	    Line {
+	      SrcBlock		      "Relational\nOperator1"
+	      SrcPort		      1
+	      Points		      [50, 0]
+	      Branch {
+		DstBlock		"S&H 1"
+		DstPort			enable
+	      }
+
+
+Trigger Port:
+-------------
+  Ports		      [9, 38, 0, 1]
+The forth port is the trigger port. It is a special input port placed
+on top of the block.
+Only one or zero trigger ports per Super block.
+Super block has trigger port if it contains a TriggerPort  block. 
+Example:
+   }
+    Block {
+      BlockType		      TriggerPort
+      TriggerType	      "rising"
+      StatesWhenEnabling      "inherit"
+      ShowOutputPort	      off
+      OutputDataType	      "auto"
+      SampleTimeType	      "triggered"
+      SampleTime	      "1"
+      ZeroCross		      on
+    }
+There are 3 TriggerTypes: rising, falling, either. Default is rising.
+The block may have 0 or 1 regular output. If the output is present, it 
+specifies how the type of triggering: 
+-  1: rising
+- -1: falling
+-  0: other
+
+
+Ifaction Port:
+-------------- 
+ Ports		      [1, 1, 0, 0, 0, 0, 0, 1]
+The 8th port is the ifaction port. It is a special input port placed
+on top of the block. Example of a connection to this port:
+  Line {
+      SrcBlock		      "If"
+      SrcPort		      1
+      Points		      [55, 0]
+      DstBlock		      "If Action\nSubsystem"
+      DstPort		      ifaction
+    }
+The Super block has an ifaction port if it contains an ActionPort block:
+	Block {
+	  BlockType		  ActionPort
+	  Name			  "Action Port"
+	  Position		  [170, 15, 229, 43]
+	  ActionType		  "then"
+	}
+Only regular outputs of "If" or "SwitchCase" blocks can be connected to 
+ifaction port of a Super Block. Example of a "If" block having two 
+outputs:
+  Block {
+      BlockType		      If
+      Name		      "If"
+      Ports		      [1, 2]
+      Position		      [35, 31, 135, 69]
+      IfExpression	      "u1 < x_dot_max"
+    }
+
+
+
+

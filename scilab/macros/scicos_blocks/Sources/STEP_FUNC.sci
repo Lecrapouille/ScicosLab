@@ -1,0 +1,294 @@
+function [x,y,typ]=STEP_FUNC(job,arg1,arg2)
+//Generated from SuperBlock on 4-Feb-2011
+x=[];y=[];typ=[];
+select job
+case 'plot' then
+  standard_draw(arg1)
+case 'getinputs' then
+  [x,y,typ]=standard_inputs(arg1)
+case 'getoutputs' then
+  [x,y,typ]=standard_outputs(arg1)
+case 'getorigin' then
+  [x,y]=standard_origin(arg1)
+case 'set' then
+  y=needcompile
+  typ=list()
+  graphics=arg1.graphics;
+  exprs=graphics.exprs
+  Btitre=..
+    "Set block parameters"
+  Exprs0=..
+    ["s1";"s2";"s3"]
+  Bitems=..
+    ["Step time";"Initial value";"Final value"]
+  Ss=..
+    list("vec",1,"vec",1,"vec",1)
+  scicos_context=struct()
+     x=arg1
+  ok=%f
+  while ~ok do
+    [ok,scicos_context.s1,scicos_context.s2,scicos_context.s3,exprs]=getvalue(Btitre,Bitems,Ss,exprs)
+    if ~ok then return;end
+     %scicos_context=scicos_context
+     sblock=x.model.rpar
+     [%scicos_context,ierr]=script2var(sblock.props.context,%scicos_context)
+     if ierr==0 then
+       [sblock,%w,needcompile2,ok]=do_eval(sblock,list(),%scicos_context)
+   if ok then
+          y=max(2,needcompile,needcompile2)
+          x.graphics.exprs=exprs
+          x.model.rpar=sblock
+          break
+   end
+     else
+       err=lasterror();
+       if err<>[] then message(err);end
+   ok=%f
+     end
+  end
+case 'define' then
+scs_m_1=scicos_diagram(..
+        version="scicos4.4",..
+        props=scicos_params(..
+              wpar=[52.872854,510.48619,91.314333,404.98519,630,430,0,0,630,430,697,178,1.4],..
+              Title="SuperBlock",..
+              tol=[0.000001,0.000001,1.000D-10,31,0,0],..
+              tf=30,..
+              context=" ",..
+              void1=[],..
+              options=tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5,2],..
+              list([4,1,10,1],[4,1,2,1]),[0.8,0.8,0.8]),..
+              void2=[],..
+              void3=[],..
+              doc=list()))
+scs_m_1.objs(1)=scicos_block(..
+                gui="STEP",..
+                graphics=scicos_graphics(..
+                         orig=[329.304,162.01067],..
+                         sz=[40,40],..
+                         flip=%t,..
+                         theta=0,..
+                         exprs=["s1";"s2";"s3"],..
+                         pin=[],..
+                         pout=4,..
+                         pein=2,..
+                         peout=2,..
+                         gr_i=list(["txt=[''Step''];";"xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');"],8),..
+                         id="",..
+                         in_implicit=[],..
+                         out_implicit="E"),..
+                model=scicos_model(..
+                         sim=list("step_func",4),..
+                         in=[],..
+                         in2=[],..
+                         intyp=1,..
+                         out=1,..
+                         out2=[],..
+                         outtyp=1,..
+                         evtin=1,..
+                         evtout=1,..
+                         state=[],..
+                         dstate=[],..
+                         odstate=list(),..
+                         rpar=[2;3],..
+                         ipar=[],..
+                         opar=list(),..
+                         blocktype="c",..
+                         firing=1,..
+                         dep_ut=[%f,%f],..
+                         label="",..
+                         nzcross=0,..
+                         nmode=0,..
+                         equations=list()),..
+                doc=list())
+scs_m_1.objs(2)=scicos_link(..
+                  xx=[349.304;349.304;349.95834;307.82885;307.82885;307.82885;308.55522;349.304;
+                  349.304],..
+                  yy=[156.29638;144.56543;144.56543;144.56543;145.2949;224.07735;224.07735;224.07735;
+                  207.72495],..
+                  id="",..
+                  thick=[0,0],..
+                  ct=[5,-1],..
+                  from=[1,1,0],..
+                  to=[1,1,1])
+scs_m_1.objs(3)=scicos_block(..
+                gui="SAMPHOLD_m",..
+                graphics=scicos_graphics(..
+                         orig=[410.24708,162.01067],..
+                         sz=[40,40],..
+                         flip=%t,..
+                         theta=0,..
+                         exprs="1",..
+                         pin=4,..
+                         pout=8,..
+                         pein=6,..
+                         peout=[],..
+                         gr_i=list("xstringb(orig(1),orig(2),''S/H'',sz(1),sz(2),''fill'')",8),..
+                         id="",..
+                         in_implicit="E",..
+                         out_implicit="E"),..
+                model=scicos_model(..
+                         sim=list("samphold4_m",4),..
+                         in=-1,..
+                         in2=-2,..
+                         intyp=1,..
+                         out=-1,..
+                         out2=-2,..
+                         outtyp=1,..
+                         evtin=1,..
+                         evtout=[],..
+                         state=[],..
+                         dstate=[],..
+                         odstate=list(),..
+                         rpar=[],..
+                         ipar=[],..
+                         opar=list(),..
+                         blocktype="d",..
+                         firing=[],..
+                         dep_ut=[%t,%f],..
+                         label="",..
+                         nzcross=0,..
+                         nmode=0,..
+                         equations=list()),..
+                doc=list())
+scs_m_1.objs(4)=scicos_link(..
+                  xx=[377.87543;401.67565],..
+                  yy=[182.01067;182.01067],..
+                  id="",..
+                  thick=[0,0],..
+                  ct=[1,1],..
+                  from=[1,1,0],..
+                  to=[3,1,1])
+scs_m_1.objs(5)=scicos_block(..
+                gui="SampleCLK",..
+                graphics=scicos_graphics(..
+                         orig=[400.24708,243.77296],..
+                         sz=[60,40],..
+                         flip=%t,..
+                         theta=0,..
+                         exprs=["0";"0"],..
+                         pin=[],..
+                         pout=[],..
+                         pein=[],..
+                         peout=6,..
+                         gr_i=list(" ",8),..
+                         id="",..
+                         in_implicit=[],..
+                         out_implicit=[]),..
+                model=scicos_model(..
+                         sim="sampleclk",..
+                         in=[],..
+                         in2=[],..
+                         intyp=1,..
+                         out=[],..
+                         out2=[],..
+                         outtyp=1,..
+                         evtin=[],..
+                         evtout=1,..
+                         state=[],..
+                         dstate=[],..
+                         odstate=list(),..
+                         rpar=[0;0],..
+                         ipar=[],..
+                         opar=list(),..
+                         blocktype="d",..
+                         firing=-1,..
+                         dep_ut=[%f,%f],..
+                         label="",..
+                         nzcross=0,..
+                         nmode=0,..
+                         equations=list()),..
+                doc=list())
+scs_m_1.objs(6)=scicos_link(..
+                  xx=[430.24708;430.24708],..
+                  yy=[243.77296;207.72495],..
+                  id="",..
+                  thick=[0,0],..
+                  ct=[5,-1],..
+                  from=[5,1,0],..
+                  to=[3,1,1])
+scs_m_1.objs(7)=scicos_block(..
+                gui="OUT_f",..
+                graphics=scicos_graphics(..
+                         orig=[478.81851,172.01067],..
+                         sz=[20,20],..
+                         flip=%t,..
+                         theta=0,..
+                         exprs="1",..
+                         pin=8,..
+                         pout=[],..
+                         pein=[],..
+                         peout=[],..
+                         gr_i=list(" ",8),..
+                         id="",..
+                         in_implicit="E",..
+                         out_implicit=[]),..
+                model=scicos_model(..
+                         sim="output",..
+                         in=-1,..
+                         in2=-2,..
+                         intyp=-1,..
+                         out=[],..
+                         out2=[],..
+                         outtyp=1,..
+                         evtin=[],..
+                         evtout=[],..
+                         state=[],..
+                         dstate=[],..
+                         odstate=list(),..
+                         rpar=[],..
+                         ipar=1,..
+                         opar=list(),..
+                         blocktype="c",..
+                         firing=[],..
+                         dep_ut=[%f,%f],..
+                         label="",..
+                         nzcross=0,..
+                         nmode=0,..
+                         equations=list()),..
+                doc=list())
+scs_m_1.objs(8)=scicos_link(..
+                  xx=[458.81851;478.81851],..
+                  yy=[182.01067;182.01067],..
+                  id="",..
+                  thick=[0,0],..
+                  ct=[1,1],..
+                  from=[3,1,0],..
+                  to=[7,1,1])
+  model=scicos_model()
+  model.sim="csuper"
+  model.in=[]
+  model.in2=[]
+  model.intyp=1
+  model.out=-1
+  model.out2=-2
+  model.outtyp=-1
+  model.evtin=[]
+  model.evtout=[]
+  model.state=[]
+  model.dstate=[]
+  model.odstate=list()
+  model.rpar=scs_m_1
+  model.ipar=1
+  model.opar=list()
+  model.blocktype="h"
+  model.firing=[]
+  model.dep_ut=[%f,%f]
+  model.label=""
+  model.nzcross=0
+  model.nmode=0
+  model.equations=list()
+  s3=1
+  s2=0
+  s1=1
+  exprs=[sci2exp(s1,0);sci2exp(s2,0);sci2exp(s3,0);]
+  gr_i=[  'thick=xget(''thickness'')'
+	  'pat=xget(''pattern'')'
+	  'fnt=xget(''font'')'
+	  'xpoly(orig(1)+[0.071;0.413;0.413;0.773]*sz(1),orig(2)+[0.195;0.195;0.635;0.635]*sz(2),'"lines"')';
+	  'xset(''thickness'',thick)'
+	  'xset(''pattern'',pat)'
+	  'xset(''font'',fnt(1),fnt(2))']
+  x=standard_define([2,2],model,exprs,gr_i)
+end
+endfunction

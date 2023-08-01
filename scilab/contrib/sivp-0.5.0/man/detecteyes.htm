@@ -1,0 +1,70 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>detectlefteyesdetectrighteyes</title>
+</head>
+<body bgcolor="#FFFFFF">
+<center>SIVP Toolbox</center>
+<div align="right">Last update : September, 2008</div>
+<p><b>detectlefteyes</b> - Find left eyes in the image.</p>
+<p><b>detectrighteyes</b> - Find right eyes in the image.</p>
+<h3><font color="blue">Calling Sequence</font></h3>
+<dl>
+<dd><tt>leyes = detectlefteyes(im)</tt></dd>
+<dd><tt>reyes = detectrighteyes(im)</tt></dd>
+</dl>
+<h3><font color="blue">Parameters</font></h3>
+<ul>
+<li>
+<b><tt>im</tt></b>:
+   The input image, color or gray image.
+   </li>
+<li>
+<b><tt>leyes, reyes</tt></b>:
+   An Nx4 matrix. Each row of the matrix contains information about an teye position and size: [x,y,w,h]. (x,y) is the top-left corner coordinates of a rectangle contains an eye; w,h are width and height of the rectangle respectively.
+   </li>
+</ul>
+<h3><font color="blue">Description</font></h3>
+<p>
+   The function finds left/right eyes in an image.
+</p>
+<p>
+   The result of lefteye detection or righteye detection is not enough accuracy as the face detection; results of lefteye detection and righteye detection are quite similar in some case. In order to get proper results, it's better to apply lefteye detection and righteye detection functions to a upper half of a detected face image.
+</p>
+<h3><font color="blue">Examples</font></h3>
+<pre>
+
+    im = imread(SIVP_PATH+'/images/lena.png');
+    face = detectfaces(im);
+    rect = face*diag([1,1,1,0.7]);
+    subface = imcrop(im, rect);
+    
+    leyes = detectlefteyes(subface);
+    [m,n] = size(leyes);
+    for i=1:m,  
+        im = rectangle(im, leyes(i,:)+rect*diag([1,1,0,0]), [0,255,0]);
+    end;
+    imshow(im);    
+
+</pre>
+<h3><font color="blue">Authors</font></h3>
+<dl>
+<dd>
+<b></b> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </dd>
+<dd>
+<b></b> Jia Wu &lt;jiawu83[at]gmail.com&gt; </dd>
+</dl>
+<h3><font color="blue">Bibliography</font></h3>
+<p>
+    "Rapid Object Detection using a Boosted Cascade of Simple Features", Paul Viola and Michael J. Jones, IEEE CVPR, 2001. 
+ </p>
+<p>
+    "An Extended Set of Haar-like Features for Rapid Object Detection", Rainer Lienhart and Jochen Maydt, IEEE ICIP 2002, Vol. 1, pp. 900-903, Sep. 2002.
+ </p>
+<h3><font color="blue">Availability</font></h3>
+The latest version of SIVP can be found at
+<p><a href="http://sivp.sourceforge.net">http://sivp.sourceforge.net</a></p>
+<h3><font color="blue">See Also</font></h3>
+<p><a href="detectfaces.htm"><tt><b>detectfaces</b></tt></a>,&nbsp;&nbsp;</p>
+</body>
+</html>

@@ -1,0 +1,170 @@
+p_ScicosLab 4.4.1 
+
+As default ScicosLab is compiled and linked using standard, open source BLAS and LAPAK routine. This code (available from http://www.netlib.org/) is tried and tested but is not optimized of a particular architecture. It is written for single core/single processor applications without pose attention to problem like cache size or page table misses.
+This code still run on multi core processor with three level caches and complex memory management unit, but with far form optimal performances.
+Other open source solutions like ATLAS try to optimize BLAS/LAPAK on a specific architecture, but does not exploit the performance gain available from the parallelism.
+Other optimized, non open source solution are the GOTO libs.
+
+Both Intel and AMD offer BLAS/LAPACK libraries optimized for their respective processor. Intel MKL offer a very fine grain control over the hardware (CPU types) and software (compilers) architecture. This means thet is more diffcult to produce a general purpose code that will run good on different situations. Further, Intel MKL are not freely redistributable (you need to buy the license one time). 
+
+AMD ACML are more generic, in the sense that they are not optimize only for Intel processor. ACML try to use standard multicore infrastructure using OpenMP and vectorized operations using standard SSE2/SSE3/SSE4 standard instruction set extensions (available on many x86 processors). ACML detect the architecture at run time. The only "fixed" decisions are about the platform (32 or 64 bits) and the compilers (GNU gfortran, gcc, in our case). AMCL redistribution is free (as a free beer), previous AMD authorization.
+
+
+
+We propose a local installation as simple user. You can choose other options, but you will be obliged to modify some paths. Same consideration about the library type (32 or 64 bits, single or multi core, normal or vector optimized).
+
+This guide is written using "/home/simone/SVN/scicoslab/parallel" as working directory using an Ubuntu 9.10 64 bit on a multi core i7 machine.
+
+1) Download and install ACML
+AMD ACML are avalable here: 
+
+   http://developer.amd.com/cpu/Libraries/acml/downloads/pages/default.aspx
+
+You need to register to download the package. Select your preferred architecture and compiler.
+Prepare an empty folder where install the library. In our case 
+
+"/home/simone/SVN/scicoslab/parallel/acml430"
+
+Using the AMD installer, put the library there.
+
+Check out ScicosLab SVN repository using
+
+svn co --username <user_name> --password <passwd> svn://scilab.inria.fr/svnrepos/scilab412/scilab
+svn co --username <user_name> --password <passwd> svn://scilab.inria.fr/svnrepos/scilab412/ocaml
+
+Go inside "ocaml/ocaml" and run the Makefile (just "make"). This will compile and copy inside "./scilab/bin" some binary files required by Scicos.
+
+Go inside the "./scilab" folder and run "sh autogen.sh"
+
+Use this file at the place of the default "./scilab/Makefile.OBJ"
+
+//**--------------------------------------------------------------------------------
+
+LIBRSCI = $(SCIDIR)/libs/system.a $(SCIDIR)/libs/console.a \
+	$(SCIDIR)/libs/interf.a \
+	$(SCIDIR)/libs/system2.a $(SCIDIR)/libs/optim.a $(SCIDIR)/libs/scicos.a \
+        $(SCIDIR)/libs/integ.a $(SCIDIR)/libs/control.a \
+	$(SCIDIR)/libs/signal.a \
+        $(SCIDIR)/libs/poly.a $(SCIDIR)/libs/calelm.a \
+	$(SCIDIR)/libs/graphics.a \
+        $(SCIDIR)/libs/sparse.a $(SCIDIR)/libs/metanet.a \
+	$(SCIDIR)/libs/os_specific.a $(SCIDIR)/libs/gd.a  \
+        $(SCIDIR)/libs/intersci.a  $(SCIDIR)/libs/gtksci.a \
+	$(SCIDIR)/libs/graphics.a $(SCIDIR)/libs/menusX.a \
+	$(SCIDIR)/libs/fileio.a $(SCIDIR)/libs/dcd.a $(SCIDIR)/libs/rand.a \
+	$(SCIDIR)/libs/int.a \
+	$(SCIDIR)/libs/maxplus.a \
+        $(SCIDIR)/libs/slicot.a  $(SCIDIR)/libs/arpack.a \
+        $(SCIDIR)/libs/wintools.a $(SCIDIR)/libs/pvm.a  $(SCIDIR)/libs/tclsci.a  \
+        $(SCIDIR)/libs/expatsci.a
+
+#the same but without duplicates 
+
+LIBRSCI_U = $(SCIDIR)/libs/system.a $(SCIDIR)/libs/console.a \
+	$(SCIDIR)/libs/interf.a \
+	$(SCIDIR)/libs/system2.a $(SCIDIR)/libs/optim.a $(SCIDIR)/libs/scicos.a \
+        $(SCIDIR)/libs/integ.a $(SCIDIR)/libs/control.a \
+	$(SCIDIR)/libs/signal.a \
+        $(SCIDIR)/libs/poly.a $(SCIDIR)/libs/calelm.a \
+        $(SCIDIR)/libs/sparse.a $(SCIDIR)/libs/metanet.a \
+	$(SCIDIR)/libs/os_specific.a $(SCIDIR)/libs/gd.a  \
+        $(SCIDIR)/libs/intersci.a  $(SCIDIR)/libs/gtksci.a \
+	$(SCIDIR)/libs/graphics.a $(SCIDIR)/libs/menusX.a \
+	$(SCIDIR)/libs/fileio.a $(SCIDIR)/libs/dcd.a $(SCIDIR)/libs/rand.a \
+	$(SCIDIR)/libs/int.a \
+	$(SCIDIR)/libs/maxplus.a \
+        $(SCIDIR)/libs/slicot.a  $(SCIDIR)/libs/arpack.a \
+        $(SCIDIR)/libs/wintools.a $(SCIDIR)/libs/pvm.a  $(SCIDIR)/libs/tclsci.a   \
+        $(SCIDIR)/libs/expatsci.a
+
+
+LIBR = $(XAW_LOCAL_LIB) $(LIBRSCI) $(DLDLIB) $(PVMGLIB) $(PVMLIB) 
+LIBR_U = $(XAW_LOCAL_LIB) $(LIBRSCI_U) $(DLDLIB) $(PVMGLIB) $(PVMLIB)
+
+DEFAULTS = \
+        $(SCIDIR)/routines/default/FTables.o \
+        $(SCIDIR)/routines/default/Ex-colnew.o \
+        $(SCIDIR)/routines/default/Ex-corr.o \
+        $(SCIDIR)/routines/default/Ex-feval.o \
+        $(SCIDIR)/routines/default/Ex-fsolve.o \
+        $(SCIDIR)/routines/default/Ex-lsqrsolve.o \
+        $(SCIDIR)/routines/default/Ex-impl.o \
+        $(SCIDIR)/routines/default/Ex-intg.o \
+        $(SCIDIR)/routines/default/Ex-int2d.o \
+        $(SCIDIR)/routines/default/Ex-int3d.o \
+        $(SCIDIR)/routines/default/Ex-ode-more.o \
+        $(SCIDIR)/routines/default/Ex-ode.o \
+        $(SCIDIR)/routines/default/Ex-odedc.o \
+        $(SCIDIR)/routines/default/Ex-optim.o \
+        $(SCIDIR)/routines/default/Ex-schur.o \
+        $(SCIDIR)/routines/default/Ex-fort.o \
+        $(SCIDIR)/routines/default/Ex-dasrt.o \
+        $(SCIDIR)/routines/default/Ex-dassl.o \
+        $(SCIDIR)/routines/default/Ex-fbutn.o \
+        $(SCIDIR)/routines/default/matusr.o  \
+	$(SCIDIR)/routines/default/matus2.o \
+        $(SCIDIR)/routines/default/Funtab.o  \
+	$(SCIDIR)/routines/default/msgstxt.o \
+        $(SCIDIR)/routines/default/scimem.o \
+        $(SCIDIR)/routines/default/callinterf.o \
+        $(SCIDIR)/routines/default/mexlib.o
+
+MAINSCI= $(SCIDIR)/routines/default/mainsci.o 
+
+//**--------------------------------------------------------------------------------
+
+Notice how we have suppressed all the refences to "blas" and "lapack"
+
+Open the file "./scilab/config/Makefile.linux" and modify it like that:
+
+//**--------------------------------------------------------------------------------
+
+# Copyright INRIA
+
+FFLAGS = $(FC_OPTIONS)
+
+bin/scilex: scilex-lib 
+	@x=1;if test -f $@; then  \
+		x=`find $(MAINSCI) $(DEFAULTS) $(LIBR)  \( -name '*.a' -o -name '*.o' \) \
+		-newer $@ -print | wc -l `; \
+	fi;\
+	if test $$x -ne 0; then \
+		$(RM) $@; \
+		echo "linking"; \
+		$(FC) $(FFLAGS) -o $@ $(MAINSCI) $(DEFAULTS) $(FC_LDFLAGS) $(LIBR)\
+			$(TCLTK_LIBS)  \
+			-fopenmp  /home/simone/SVN/scicoslab/parallel/acml430/gfortran64_mp/lib/libacml_mp.a  -lgomp \
+			$(XLIBS) $(TERMCAPLIB); \
+	else \
+		echo bin/scilex is up to date ; \
+	fi
+
+
+show	:
+	@echo $(FC) $(FFLAGS) -o $@ $(MAINSCI) $(DEFAULTS) $(FC_LDFLAGS) $(LIBR)\
+		$(TCLTK_LIBS) $(XLIBS) $(TERMCAPLIB);
+
+//**--------------------------------------------------------------------------------
+
+Depending on you choiches, you may link to different libraries, so the line
+
+ -fopenmp  /home/simone/SVN/scicoslab/parallel/acml430/gfortran64_mp/lib/libacml_mp.a  -lgomp \
+
+must change in accord with your installation. 
+
+"make all" compile ScicosLab as usual.
+
+ACML uses - as defalt - as many free cores it find. You can manually force the maximum number of used cores using the environment variable "OMP_NUM_THREADS".
+
+A final note: 
+- matrix / vector operations with objects smaller then 1000 elements are NOT parallelized (using multi thread execution). 
+
+
+
+
+ 
+
+
+
+
+

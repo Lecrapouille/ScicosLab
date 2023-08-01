@@ -1,0 +1,47 @@
+#######################################################################
+#                                                                     #
+#                           ScicosLab                                 #
+#                                                                     #
+#          Pierre Weis, INRIA Rocquencourt                            #
+#                                                                     #
+#  Copyright 2010-2011,                                               #
+#  Institut National de Recherche en Informatique et en Automatique.  #
+#  All rights reserved.                                               #
+#                                                                     #
+#  This file is distributed under the terms of the BSD License.       #
+#                                                                     #
+#######################################################################
+
+# $Id: TODO 4596 2011-10-21 10:53:38Z weis $
+
+2011-10-20:
+-----------
+
+* Passage à NSP
+
+* scicoslab-devel mailing liste
+
+* Licence:
+  -> NSP is under BSD license (and also GPL according to the user will)
+  -> Scicos is BSD license for the most part with additional closed source parts
+     BSD parts:
+       - graphical editor
+       - block library
+       - code generator
+       - matronly (matrila ?) implementation
+
+     Closed source parts:
+       - Scicos related toolboxes as the import simulink program
+       - Scicos compiler and Scicos simulator
+
+* semantics of blocks: start from a simple sub-set of blocks, small enough to
+  give a true semantics (in the mathematical sense) static (typing rules) and
+  dynamic (evaluation rules (operational semantics) or mathematical meaning
+  (denotational semantics)
+
+* simulink translator: implement the rest of basic blocks, try to get some
+  useful input from other developers ?
+
+* matexp: "matrice expression" embedded language -> matronly or matrila.
+
+

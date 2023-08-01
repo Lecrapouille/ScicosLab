@@ -1,0 +1,59 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ntsc2rgb</title>
+</head>
+<body bgcolor="#FFFFFF">
+<center>SIVP Toolbox</center>
+<div align="right">Last update : August, 2006</div>
+<p><b>ntsc2rgb</b> - Convert a NTSC image to the equivalent RGB image.</p>
+<h3><font color="blue">Calling Sequence</font></h3>
+<dl><dd><tt>RGB = ntsc2rgb(YIQ)</tt></dd></dl>
+<h3><font color="blue">Parameters</font></h3>
+<ul>
+<li>
+<b><tt>YIQ</tt></b>:
+   A NTSC image (hypermat). The dimension of <tt>NTSC</tt> should be <tt>M x N x 3</tt>,
+   the type should be double and the element value range should be [0,1]. 
+   </li>
+<li>
+<b><tt>RGB</tt></b>:
+   Output image, which has the same size as <tt>NTSC</tt> and type of double.
+   </li>
+</ul>
+<h3><font color="blue">Description</font></h3>
+<p><tt>ntsc2rgb</tt> convert a NTSC image to the equivalent RGB image using:</p>
+<dl>
+<dt><b></b></dt>
+<dd><tt>R = Y + 0.956*I + 0.621*Q </tt></dd>
+<dt><b></b></dt>
+<dd><tt>G = Y - 0.272*I - 0.647*Q</tt></dd>
+<dt><b></b></dt>
+<dd><tt>B = Y - 1.105*I - 1.702*Q</tt></dd>
+</dl>
+<p>
+ Supported classe: DOUBLE.
+</p>
+<h3><font color="blue">Examples</font></h3>
+<pre>
+
+    RGB = imread('lena.png');
+    YIQ = rgb2ntsc(RGB);
+    RGB = ntsc2rgb(YIQ);
+    imshow(RGB);
+
+</pre>
+<h3><font color="blue">Authors</font></h3>
+<dl>
+<dd>
+<b></b>Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </dd>
+<dd>
+<b></b>Ricardo Fabbri &lt;ricardofabbri[at]users.sf.net&gt;</dd>
+</dl>
+<h3><font color="blue">Availability</font></h3>
+The latest version of SIVP can be found at
+<p><a href="http://sivp.sourceforge.net">http://sivp.sourceforge.net</a></p>
+<h3><font color="blue">See Also</font></h3>
+<p><a href="rgb2gray.htm"><tt><b>rgb2gray</b></tt></a>,&nbsp;&nbsp;<a href="mat2gray.htm"><tt><b>mat2gray</b></tt></a>,&nbsp;&nbsp;<a href="rgb2hsv.htm"><tt><b>rgb2hsv</b></tt></a>,&nbsp;&nbsp;<a href="hsv2rgb.htm"><tt><b>hsv2rgb</b></tt></a>,&nbsp;&nbsp;<a href="rgb2ycbcr.htm"><tt><b>rgb2ycbcr</b></tt></a>,&nbsp;&nbsp;<a href="ycbcr2rgb.htm"><tt><b>ycbcr2rgb</b></tt></a>,&nbsp;&nbsp;<a href="rgb2ntsc.htm"><tt><b>rgb2ntsc</b></tt></a>,&nbsp;&nbsp;</p>
+</body>
+</html>

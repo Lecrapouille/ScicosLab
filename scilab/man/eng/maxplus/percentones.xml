@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>ones  </TITLE>
+  <TYPE>Maxplus Function  </TYPE>
+  <DATE>   </DATE>
+  <SHORT_DESCRIPTION name="percentones"> (%ones) maxplus ones matrix  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>y=%ones(m,n)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>y=%ones(x)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+  <P>
+    Returns a maxplus matrix made of zeros.
+  </P>
+ 
+
+  <DESCRIPTION_ITEM  label='%ones(m,n)'> 
+    returns a <VERB>(m,n)</VERB> matrix full of zeros.
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='%ones(x)'> 
+    returns a matrix full of zeros with the same size as <VERB>x</VERB>.
+  </DESCRIPTION_ITEM>
+  <P>
+    Note that <VERB>%ones(3)</VERB> is <VERB>%ones(a)</VERB> with <VERB>a=3</VERB> i.e. it is NOT 
+    a 3x3 matrix!
+  </P>
+ 
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>percenteye</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>percentzeros</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

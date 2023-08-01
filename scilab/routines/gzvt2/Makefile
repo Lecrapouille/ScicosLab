@@ -1,0 +1,27 @@
+include ../../Makefile.incl 
+
+# using vte or libzvt 
+#--------------------
+
+ZTERM_LDFLAGS= `pkg-config libzvt-2.0 --cflags --libs` -DHAS_I18N
+ZTERM_CFLAGS= `pkg-config libzvt-2.0 --cflags ` -DHAS_I18N
+VTE_LDFLAGS= `pkg-config gtk+-2.0 vte --cflags --libs` -Wno-deprecated-declarations
+VTE_CFLAGS=  `pkg-config gtk+-2.0 vte --cflags` -Wno-deprecated-declarations
+
+TERM_NAME=vte
+LDFLAGS=$(VTE_LDFLAGS)
+
+all	::  ../../bin/zterm 
+
+clean :: 
+	@$(RM) zterm gtkplug 
+
+../../bin/zterm :  $(TERM_NAME).c 
+	@echo compiling vte.c
+	@$(CC) -o ../../bin/zterm $(TERM_NAME).c  $(LDFLAGS) 
+
+distclean::
+	@$(RM)  ../../bin/zterm gtkplug
+
+
+

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>dot</TITLE>
+  <TYPE>Scilab Symbol</TYPE>
+  <DATE>April 1993</DATE>
+  <SHORT_DESCRIPTION name="dot"> (.)  symbol</SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>123.33</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>a.*b</CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM>[123,..  </CALLING_SEQUENCE_ITEM>
+    <CALLING_SEQUENCE_ITEM> 456]  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+      <DESCRIPTION_ITEM label=".">
+        <P>Dot is used to mark decimal point for numbers : 3.25 and 0.001</P>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label=".&lt;op&gt;">
+        <P>used in conjunction with other operator symbols (<VERB>* / \ ^ '</VERB>) to form other operators.  Element-by-element multiplicative operations are obtained using <VERB> .* , .^ , ./ , .\</VERB> or <VERB>.'</VERB>.  For example, C = A ./ B is the matrix with elements c(i,j) = a(i,j)/b(i,j). Kronecker product is noted .*. .  Note that when dot follows a number it is alway prt of the number so 2.*x is evaluated as 2.0*x and 2 .*x is evaluated as (2).*x</P>
+      </DESCRIPTION_ITEM>
+
+      <DESCRIPTION_ITEM label="..">
+        <P>Continuation mark.  Two or more decimal points at the end
+        of a line (or followed by a comment) causes the following line
+        to be a continuation.</P>
+	 <P> Continuation lines are handled by a preprocessor wich
+        builds a long logical line from a given sequence of
+        continuation lines. So the continuation marks can be used to
+        cut a line at any point.</P>
+        <P>The following function foo:</P>
+        <VERBATIM>
+        function foo
+          a=1
+          disp(a),..
+          disp('ok')
+        endfunction</VERBATIM>
+        <P>is equivalent to:</P>
+        <VERBATIM>
+        function foo
+          a=1
+          
+          disp(a),disp('ok')
+        endfunction</VERBATIM>
+        <P>The logical line formed by physical line 3 and physical line 4
+        is built as if it was entirely written in the physical line 4 while
+        physical line 3 would be empty. This is done this way because
+        continuation marks can be put anywhere even inside an
+        expression.</P>
+      </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+  <EXAMPLE>
+<![CDATA[
+//decimal point
+1.345
+
+//used as part of an operator
+x=[1 2 3];x.^2 .*x // a space is required between 2 and dot
+
+// used to enter continuation lines
+T=[123,..//first element
+   456] //second one
+
+a="here I start a very long string...  //but I'm not in the mood of continuing
+     - and here I go on"
+y=12..
+45
+ ]]>
+  </EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>star</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>hat</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>slash</LINK>
+    </SEE_ALSO_ITEM>
+    <SEE_ALSO_ITEM>
+      <LINK>backslash</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

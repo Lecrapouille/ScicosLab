@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>equalspan  </TITLE>
+  <TYPE>Maxplus Function  </TYPE>
+  <DATE>   </DATE>
+  <SHORT_DESCRIPTION name="equalspan"> maxplus matrix image equality   </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>b=equalspan(A,B,[pre])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>A  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : full maxplus matrix
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>B  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : full maxplus matrix
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>pre  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : precision
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>b  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : boolean 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    b is true if Im(B)=Im(A) else it is false.
+    The equality is equal up to pre which is 0 by default.
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+a=#([1,0;0,1]);
+equalspan(a,a)
+equalspan(a,a*10)
+equalspan(a,#([1,1;2,0]))
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>maxplus</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>includespan</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>weakbasis</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>mpkernel</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>mpsolve</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

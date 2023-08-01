@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>XML_SetElementHandler</TITLE>
+
+  <TYPE>ScicosLab Function</TYPE>
+
+  <DATE>22 September 2009</DATE>
+
+  <SHORT_DESCRIPTION name="XML_SetElementHandler">Set functions for elements handler</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>XML_SetElementHandler(%ptr,'start_hdl','end_hdl')</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>%ptr</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP> : a Scilab pointer pointing to an Expat object.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>'start_hdl'</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP> : a string defining a Scilab function name.</SP>
+          <P>The function calling sequence can be :</P>
+          <PARAM_INDENT>
+             <PARAM_ITEM>
+               <PARAM_NAME>[data]=start_hdl(data,el,attr)</PARAM_NAME>
+               <PARAM_DESCRIPTION>
+               <SP> </SP>
+               </PARAM_DESCRIPTION>
+             </PARAM_ITEM>
+             <PARAM_ITEM>
+               <PARAM_NAME>[]=start_hdl(el,attr)</PARAM_NAME>
+               <PARAM_DESCRIPTION>
+               <SP> </SP>
+               </PARAM_DESCRIPTION>
+             </PARAM_ITEM>
+          </PARAM_INDENT>
+          </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>'end_hdl'</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP>: a string defining a Scilab function name.</SP>
+          <P>The function calling sequence can be :</P>
+          <PARAM_INDENT>
+             <PARAM_ITEM>
+               <PARAM_NAME>[data]=end_hdl(data,el)</PARAM_NAME>
+               <PARAM_DESCRIPTION>
+               <SP> </SP>
+               </PARAM_DESCRIPTION>
+             </PARAM_ITEM>
+             <PARAM_ITEM>
+               <PARAM_NAME>[]=end_hdl(el)</PARAM_NAME>
+               <PARAM_DESCRIPTION>
+               <SP> </SP>
+               </PARAM_DESCRIPTION>
+             </PARAM_ITEM>
+            </PARAM_INDENT>
+            <P>with <VERB>data</VERB> the user data, <VERB>el</VERB> a string given the name of the the tag, and <VERB>el</VERB> a matrix of strings that gives names and values of attributes of the tag.</P>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+  <P>
+    This function set the user functions that will be called during the parsing of XML.
+    'start_hdl' defines the Scilab function name that will be called when encountering an
+    input XML tag.
+    'end_hdl' defines the Scilab function name that will be called when encountering an
+    ending XML tag.
+    The XML pointer must be created with XML_ParserCreate.
+    The input strings must be a valid Scilab functions name.
+  </P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+  txt = mgetl('SCI/man/eng/expatsci/XML_Parse.xml');
+
+  //def start_hndl
+  function []=start_handl(el,attr)
+    printf("Begin of %s \n",el);
+  endfunction
+
+  //def end_hndl
+  function []=end_handl(el)
+    printf("end of %s \n",el);
+  endfunction
+  
+  %ptr=XML_ParserCreate();
+  
+  XML_SetElementHandler(%ptr,'start_handl','end_handl');
+  
+  XML_Parse(%ptr, txt);
+  ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>XML_ParserCreate</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>XML_ParserFree</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>XML_SetUserData</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>XML_SetCharDataHandler</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>XML_Parse</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>XML_Conv2Latin</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>XML_StopParser</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>XML_ResumeParser</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM label='METALAU project-team, INRIA'>
+    A.Layec
+    </AUTHORS_ITEM>
+  </AUTHORS>
+
+  <BIBLIO>
+  <P>
+   'The Expat XML Parser', Available: http://expat.sourceforge.net/
+  </P>
+  </BIBLIO>
+</MAN>

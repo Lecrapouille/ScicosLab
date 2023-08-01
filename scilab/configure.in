@@ -1,0 +1,2054 @@
+dnl Process this file with autoconf to produce a configure script.
+## Copyright INRIA/Enpc
+
+AC_REVISION($Revision: 1.45 $)
+
+AC_INIT([ScicosLab],[svn])
+
+SCIDIR=`pwd`
+
+AC_CONFIG_AUX_DIR(config)
+AC_CONFIG_MACRO_DIR(config)
+AC_CONFIG_HEADER(routines/config.h)
+AM_INIT_AUTOMAKE
+
+dnl Get system type
+dnl use "config.guess" and "config.sub" from directory "config"
+AC_CANONICAL_HOST
+
+AC_DEFINE(SCILAB_GTK,[],[ScicosLab distribution])
+AC_DEFINE(ICON_NAME,"config/puffin-gtk48.png",[Scilab-Gtk icone])
+DATE=`date`
+
+# default prefix
+ac_default_prefix=/usr
+
+#################################
+## all the --with-* --enable-* argument help
+#################################
+
+AC_ARG_ENABLE(debug,
+    [  --enable-debug          compile with "-g" option [default=yes]])
+
+AC_ARG_ENABLE(optimize,
+    [  --enable-optimize       use optimize [default=yes]])
+
+AC_ARG_ENABLE(wall,
+    [  --enable-wall           use wall option [default=yes]])
+
+AC_ARG_WITH(gcc,
+    [  --with-gcc              use gcc C compiler ])
+
+AC_ARG_WITH(g77,
+    [  --with-g77              use g77, GNU Fortran 77 compiler ])
+
+AC_ARG_WITH(gfortran,
+    [  --with-gfortran         use gfortran, GNU Fortran 95 compiler ])
+
+AC_ARG_WITH(gnu,
+    [  --with-gnu              use gcc C compiler and gnu Fortran compiler (g77 or gfortran) ])
+
+AC_ARG_WITH(tcltk,
+    [  --with-tcltk            add tcl-tk detection ])
+
+AC_ARG_WITH(intelcompilers,
+    [  --with-intelcompilers   use intel icc and ifort Fortran compiler ])
+
+AC_ARG_WITH(f2c,
+    [  --with-f2c              use f2c C compiler on Linux systems ])
+
+AC_ARG_WITH(local-xaw,
+    [  --with-local-xaw        use Xaw3d widgets given with ScicosLab  ])
+
+AC_ARG_WITH(pvm,
+    [  --without-pvm           do not compile with PVM library ])
+
+AC_ARG_WITH(tk,
+    [  --without-tk            do not compile with TCL/TK ])
+
+AC_ARG_WITH(gtk,
+    [  --with-gtk              use Gtk widgets ])
+
+AC_ARG_WITH(webkit,
+    [  --with-webkit           if Webkit exists then use it (if no then gtkhtml2 will be checked and used)])
+
+AC_ARG_WITH(fftw,
+    [  --with-fftw             FFTW 3 library detection])
+
+AC_ARG_WITH(gtk2,
+    [  --without-gtk2          do not use gtk+-2.0 widgets ])
+
+AC_ARG_WITH(addedf2c,
+    [  --with-addedf2c         build a local f2c (routines/f2c)])
+
+AC_ARG_WITH(ocam,
+    [  --without-ocaml         do not compile with ocaml ])
+
+AC_ARG_WITH(expat,
+    [  --without-expat         do not use expat library ])
+
+AC_ARG_WITH(java,
+    [  --with-java             try to detect Java and compile the Java interface (default=no)])
+
+AC_ARG_WITH(man,
+    [  --without-man          do not compile the man pages ])
+
+AC_ARG_WITH(fink,
+    [  --with-fink            use /sw for searching packages instead of /opt/local (default=no) ])
+
+
+#########################
+# default enable values
+#########################
+
+if test xx"$enable_debug" = xx; then
+   enable_debug=yes
+fi
+
+if test xx"$enable_wall" = xx; then
+   enable_wall=yes
+fi
+
+if test xx"$enable_optimize" = xx; then
+   enable_optimize=yes
+fi
+
+# optimize gives wrong results on recent gcc
+
+enable_optimize=no
+ 
+#################################
+# default value is to use gtk2
+#################################
+
+if test xx"$with_gtk2" = xx; then
+   with_gtk2=yes
+fi
+
+
+#################################
+# default is not to compile libjavasci
+#################################
+
+if test xx"$with_java" = xx; then
+   with_java=no
+fi
+
+#################################
+## check this is a source version
+#################################
+
+if test -f .binary; then
+  echo "Humm... this is a binary version";
+  echo "  you'd better read the README file first."
+  exit
+fi
+
+###############################
+## creating Path.incl if needed
+###############################
+#
+# change scidir for mingw
+#   *-*-cygwin* |   *-*-mingw32*)
+
+case "$host" in
+   *-*-mingw32*)
+    SCIDIR=`echo $SCIDIR | sed -e 's+/cygdrive/\([[a-zA-Z]]*\)/+\1:/+g' `
+    ;;
+esac
+
+if test -f Path.incl; then
+  PATH_INCL=`cat Path.incl`
+fi
+if test "$PATH_INCL" != "SCIDIR=$SCIDIR"; then
+  echo "creating Path.incl"
+  cat << EOF > Path.incl
+SCIDIR=$SCIDIR
+EOF
+fi
+
+###############################
+## get the version
+###############################
+
+SCIVERSION=${PACKAGE_NAME}-${PACKAGE_VERSION}
+
+########################
+## removing and cleaning
+########################
+
+RM='rm -f'
+FILES_TO_CLEAN='*.ln *.BAK *.bak core errs ,* *~ *.a .emacs_* tags TAGS make.log MakeOut .*~ *.trace so_locations *.orig *.obj'
+
+#####################################################
+## if specific compilers required check if they exist
+#####################################################
+
+if test "$with_gnu" = yes; then
+        # GNU C and Fortran compilers required
+        AC_CHECK_PROG(WITH_GCC,gcc,yes,no)
+        if test "$WITH_GCC" = no; then
+        AC_MSG_ERROR([Unable to configure: gcc compiler not found])
+        fi
+        AC_CHECK_PROG(WITH_G77,g77,yes,no)
+        if test "$WITH_G77" = no; then
+        AC_CHECK_PROG(WITH_GFORTRAN,gfortran,yes,no)
+        if test "$WITH_GFORTRAN" = no; then
+        AC_MSG_ERROR([Unable to configure: g77 or gfortran compiler not found])
+        fi
+        fi
+elif test "$with_intelcompilers" = yes; then
+        # intel C and Fortran compilers required
+        AC_CHECK_PROGS(ICC,icc ecc,no)
+        if test "$ICC" = no; then
+        AC_MSG_ERROR([Unable to configure: icc nor ecc  compiler found])
+        fi
+        AC_CHECK_PROGS(IFC,ifort ifc efc,no)
+        if test "$IFC" = no; then
+        AC_MSG_ERROR([Unable to configure: ifc nor efc compiler  found])
+        fi
+        AC_MSG_WARN([ScicosLab incremental link may be buggy with Intel Compiler(s).
+See bug 1925])
+
+elif test "$with_gcc" = yes; then
+        # GNU gcc required
+        AC_CHECK_PROG(WITH_GCC,gcc,yes,no)
+        if test "$WITH_GCC" = no; then
+        AC_MSG_ERROR([Unable to configure: gcc compiler not found])
+        fi
+elif test "$with_g77" = yes; then
+        # GNU g77 required
+        AC_CHECK_PROG(WITH_G77,g77,yes,no)
+        if test "$WITH_G77" = no; then
+        AC_MSG_ERROR([Unable to configure: g77 compiler not found])
+        fi
+elif test "$with_gfortran" = yes; then
+        # GNU g95 (gfortran) required
+        AC_CHECK_PROG(WITH_GFORTRAN,gfortran,yes,no)
+        if test "$WITH_GFORTRAN" = no; then
+        AC_MSG_ERROR([Unable to configure: gfortran compiler not found])
+        fi
+fi
+
+
+#####################################################
+## macports or fink ?
+#####################################################
+
+if test xx"$with_fink" = xx; then
+   with_fink=no
+fi
+
+if test $with_fink = yes; then
+     LIBPATH_PREFIX=/sw
+else
+     LIBPATH_PREFIX=/opt/local
+fi
+
+#############################################
+## Compilers and options according to machine
+#############################################
+
+# use for making scripts in script directory
+#   different for MIPS Ultrix
+SCILAB_GS=sh
+# scilab script file in script directory: default is "scilab.g" for UNIX
+#   for gcwin32 use "scilab-gcwin32.g"
+SCILABSCRIPT=scilab.g
+# Fortran program in routines/os_specific: default is "fgetarg.f"
+#   for HPUX use "fgetarg-hpux.f"
+FGETARG=fgetarg
+GETARG=getarg
+# Fortran program in routines/calelm: default is "scidcopy.f"
+#   for HPUX use "scidcopy-hpux.f"
+SCIDCOPY=scidcopy
+# Fortran program in routines/calelm: default is "unsfdcopy.f"
+#   for HPUX use "unsfdcopy-hpux.f"
+UNSFDCOPY=unsfdcopy
+# For old Hp computer (9.x), used in "routines/os_specific/Makefile.in"
+#   for choosing the good file between link_std.c and link_SYSV.c
+HPPA_OLD=
+# Scilab main file: default is "mainsci.o" for UNIX
+MAIN='mainsci.o'
+# for graphics: default is X11
+#   different for Win32
+PERIFILE=periX11.o
+# specific scilab dirs for graphics: default is "xsci" for X11
+#   different for Win32
+GUILIB=xsci
+# specific for gnome/gtk version
+GZVT=
+# specific scilab dirs for xdr:  default is void for X11
+#   xdr for Win32
+XDRLIB=
+XDRLIBNAME=
+# objects files in routines/menusX: default is XOBJS for UNIX
+#   for Win32 use WOBJS
+MENUSOBJS=XOBJS
+# use other malloc (in "routines/os_specific" directory) for some 64 bits machines
+MALLOC=
+# USE_CDEC directives for Dec Alpha
+FC_USE_CDEC=DEC
+# want to build Scilab f2c too
+if test "$with_addedf2c" = yes; then
+  F2C_SUBDIR=f2c/src
+else
+  F2C_SUBDIR=
+fi
+# Compile and add libf2c
+# used to dynamically link fortran programs
+# compiled with f2c (windows)
+F2C_LIB=
+F2C_DIR=
+# on windows target generating scripts for
+# printing is useless
+BLPR_SCRIPTS='$(BPROGRAMS)'
+# on windows target when generating script
+# cygdrive/xxx must be replaced by xxx:/
+# for mingw32
+SED_CYGDRIVE=
+# subset of examples which are supposed to work
+EXAMPLES_TESTS='$(SUBDIRS1) $(SUBDIRS2)'
+# special stuff for cygwin in impdir
+IMPPREF=S
+IMPENV=
+# strip executable (not to be done on darwin)
+STRIP=strip
+# periX11.c must be compiled without optimization on Darwin
+PERIX11NOPT=periX11darwin
+NMOPT=
+# allocation functions
+SCIMALLOC=
+
+#########################
+# setting parameters according to system types
+#########################
+
+# suffix of dynamic libraries
+SONAME=so
+GCCFIX=
+
+dnl Checks for programs.
+
+AC_LANG(C)
+AC_PROG_CC
+LT_PROG_RC
+AC_PROG_CXX
+AC_PROG_F77
+AC_PROG_CPP
+AC_PROG_INSTALL
+AC_PROG_LN_S
+AC_CHECK_TOOL(RANLIB, ranlib, :)
+AC_CHECK_TOOL(AR, ar, :)
+
+dnl Fortran libraries required for creating fortran
+dnl shared libraries.  In particular this is needed
+dnl for the lapack examples when using f2c.  This
+dnl will set the FLIBS variable.
+
+AC_F77_LIBRARY_LDFLAGS
+
+# this is added for the cross-compilation
+FLIBS_SH="${FLIBS}"
+
+
+dnl echo CC=$CC
+dnl echo F77=$F77
+dnl echo CPP=$CPP
+dnl echo CPPFLAGS=$CPPFLAGS
+dnl echo CFLAGS=$CFLAGS
+dnl echo FFLAGS=$FFLAGS
+dnl echo CXX=$CXX
+dnl echo CXXFLAGS=$CXXFLAGS
+dnl echo LD=$LD      defined by
+dnl echo LDFLAGS=$LDFLAGS
+dnl echo GCC=$GCC
+dnl echo G77=$GCC
+
+if test "$WITH_GFORTRAN" = yes; then
+   F77=gfortran
+fi
+
+############################################
+# ieee flags (from gsl)
+#############################################
+
+save_cflags="$CFLAGS"
+AC_CACHE_CHECK([for IEEE compiler flags], ac_cv_c_ieee_flags,
+[
+case "$host" in
+    alpha*-*-*)
+        if test X"$GCC" = Xyes ; then
+            ieee_flags='-mieee -mfp-rounding-mode=d'
+        else
+            # This assumes Compaq's C compiler.
+            ieee_flags='-ieee -fprm d'
+        fi
+        ;;
+esac
+if test X"$ieee_flags" != X ; then
+  CFLAGS="$ieee_flags $CFLAGS"
+  AC_TRY_COMPILE(,[int foo;],
+  ac_cv_c_ieee_flags="$ieee_flags",
+  ac_cv_c_ieee_flags="none")
+else
+  ac_cv_c_ieee_flags="none"
+fi])
+
+if test "$ac_cv_c_ieee_flags" != "none" ; then
+   CFLAGS="$ac_cv_c_ieee_flags $save_cflags"
+else
+   CFLAGS="$save_cflags"
+fi
+
+############################################
+# ieee lib check
+#############################################
+
+AC_CHECK_LIB(ieee,main,[LIEEELIB=-lieee],[LIEEELIB=])
+
+#########################
+## libtool
+#########################
+
+echo "configuration of libtool"
+builtin(include,config/libtool.m4)
+# uncomment next line if echo fail in libtool
+# _LT_DECL([], [echo], [echo], [Missing echo] )dnl
+AC_PROG_LIBTOOL()
+echo "end of configuration of libtool"
+
+# get the shared lib extension (need to force evaluation)
+eval SHREXT_NAME=$shrext_cmds
+AC_DEFINE_UNQUOTED([SHREXT_NAME], ["$SHREXT_NAME"], [ shared library extension ])
+
+#############################################
+## Compilers and options according to machine
+## compilers were detected above
+#############################################
+
+CC_OPTIONS="${CFLAGS}"
+CC_OPTIONS_PLUS=""
+CC_LDFLAGS="${LDFLAGS} ${LIEEELIB}"
+FC=$F77
+FC_OPTIONS="${FFLAGS}"
+FC_OPTIONS_PLUS=""
+FC_LDFLAGS="${LDFLAGS} ${LIEEELIB}"
+LD_LDFLAGS="${LDFLAGS}"
+
+if test "$enable_pg" = yes; then
+   CC_OPTIONS="${CFLAGS} -pg"
+   FC_OPTIONS="${FFLAGS} -pg"
+   enable_optimize=no;
+fi
+
+#echo PPPPPPPPPP $lt_lt_prog_compiler_pic $lt_prog_compiler_pic_works
+#echo QQQQQQQQQQ $lt_lt_prog_compiler_pic_F77 $lt_prog_compiler_pic_F77_works
+#echo QQQQQQQQQQ $lt_lt_prog_compiler_pic_CXX $lt_prog_compiler_pic_CXX_works
+
+case "$host" in
+  # Linux ELF: all standard distributions
+  i*86-*-linux-gnu | i*86-*-linux |  i*-pc-linux-gnu )
+    CC_PICFLAGS="-fPIC"
+    FC_PICFLAGS="-fPIC"
+    FC_LDFLAGS="${FC_LDFLAGS} -ldl -rdynamic"
+    if test "$with_intelcompilers" = no; then
+      GCCFIX=fix.o
+    fi
+    MAKEFILE_TARGET=Makefile.linux
+   ;;
+  # Linux gnu: x86_64 distributions added by cdh 2004-09-29
+  x86_64-*-linux-gnu | x86_64-linux-gnu )
+    MALLOC=malloc.o
+    AC_DEFINE(WITH_MALLOC_REP,[], [use malloc replacement function for stack allocation ])
+    #FORTRAN_POINTERS=yes 
+    if test X"$CC" = X"$ICC" ; then
+       CC_OPTIONS="${CC_OPTIONS} -Dlinux -DNARROWPROTO -mp"
+       CC_PICFLAGS="-fPIC"
+       # -cm remove comments displays, -w90  -w95 remove warnings abort f90 f95 non standard
+       FC_OPTIONS="${FC_OPTIONS} -cm -w90 -w95 -mp"
+       CC_LDFLAGS="${CC_LDFLAGS} -Wl,-relax"
+       FC_LDFLAGS="${FC_LDFLAGS} -ldl -lPEPCF90 -Wl,-relax"
+       LD=xild
+       LD_LDFLAGS="${LDFLAGS} -lPEPCF90 -Wl,-relax"
+    else
+       # CC_PLAT_OPTIONS is optional, and is used to add CPU specific code generation tuning for
+       # Athlon64 presumably
+       # Opteron could benefit too but these are not optimized for the Opteron
+       # CC_PLAT_OPTIONS='-march=athlon64 -mfpmath=sse -msse2 -m3dnow -m64 '
+       # CC_OPTIONS="${CC_OPTIONS} ${CC_PLAT_OPTIONS}"
+       CC_OPTIONS="${CC_OPTIONS} -Dlinux"
+       # Remove -ansi
+       CC_OPTIONS=`echo $CC_OPTIONS | sed -e 's!-ansi!!g' `
+       CC_PICFLAGS=-fPIC
+       FC_PICFLAGS=-fPIC
+       FC_OPTIONS="${FC_OPTIONS} $CC_PLAT_OPTIONS"
+       FC_LDFLAGS="${FC_LDFLAGS} -ldl -rdynamic -Wl,-relax"
+       CC_LDFLAGS="${CC_LDFLAGS} -ldl -rdynamic -Wl,-relax"
+       LDFLAGS="${LDFLAGS} -Wl,-relax"
+    fi
+    if test "$with_intelcompilers" = no; then
+      GCCFIX=fix.o
+    fi
+    MAKEFILE_TARGET=Makefile.linux
+   ;;
+# Dec Alpha OSF 4
+   alpha*-dec-osf4.*)
+     # standard compilers
+    if test X"$CC" = Xcc; then
+        CC_OPTIONS="${CC_OPTIONS} -std -ieee_with_inexact"
+        CC_LDFLAGS="${CC_LDFLAGS} -ieee_with_inexact"
+    fi
+    if test X"$F77" = Xf77; then
+        FC_OPTIONS="${FC_OPTIONS} -fpe3"
+        FC_USE_CDEC='   '
+    fi
+    MAKEFILE_TARGET=Makefile.alpha
+    ;;
+# Dec Alpha not OSF 4 (NO LONGER SUPPORTED)
+  alpha*-dec-osf*)
+    if test X"$CC" = Xcc; then
+        # standard compilers
+        CC_OPTIONS="${CC_OPTIONS} -ieee_with_inexact"
+        CC_LDFLAGS="${CC_LDFLAGS} -ieee_with_inexact"
+    fi
+    if test X"$G77" = Xno; then
+        FC_OPTIONS="${FC_OPTIONS} -fpe3 -switch nosqrt_recip"
+    fi
+    FC_USE_CDEC='   '
+    MAKEFILE_TARGET=Makefile.alpha
+    ;;
+# IBM AIX RS 6000 (NO LONGER SUPPORTED)
+  rs6000-*-*)
+    if test X"$CC" = Xcc; then
+        # standard compilers
+        CC_OPTIONS="${CC_OPTIONS}  -Daix -DSYSV"
+    fi
+    if test X"$G77" = Xno; then
+        FC_OPTIONS="${FC_OPTIONS} -qcharlen=4096"
+    fi
+    MAKEFILE_TARGET=Makefile.aix
+    ;;
+# Linux sparc
+  sparc*-*-linux-gnu)
+    CC_OPTIONS="${CC_OPTIONS} -Dlinux "
+    FC_LDFLAGS="${FC_LDFLAGS} -ldl -rdynamic"
+    MAKEFILE_TARGET=Makefile.linux
+   ;;
+# SUN OS (NO LONGER SUPPORTED)
+  sparc*-*-sunos*)
+    # standard compilers
+    CC_PICFLAGS=-PIC
+    FC_PICFLAGS=-PIC
+    if test X"$G77" = Xyes; then
+      FC_PICFLAGS=
+      FC_LDFLAGS="${FC_LDFLAGS} -Xlinker"
+    fi
+    MAKEFILE_TARGET=Makefile.sunos
+    ;;
+# SUN SOLARIS
+  *-*-solaris*)
+    CC_OPTIONS="${CC_OPTIONS} -DSVR4 -DSYSV -Dsolaris"
+    if test X"$G77" = Xyes; then
+      FC_LDFLAGS="${FC_LDFLAGS} -t"
+    fi
+    MAKEFILE_TARGET=Makefile.solaris
+    ;;
+# Linux, old binary format a.out (NO LONGER SUPPORTED)
+  *-pc-linux-gnuaout)
+    DLDLIB='${SCIDIR}/libs/libdld.a'
+    DLD_SUBDIR=dld
+    MAKEFILE_TARGET=Makefile.linux
+   ;;
+# Alpha Linux
+  alpha-*-linux-gnu)
+    MALLOC=malloc.o
+    CC_OPTIONS="${CC_OPTIONS} -mieee-with-inexact -Dlinux"
+    CC_LDFLAGS="${CC_LDFLAGS} -ldl -rdynamic -mieee-with-inexact"
+    CC_PICFLAGS=-fPIC
+    FC_OPTIONS= "${FC_OPTIONS} -mieee-with-inexact"
+    FC_LDFLAGS="${FC_LDFLAGS} -ldl -rdynamic -mieee-with-inexact"
+    MAKEFILE_TARGET=Makefile.linux
+   ;;
+# Mklinux PowerPC (Macintosh)
+  powerpc-*-linux-gnu)
+    CC_OPTIONS="${CC_OPTIONS} -D_GNU_SOURCE -Dlinux"
+    CC_PICFLAGS=-fPIC
+    FC_LDFLAGS="${FC_LDFLAGS} -ldl -rdynamic"
+    FC_PICFLAGS=-fPIC
+    MAKEFILE_TARGET=Makefile.linux
+   ;;
+
+# SGI MIPS ULTRIX (NO LONGER SUPPORTED)
+  mips-*-ultrix*)
+    if test X"$CC" = Xcc; then
+        # standard compilers
+        CC_OPTIONS="${CC_OPTIONS} -O0"
+    fi
+    if test X"$F77" = Xf77; then
+        FC_OPTIONS="${FC_OPTIONS} -O0 -fpe1"
+    fi
+    SCILAB_GS=sh5
+    MAKEFILE_TARGET=Makefile.ultrix
+    ;;
+# SGI
+  mips-sgi-irix*)
+    if test X"$CC" = Xcc; then
+        # standard compilers
+        CC_OPTIONS="${CC_OPTIONS} -c -DSYSV -DSVR4"
+    fi
+    if test X"$F77" = Xf77; then
+        FC_OPTIONS="${FC_OPTIONS} -Nl999 -Nn15000"
+    fi
+    MAKEFILE_TARGET=Makefile.sgi
+    ;;
+
+# OLD HP (NO LONGER SUPPORTED)
+  *-*-hpux9.*)
+    # standard compilers
+    HPPA_OLD=-Dhppa_old
+    if test X"$CC" = Xcc; then
+        CC_OPTIONS="${CC_OPTIONS} -DSYSV -Dhpux"
+        CC_LDFLAGS="${CC_LDFLAGS} -Wl,-a,archive'
+    fi
+    if test X"$F77" = Xfort77; then
+        FC_OPTIONS="${FC_OPTIONS}  +Obb1200 +E4"
+        FC_LDFLAGS="${FC_LDFLAGS} -Wl,-a,archive"
+    fi
+    MAKEFILE_TARGET=Makefile.hpux9
+    FGETARG=fgetarg-hpux
+    ;;
+# HP
+  *-*-hpux*)
+    # standard compilers
+    if test X"$CC" = Xcc; then
+        CC_OPTIONS="${CC_OPTIONS} -DSYSV -Dhpux +Z +DAportable"
+        CC_LDFLAGS=${CC_LDFLAGS} -Wl,+vnocompatwarnings,-E /usr/lib/libdld.sl"
+    fi
+    if test X"$F77" = Xfort77; then
+        FC_OPTIONS="${FC_OPTIONS} +E4 +Z +DAportable"
+        FC_LDFLAGS="${FC_LDFLAGS} -Wl,+vnocompatwarnings,-E /usr/lib/libdld.sl"
+    fi
+    MAKEFILE_TARGET=Makefile.hpux
+    FGETARG=fgetarg-hpux
+    ;;
+# CYGWIN32 for Windows 9X/NT/XP
+  *-*-cygwin* )
+    SCILABSCRIPT=scilab-gcwin32.g
+    MENUSOBJS=WOBJS
+    BLPR_SCRIPTS=
+    SED_CYGDRIVE='$(CYGDRIVE)'
+    IMPPREF=B
+    IMPENV=env.o
+    F2C_SUBDIR=f2c/src
+    F2C_DIR=f2c/libf2c
+    F2C_LIB=libs/libf2c.a
+    # just *-so tests
+    EXAMPLES_TESTS='$(SUBDIRS1)'
+    CC_OPTIONS="${CC_OPTIONS} -mieee-fp"
+    FC_OPTIONS="${FC_OPTIONS} "
+    LIBXDR="-lrpc -lrpclib"
+    LD=gcc
+    LD_LDFLAGS="${LDFLAGS} -mconsole --enable-stdcall-fixup"
+    WINXFLAGS='-I../xdr'
+    MAKEFILE_TARGET=Makefile.cygwin
+    ;;
+# mingw32 is detected
+# this is the case when cross compiling
+# we cross compile for win32 but without the native win32 gtk
+# i.e we use the standard win32 code
+   *-*-mingw32*)
+    MINGW32=yes
+    SCILABSCRIPT=scilab-gcwin32.g
+    LIBXDR_LOCAL='libxdr'
+    LIBXDR=libs/xdr.a
+    MENUSOBJS=WOBJS
+    BLPR_SCRIPTS=
+    SED_CYGDRIVE='$(CYGDRIVE)'
+    IMPPREF=B
+    IMPENV=env.o
+    SYST_FILES=win
+    # to be used if compilation of f2c is requested too.
+    # seams not usefull now since we have gfortran in mingwin.
+    F2C_SUBDIR=f2c/src
+    F2C_DIR=f2c/libf2c
+    F2C_LIB=libs/libf2c.a
+    # just *-so tests
+    EXAMPLES_TESTS='$(SUBDIRS1)'
+    CC_OPTIONS="${CC_OPTIONS} -mieee-fp"
+    FC_OPTIONS="${FC_OPTIONS}"
+    LD=gcc
+    LD_LDFLAGS="${LDFLAGS} -mconsole --enable-stdcall-fixup"
+    WINXFLAGS='-I../xdr'
+    # targer linux
+    #MAKEFILE_TARGET=Makefile.gcwin32
+    MAKEFILE_TARGET=Makefile.mingw32
+    XDRLIB=xdr
+    XDRLIBNAME=libs/xdr.a
+    SCIMALLOC=win_mem_alloc.o
+    FLIBS_SH='-module -no-undefined  -L$(SCIDIR)/bin -lscilab'
+    ;;
+# FreeBSD systems
+  *-*-freebsd*)
+     CC_OPTIONS="${CC_OPTIONS} -Dfreebsd"
+     CC_LDFLAGS="${CC_LDFLAGS} -lm"
+     CC_PICFLAGS='-fPIC'
+     #     LIBS="$LIBS -L/usr/pkg/lib"
+     # script shell f77 have bugs, get ours
+     FC_OPTIONS="${FC_OPTIONS} -Dfreebsd"
+     FC_LDFLAGS="${FC_LDFLAGS} -lm -Wl,--export-dynamic"
+     FC_PICFLAGS='-fPIC'
+     LD=ld
+     LD_LDFLAGS="${LDFLAGS} -lm"
+     DLDLIB='${SCIDIR}/libs/libdld.a'
+     DLD_SUBDIR=dld
+     MAKEFILE_TARGET=Makefile.freebsd
+    ;;
+# NetBSD systems
+  *-*-netbsd*)
+    # check for --export-dynamic
+    ac_save_LDFLAGS="$LDFLAGS"
+    LDFLAGS='-Wl,--export-dynamic'
+    AC_MSG_CHECKING([if the linker accepts --export-dynamic])
+    AC_TRY_LINK(,,
+      AC_MSG_RESULT(yes)
+       LD_LDFLAGS=["$LD_LDFLAGS --export-dynamic"],
+       AC_MSG_RESULT(no))
+    LDFLAGS="$ac_save_LDFLAGS"
+    CC_LDFLAGS="${LDFLAGS} ${LIEEELIB}"
+    FC_LDFLAGS="${LDFLAGS} ${LIEEELIB}"
+    #    LIBS="$LIBS -L/usr/pkg/lib"
+    # C compiler
+    if test X"$CC" = Xcc; then
+        CC_OPTIONS="${CC_OPTIONS} -Dnetbsd"
+        CC_LDFLAGS="${CC_LDFLAGS} -Wl,-L${X11BASE}/lib"
+    else
+        CC_OPTIONS="${CC_OPTIONS} -Dnetbsd"
+    fi
+    CC_PICFLAGS='-fPIC'
+    FC_LDFLAGS="${FC_LDFLAGS} -Wl,-L${X11BASE}/lib"
+    FC_PICFLAGS='-fPIC'
+    LD=ld
+    LDFLAGS="${LDFLAGS} -L${X11BASE}/lib"
+    #
+    # malloc.o should be used on netbsd 64bits only
+    #
+    case "$host" in
+     x86_64-*-netbsd*)
+       MALLOC=malloc.o
+       AC_DEFINE(WITH_MALLOC_REP,[], [use malloc replacement function for stack allocation ])
+       ;;
+    esac
+    # shared with linux 
+    MAKEFILE_TARGET=Makefile.linux 
+   ;;
+# OpenBSD systems
+  *-*-openbsd*)
+     CC_OPTIONS="${CC_OPTIONS} -Dopenbsd"
+     CC_LDFLAGS="${CC_LDFLAGS} -lm"
+     CC_PICFLAGS='-fPIC'
+     #     LIBS="$LIBS -L/usr/lib"
+     # script shell f77 have bugs, get ours
+     FC_OPTIONS="${FC_OPTIONS} -Dopenbsd"
+     FC_LDFLAGS="${FC_LDFLAGS} -lm -Wl,--export-dynamic"
+     FC_PICFLAGS='-fPIC'
+     LD=ld
+     LD_LDFLAGS="${LDFLAGS} -lm"
+     DLDLIB='${SCIDIR}/libs/libdld.a'
+     DLD_SUBDIR=dld
+     MAKEFILE_TARGET=Makefile.openbsd
+    ;;
+
+# Darwin/MacOSX
+  *-*-darwin*)
+     STRIP=echo
+     FORTRAN_POINTERS=yes 
+     # -L/sw/lib is needed during configure but seams not best place
+     # CC_OPTIONS="${CC_OPTIONS}  -I${LIBPATH}/include -L${LIBPATH}/lib"
+     # for macports
+     CC_OPTIONS="${CC_OPTIONS} -I${LIBPATH_PREFIX}/include -L${LIBPATH_PREFIX}/lib"
+     CC_PICFLAGS='-fPIC'
+     LIBS="$LIBS -L${LIBPATH_PREFIX}/lib"
+     # script shell f77 have bugs, get ours
+     FC_LDFLAGS="${FC_LDFLAGS} -L${LIBPATH_PREFIX}/lib -ldl"
+     FC_PICFLAGS='-fPIC'
+     # just *-so tests
+     EXAMPLES_TESTS='$(SUBDIRS1)'
+     # FLIBS generated by libtool config should not be used
+     FLIBS=
+     MAKEFILE_TARGET=Makefile.darwin
+    ;;
+  *)
+    AC_MSG_ERROR([Unable to configure for host $host])
+    ;;
+esac
+
+
+if test "$FORTRAN_POINTERS" = "yes" ; then 
+   AC_DEFINE(WITH_MALLOC_FPTR,[],[use fortran pointers])
+   FC_OPTIONS="${FC_OPTIONS} -fcray-pointer" 
+   ALLOCPTR=
+   ALLOCSTD=void
+   MSTD=c
+   MFPTR=
+   INIFPTR=1 
+else
+   ALLOCPTR=void
+   ALLOCSTD=
+   MSTD=
+   MFPTR=c
+   INIFPTR=0
+fi 
+
+#-------------------------------------------
+# define WITH_GFORTRAN if GFORTRAN is used
+#-------------------------------------------
+
+if test "$F77" = "gfortran" ; then
+   AC_DEFINE(WITH_GFORTRAN,[],[Fortran compiler is gfortran])
+fi
+
+#--------------------------------
+# prevent gfortran display bug
+#--------------------------------
+
+#builtin(include,config/ac_check_gfortran.m4)
+#AC_CHECK_GFORTRAN_FORMAT_PB()
+# it is safer to always use formatbug.
+FORMATFILE=formatbug.o
+
+############################################
+# debug, wall and optimize
+#############################################
+
+if test X"$enable_wall" != Xno; then
+   ENABLE_DEBUG=" Wall "
+   if test X"$GCC" = Xyes ; then
+      CC_OPTIONS="${CC_OPTIONS} -Wall"
+      CC_OPTIONS_PLUS=" \$(CCPLUS) "
+   fi
+   if test X"$G77" = Xyes ; then
+      FC_OPTIONS="${FC_OPTIONS} -Wall"
+      FC_OPTIONS_PLUS=" \$(FCPLUS) "
+   fi
+else
+   ENABLE_DEBUG=
+fi
+
+if test X"$enable_optimize" = Xno; then
+   CC_OPTIONS=`echo $CC_OPTIONS | sed -e 's/-O[[0-9]]*//g'`
+   FC_OPTIONS=`echo $FC_OPTIONS | sed -e 's/-O[[0-9]]*//g'`
+   ENABLE_DEBUG="${ENABLE_DEBUG}, optimize off"
+fi
+
+if test X"$enable_debug" = Xno; then
+   CC_OPTIONS=`echo $CC_OPTIONS | sed -e 's/-g//g'`
+   FC_OPTIONS=`echo $FC_OPTIONS | sed -e 's/-g//g'`
+   ENABLE_DEBUG="${ENABLE_DEBUG}, debug off"
+fi
+
+# use -fno-strict-aliasing for recent gcc/gfortran 
+
+if test X"$enable_optimize" = Xyes; then
+  FC_OPTIONS="${FC_OPTIONS} -fno-range-check -fno-strict-aliasing" 
+  CC_OPTIONS="${CC_OPTIONS} -fno-strict-aliasing" 
+fi
+
+#------------------------------------------
+# FC_OPTIONS1 and CC_OPTIONS are similar
+# to FC_OPTIONS and CC_OPTIONS
+# except that if the compiler is g77 and gcc
+# optimizations options are removed
+# -----------------------------------------
+
+FC_OPTIONS1=$FC_OPTIONS
+if test "$G77" = yes; then
+  FC_OPTIONS1=`echo $FC_OPTIONS | sed -e 's/-O[[0-9]]*//g'`
+fi
+CC_OPTIONS1=$CC_OPTIONS
+if test "$GCC" = yes; then
+  CC_OPTIONS1=`echo $CC_OPTIONS | sed -e "s/-O[[0-9]]*//g"`
+fi
+
+#########################################
+# due overlapping arguments a few files must not be compiled
+# with optimizer on some computers (SGI : unsfdcopy.f icopy.f)
+#########################################
+
+FC_OPTIONS2=$FC_OPTIONS
+case "$host" in
+# SGI MIPS
+  mips-sgi-irix*)
+    FC_OPTIONS2=`echo $FC_OPTIONS | sed -e 's/-O[[0-9]]*//g'`
+    ;;
+esac
+
+# due to a gcc bug, a few C functions must not be inlined when compiled
+# with optimizer: the "floor" function in "routines/graphics/Format.c"
+
+NOINLINE=
+if test "$WITH_GCC" = yes; then
+  NOINLINE='-D__NO_MATH_INLINES'
+fi
+
+# flag for possible compilations in configure
+CFLAGS=$CC_OPTIONS
+LDFLAGS=$CC_LDFLAGS
+
+###########################################
+## check if WITH_GFORTRAN is to be defined
+###########################################
+
+AC_MSG_CHECKING([if iargc name in Fortran library is _gfortran_iargc])
+   cat > conftest.f <<EOF
+        program main
+        print *, "arg count = ", iargc()
+        end
+EOF
+fcompile='$FC -c conftest.f  >>config.log 2>&1'
+if eval $fcompile ; then
+   output=`$NM $NMOPT conftest.o|grep _gfortran_iargc 2>&1`
+   if test ! -z "$output" ; then
+        AC_MSG_RESULT([yes])
+        AC_DEFINE(WITH_GFORTRAN,[],[Fortran compiler is gfortran (only used in getarg.c)])
+   else
+        AC_MSG_RESULT([no])
+   fi
+fi
+
+
+############################
+## test for various programs
+############################
+# Using `AC_PROG_RANLIB' is rendered obsolete by `AC_PROG_LIBTOOL'
+#AC_PROG_RANLIB
+
+####################
+## test for X Window
+####################
+
+# do not want to check for X11 when using gtk or gtk2
+if test "$with_gtk" = yes; then
+   PERIFILE=periGtk.o
+   with_gtk2="no"
+fi
+
+if test "$with_gtk2" = yes; then
+   PERIFILE=periGtk.o
+fi
+
+# if cross compiling use win32 targets
+# do not search for X11 when using mingw32
+
+case "$host" in
+   *-*-mingw32*)
+     PERIFILE=periWin.o
+     with_gtk2="no"
+     GUILIB='wsci'
+    ;;
+esac
+
+if test "$PERIFILE" = periX11.o; then
+   AC_PATH_XTRA
+   # fixing a bug for SunOs
+   if test "$X_LIBS" = ' -L/usr/lib'; then
+     X_LIBS=
+   fi
+   if test "$no_x" = yes; then
+      AC_MSG_ERROR([X Window not found])
+   fi
+fi
+
+###################
+## find X11 release
+###################
+
+if test "$PERIFILE" = periX11.o; then
+AC_CACHE_CHECK([for X11 release],ac_cv_X11_release,
+[
+cat << EOF > testX11.c
+#include <X11/Xlib.h>
+main()
+{
+#ifdef XlibSpecificationRelease
+  if (XlibSpecificationRelease == 5)
+    printf("R5\n");
+  else if (XlibSpecificationRelease == 6)
+    printf("R6\n");
+  else
+    printf("R?\n");
+#else
+  printf("R4\n");
+#endif
+}
+EOF
+eval "$CC $X_CFLAGS -o testX11 testX11.c > /dev/null 2>&1"
+ac_cv_X11_release=`./testX11`
+$RM testX11.c testX11
+])
+if test "$ac_cv_X11_release" = R4; then
+    AC_MSG_ERROR([ScicosLab cannot be installed with X11R4.])
+fi
+
+fi
+
+##########################################
+## test for X11 and Xaw3d  Athena widgets
+##########################################
+
+
+if test "$PERIFILE" = periX11.o; then
+  ac_save_LDFLAGS="$LDFLAGS"
+  if test -n "$x_libraries"; then
+    LDFLAGS="$LDFLAGS -L$x_libraries"
+  fi
+
+##test Xaw3d (can be build locally)
+  if test "$with_local_xaw" = yes; then
+    XAWLIB='$(SCIDIR)/libs/libXaw3d.a'
+    XMULIB='$(SCIDIR)/libs/libXmu.a'
+    XAW_LOCAL_LIB='$(SCIDIR)/libs/libXaw3d.a $(SCIDIR)/libs/libXmu.a'
+    XAW_LOCAL_INCLUDES='-I$(SCIDIR)/routines'
+    XAW_LOCAL_SUBDIR=X11
+    XAW=Xaw3d
+  else
+##test Xmu (Required)
+    AC_CHECK_LIB(Xmu,main,[XMu=yes],[XMu=no],-lXt -lXext $X_PRE_LIBS -lX11 $X_EXTRA_LIBS)
+    if test "$XMu" = no; then
+      XAWLIB='$(SCIDIR)/libs/libXaw3d.a'
+      XMULIB='$(SCIDIR)/libs/libXmu.a'
+      XAW_LOCAL_LIB='$(SCIDIR)/libs/libXaw3d.a $(SCIDIR)/libs/libXmu.a'
+      XAW_LOCAL_INCLUDES='-I$(SCIDIR)/routines'
+      XAW_LOCAL_SUBDIR=X11
+      XAW=Xaw3d
+    else
+      XMULIB=-lXmu
+      AC_CHECK_LIB(Xaw3d,main,[XAthena3d=yes],[XAthena3d=no],-lXmu -lXt -lXext $X_PRE_LIBS -lX11 $X_EXTRA_LIBS)
+      if test "$XAthena3d" = no; then
+        XAWLIB='$(SCIDIR)/libs/libXaw3d.a'
+        XMULIB='$(SCIDIR)/libs/libXmu.a'
+        XAW_LOCAL_LIB='$(SCIDIR)/libs/libXaw3d.a $(SCIDIR)/libs/libXmu.a'
+        XAW_LOCAL_INCLUDES='-I$(SCIDIR)/routines'
+        XAW_LOCAL_SUBDIR=X11
+        XAW=Xaw3d
+      else
+        XAWLIB=-lXaw3d
+        XAW=Xaw3d
+        LDFLAGS="$ac_save_LDFLAGS"
+        save_cflags=$CFLAGS
+        CFLAGS="$X_CFLAGS $CC_OPTIONS"
+        AC_TRY_COMPILE([#include <X11/IntrinsicP.h> #include <X11/Xaw3d/ViewportP.h>],,,
+        AC_MSG_ERROR([Include file "ViewportP.h" for Xaw3d not found.
+               Get and put it in <X11/Xaw3d/> .]))
+        CFLAGS=$save_cflags
+
+      fi
+    fi
+  fi
+fi
+
+#######################
+## Xt
+#######################
+
+# Pb of automatic insertion of -lXt -lXext -lX11 in Makefile.incl.in
+# which does not work with mingwin. Thus I add this two vars to
+# configure.in
+
+XXTXEXT="-lXt -lXext"
+XX11="-lX11"
+
+  case "$host" in
+      *-*-mingw32*)
+      XXTXEXT=
+      XX11=
+    ;;
+  esac
+
+###########################
+## test for JAVA compiler
+###########################
+
+builtin(include,config/java.m4)
+
+
+JAVASCITARGET=javasci_disabled
+JAVASCITARGET_DISTCLEAN=javasci_disabled
+
+if test xx"$with_java" != xxno; then
+        AC_CHECK_PROG(WITH_JAVAC,javac,yes,no)
+        if test "$WITH_JAVAC" = yes; then
+        JAVASCITARGET=scilex-lib
+        JAVASCITARGET_DISTCLEAN=distclean
+        JAVAC=javac
+        JAVA_INCL=
+        AC_JNI_INCLUDE_DIR
+        for JNI_INCLUDE_DIR in $JNI_INCLUDE_DIRS
+        do
+        JAVA_INCL="$JAVA_INCL -I$JNI_INCLUDE_DIR"
+        done
+        else
+        AC_MSG_WARN([javac not found: I will not build the java interface])
+        fi
+fi
+
+
+#######################
+## test for underscores
+#######################
+
+AC_MSG_CHECKING([for leading and/or trailing underscores])
+cat << EOF > pipof.f
+       subroutine pipof
+       end
+EOF
+
+dnl expand possible $SCIDIR in $FC (wizard command...)
+eval "FC1=\"$FC\""
+eval "$FC1 -c pipof.f > /dev/null 2>&1"
+
+FC_LEADING_UNDERSCORE=no
+FC_TRAILING_UNDERSCORE=no
+
+output=`$NM $NMOPT pipof.o|grep _pipof 2>&1`
+if test ! -z "$output"; then
+  FC_LEADING_UNDERSCORE=yes
+  FC_TRAILING_UNDERSCORE=no
+fi
+
+output=`$NM $NMOPT pipof.o|grep pipof_ 2>&1`
+if test ! -z "$output"; then
+  FC_LEADING_UNDERSCORE=no
+  FC_TRAILING_UNDERSCORE=yes
+fi
+
+output=`$NM $NMOPT pipof.o|grep _pipof_ 2>&1`
+if test ! -z "$output"; then
+  FC_LEADING_UNDERSCORE=yes
+  FC_TRAILING_UNDERSCORE=yes
+fi
+
+if test "$FC_LEADING_UNDERSCORE" = yes; then
+  AC_DEFINE(WLU,[],[LEADING_UNDERSCORE])
+fi
+if test "$FC_TRAILING_UNDERSCORE" = yes; then
+  AC_DEFINE(WTU,[],[TRAILING_UNDERSCORE])
+fi
+
+$RM pipof.f pipof.o
+
+AC_MSG_RESULT([$FC_LEADING_UNDERSCORE $FC_TRAILING_UNDERSCORE])
+
+#####################
+## test for sharpsign
+#####################
+
+AC_MSG_CHECKING([for use of sharpsign in CPP])
+AC_TRY_COMPILE([#define C2F(name) name##_],
+  [C2F(toto)()],
+  AC_MSG_RESULT(yes)
+  AC_DEFINE(USE_SHARP_SIGN,[],[for use of sharpsign in CPP]),
+  AC_MSG_RESULT(no))
+
+##############################################################
+## test for functions in standard C library and C math library
+##############################################################
+
+AC_CHECK_LIB(m,main)
+AC_CHECK_FUNCS(exp10)
+AC_CHECK_FUNCS(getwd)
+AC_CHECK_FUNCS(sleep)
+AC_CHECK_FUNCS(mkstemp)
+AC_CHECK_FUNCS(strerror)
+AC_CHECK_FUNCS(usleep)
+AC_CHECK_FUNCS(finite)
+
+########################
+## test for header files
+########################
+
+AC_CHECK_HEADERS(limits.h values.h)
+
+##################
+## termcap library
+##################
+
+TERMCAPLIB=no
+AC_CHECK_LIB(ncurses,main,
+  [TERMCAPLIB=-lncurses])
+if test "$TERMCAPLIB" = no; then
+  AC_CHECK_LIB(curses,main,
+  [TERMCAPLIB=-lcurses])
+fi
+if test "$TERMCAPLIB" = no; then
+  AC_CHECK_LIB(termcap,main,
+  [TERMCAPLIB=-ltermcap])
+fi
+if test "$TERMCAPLIB" = no; then
+  AC_CHECK_LIB(termlib,main,
+  [TERMCAPLIB=-ltermlib])
+fi
+if test "$TERMCAPLIB" != no; then
+  AC_DEFINE(HAVE_TERMCAP,[],[termcap library])
+else
+  TERMCAPLIB=
+fi
+
+#################
+## PVM
+#################
+
+PVMTARGET=pvm_disabled
+PVMTARGET_DISTCLEAN=pvm_disabled
+
+PVMARCH=
+PVMLIB=
+PVMGLIB=
+PVMSCIDIR=
+PVMSCILIB=
+PVMROOT=
+PVMHELP=
+# need an non empty default value for ScicosLab script
+PVMROOTR='$SCI/pvm3'
+PVMINST=
+PVMINST1=
+
+# files to be added for building the hoster with mingw
+PVMHOSTERFILES=
+# compile hoster ?
+PVMHOSTER=
+
+if test "$with_pvm" != no; then
+
+        # check for a locally installed PVM
+
+        PVMHELP=pvm
+
+        if test -x $PVM_ROOT/lib/pvmgetarch ; then
+        PVMROOT=$PVM_ROOT
+        PVMROOTR=$PVM_ROOT
+        PVMTARGET=pvm_disabled
+        PVMTARGET_DISTCLEAN=pvm_disabled
+        else
+        PVMTARGET=scilex-lib
+        PVMTARGET_DISTCLEAN=distclean
+        PVMROOT="$SCIDIR/pvm3"
+        PVMROOTR='$SCI/pvm3'
+        PVMINST='$(PVMBINDISTFILES) $(PVMBINDISTFILES1)'
+        PVMINST1='$(INSTPVMBINDISTFILES) $(INSTPVMBINDISTFILES1)'
+        fi
+
+        PVMINCLUDE=$PVMROOT/include
+
+        AC_ARG_WITH(pvm-include,
+        [  --with-pvm-include=DIR  PVM include files are in DIR ],
+        [  PVMINCLUDE=$withval
+        ])
+
+        AC_CACHE_CHECK([for PVM architecture],ac_cv_PVM_arch,
+        [
+        ac_cv_PVM_arch=`$PVMROOT/lib/pvmgetarch`
+        ])
+
+        if test "$ac_cv_PVM_arch" = UNKNOWN; then
+        AC_MSG_WARN([PVM unable to find architecture: I will not use PVM])
+        PVMTARGET=pvm_disabled
+        PVMTARGET_DISTCLEAN=pvm_disabled
+        PVMINST='$(PVMBINDISTFILES)'
+        PVMINST1='$(INSTPVMBINDISTFILES)'
+        else
+        AC_DEFINE(WITH_PVM,[], [pvm support])
+        PVMARCH="$ac_cv_PVM_arch"
+
+        case "$host" in
+        *-*-mingw32*)
+        ac_cv_PVM_arch=MINGW
+        PVMARCH="$ac_cv_PVM_arch"
+        PVMHOSTERFILES="pvmwinrexec.o pvmwinrsh.o"
+        PVMHOSTER=h
+        ;;
+        esac
+
+        PVMLIBDIR=$PVMROOT/lib/$ac_cv_PVM_arch
+        AC_ARG_WITH(pvm-library,
+        [  --with-pvm-library=DIR  PVM library files are in DIR ],
+        [  PVMLIBDIR=$withval
+        ])
+
+        PVMGLIB="$PVMLIBDIR/libgpvm3.a"
+        PVMLIB="$PVMLIBDIR/libpvm3.a"
+        PVMSCIDIR=pvm
+        PVMSCILIB="\$(SCIDIR)/libs/pvm.a"
+
+        case "$host" in
+        *-*-mingw32*)
+        # add src to PVMINCLUDE
+        PVMINCLUDE="$PVMINCLUDE -I$SCIDIR/pvm3/src"
+        #     to have path with SCIDIR
+        # PVMROOT=`echo $PVMROOT | sed -e "s+$SCIDIR+\\$(SCIDIR)+g" `
+
+        PVMLIB=`echo $PVMLIB | sed -e "s+$SCIDIR/pvm3+\\$(PVMROOT)+g" `
+        PVMGLIB=`echo $PVMGLIB | sed -e "s+$SCIDIR/pvm3+\\$(PVMROOT)+g" `
+        PVMINCLUDE=`echo $PVMINCLUDE | sed -e "s+$SCIDIR/pvm3+\\$(PVMROOT)+g" `
+        ;;
+        esac
+        fi
+fi
+
+#################
+# tcltk
+#################
+
+builtin(include,config/tcl8.5.m4)
+builtin(include,config/tcltkversion.m4)
+
+TCLTK_INC_PATH=
+TCLTK_LIBS=
+
+TCLSCILIB=
+TCLSCIDIR=
+TCLTKHELP=
+TKBASE=
+
+if test "$with_tcltk" != "no"; then
+
+# AC_MSG_WARN([checking for tcl/tk.],)
+ SC_PATH_TCLCONFIG()
+ SC_LOAD_TCLCONFIG()
+
+ SC_PATH_TKCONFIG()
+ SC_LOAD_TKCONFIG()
+
+ AC_CHECK_TCL_VERSION(8,4)
+ AC_CHECK_TK_VERSION(8,4)
+
+ WITH_TKSCI=0
+ if test $TCL_VERSION_OK == 1;then
+   if test $TK_VERSION_OK == 1 ; then
+     WITH_TKSCI=1
+   fi
+ fi
+
+ if test $WITH_TKSCI = 1; then
+  AC_DEFINE(WITH_TK, [],[Defined if tcl/tk is interfaced])
+  TCLSCILIB="\$(SCIDIR)/libs/tclsci.a"
+  TCLSCIDIR=tclsci
+  TCLTKHELP=tksci
+  if test xx"$TCL_INCLUDE_SPEC" == xx"$TK_INCLUDE_SPEC"; then
+   TCLTK_INC_PATH="$TCL_INCLUDE_SPEC"
+  else
+   TCLTK_INC_PATH="$TCL_INCLUDE_SPEC $TK_INCLUDE_SPEC"
+  fi
+  TCLTK_LIBS="$TK_LIB_SPEC $TCL_LIB_SPEC"
+  GETLIBTK_WIN=tk85.dll
+  GETLIBTK=libtk$TK_MAJOR_VERSION.$TK_MINOR_VERSION.$SONAME
+  case "$host" in
+   *-*-mingw32*)
+        TKBASE=$SCIDIR
+        TCLTK_INC_PATH=""
+        TCLTK_LIBS="-ltk85 -ltcl85"
+          GETLIBTK=tk$TK_MAJOR_VERSION$TK_MINOR_VERSION.dll
+    ;;
+   *-*-darwin*)
+        GETLIBTK=${LIBPATH_PREFIX}/lib/libtk$TK_MAJOR_VERSION.$TK_MINOR_VERSION.dylib
+    ;;
+   *-*-cygwin*)
+          GETLIBTK=tk$TK_MAJOR_VERSION$TK_MINOR_VERSION.dll
+    ;;
+  esac
+ else
+  AC_MSG_ERROR([TCL/TK not found. Use --without-tk or specify the librairies and include paths manually])
+ fi
+fi
+
+#################
+## GTK
+#################
+
+ZZLEDT=
+GTKPLUGBUG=
+
+if test "$with_gtk" = yes; then
+  AC_CHECK_PROG(GTK_CONFIG,gtk-config,yes,no)
+  if test "$GTK_CONFIG" = no; then
+    AC_MSG_WARN([gtk-config not found: I will not use -with-gtk])
+    with_gtk="no"
+  fi
+  AC_CHECK_PROG(GNOME_CONFIG,gnome-config,yes,no)
+  if test "$GNOME_CONFIG" = no; then
+    AC_MSG_WARN([gnome-config not found: I will not use -with-gtk])
+    with_gtk="no"
+  fi
+  if test "$with_gtk" = yes; then
+    AC_MSG_CHECKING([if gtk is version 1.2 or later])
+    GTK_VER=`gtk-config --version`
+    case $GTK_VER in
+      0.* )
+        AC_MSG_ERROR([you need at least version 1.2 of gtk])
+        ;;
+      1.1* )
+        AC_MSG_ERROR([you need at least version 1.2 of gtk])
+        ;;
+      * )
+      # we have cheched above that gtk-config is in the
+      # path, then we don't want to generate a full path
+      # for gtk-config or to directly generate the
+      # result of `gtk-config --cflags`. Idem for gnome
+      AC_MSG_RESULT([$GTK_VER])
+      GTKCFLAGS='`gtk-config --cflags`'
+      GTKLIBS='`gtk-config --libs` `gnome-config --libs  gtkxmhtml`'
+      GNOMECFLAGS='`gnome-config --cflags gnome`'
+      ;;
+    esac
+    AC_DEFINE(WITH_GTK,[], [with gtk])
+    GUILIB='gtksci'
+    GZVT='gzvt'
+    SCILABSCRIPT=scilab-gtk.g
+    MENUSOBJS=GOBJS
+    PERIFILE=periGtk.o
+    # gtk 1 HTMLFLAGS=`gnome-config --cflags gnome`
+    # gtk 2 HTMLFLAGS=`pkg-config libgtkhtml-2.0 --cflags`
+    HTMLFLAGS='`gnome-config --cflags gnome`'
+  fi
+  # try to use readline with the gtk version
+  ac_save_LIBS="$LIBS"
+  LIBS="$TERMCAPLIB $LIBS"
+  case "$host" in
+   *-*-freebsd* | *-*-netbsd*)
+    ac_save_LDFLAGS="$LDFLAGS"
+    LDFLAGS='-L/usr/pkg/lib'
+    AC_CHECK_LIB(readline, rl_callback_read_char,[READLINE=-L/usr/pkg/lib -lreadline])
+    LDFLAGS="$ac_save_LDFLAGS"
+    LIBS=$ac_save_LIBS
+    TERMCAPLIB="$READLINE $TERMCAPLIB"
+    if test "no$READLINE" != no; then
+     ZZLEDT="zzledt-rl.o"
+     AC_DEFINE(WITH_READLINE,[], [with readline])
+    fi
+    ;;
+   *-*-openbsd*)
+    ac_save_LDFLAGS="$LDFLAGS"
+    LDFLAGS='=L/usr/lib -L/usr/local/lib'
+    AC_CHECK_LIB(readline, rl_callback_read_char,[READLINE=-L/usr/lib -lreadline])
+    LDFLAGS="$ac_save_LDFLAGS"
+    LIBS=$ac_save_LIBS
+    TERMCAPLIB="$READLINE $TERMCAPLIB"
+    if test "no$READLINE" != no; then
+     ZZLEDT="zzledt-rl.o"
+     AC_DEFINE(WITH_READLINE,[], [with readline])
+    fi
+    ;;
+   *)
+   AC_CHECK_LIB(readline, rl_callback_read_char,[READLINE=-lreadline])
+   LIBS=$ac_save_LIBS
+   TERMCAPLIB="$READLINE $TERMCAPLIB"
+   if test "no$READLINE" != no; then
+     ZZLEDT="zzledt-rl.o"
+     AC_DEFINE(WITH_READLINE,[], [with readline])
+   fi
+  esac
+  # we remove the X libs they were just used above during tcl/tk check
+  if test "$with_gtk" = yes; then
+    XAWLIB=
+    XMULIB=
+    XAW_LOCAL_SUBDIR=
+    XAW_LOCAL_LIB=
+    X_CFLAGS=
+    XAW_LOCAL_INCLUDES=
+    X_EXTRA_LIBS=
+    XXTXEXT=
+    XX11=
+    X_LIBS=
+    X_PRE_LIBS=
+    if test "$TK_INC_PATH" = '-I/usr/include' ; then
+        TK_INC_PATH=
+    fi
+    if test "$TCL_INC_PATH" = '-I/usr/include' ; then
+        TCL_INC_PATH=
+    fi
+  fi
+fi
+
+
+#################
+## GTK2
+#################
+
+TERM_NAME=vte
+TERM_LDFLAGS=VTE_LDFLAGS
+GTKCFLAGS=
+GTKLIBS=
+GTK_REQUIRED_VERSION=2.12.0
+GTK_PKGS_CFLAGS='gtk+-2.0'
+# gthread-2.0 for fedora 19
+GTK_PKGS_LIBS='gtk+-2.0 gthread-2.0'
+
+if test "$with_gtk2" = yes; then
+  PKG_CHECK_MODULES(GTK,[$GTK_PKGS_CFLAGS >= $GTK_REQUIRED_VERSION])
+  ##Indeed PKG_CHECK_MODULES returns two variable (GTK_CFLAGS and GTK_LIBS)
+  ##that should be used instead of GTKCFLAGS/GTKLIBS
+  GTKCFLAGS="\`$PKG_CONFIG $GTK_PKGS_CFLAGS --cflags\`"
+  GTKLIBS="\`$PKG_CONFIG $GTK_PKGS_LIBS --libs\`"
+  AC_MSG_CHECKING([if gtk is version 2.1 or later])
+  GTK_VER=`$PKG_CONFIG --modversion $GTK_PKGS_CFLAGS`
+  case $GTK_VER in
+    2.2.* | 2.3.0 | 2.3.1| 2.3.2| 2.3.4 )
+      GTKPLUGBUG=gtkmenu.o
+      ;;
+  esac
+  AC_MSG_RESULT([$GTK_VER])
+  # we have cheched above that gtk-config is in the
+  # path, then we don't want to generate a full path
+  # for gtk-config or to directly generate the
+  # result of `pkg-config --cflags`. Idem for gnome
+  GNOMECFLAGS="\`$PKG_CONFIG $GTK_PKGS_CFLAGS --cflags\`"
+  AC_DEFINE(WITH_GTK,[], [with gtk])
+  GUILIB='gtksci'
+  # GZVT='gzvt2' dose not work: gtk2 bug with plugged menus
+  # gzvt2 works again with a gtk patch
+  GZVT='gzvt2'
+  # we need a patched version
+  SCILABSCRIPT=scilab-gtk.g
+  MENUSOBJS=GOBJS
+  PERIFILE=periGtk.o
+  # gtk 1 HTMLFLAGS=`gnome-config --cflags gnome`
+  # gtk 2 HTMLFLAGS=`pkg-config libgtkhtml-2.0 --cflags`
+  HTMLFLAGS="\`$PKG_CONFIG libgtkhtml-2.0 --cflags\`"
+  # check for libgtkhtml-2.0
+  # check first for vte
+  ac_save_LIBS="$LIBS"
+  LIBS=`$PKG_CONFIG vte --cflags --libs`
+  VTE=no
+  AC_CHECK_LIB(vte,vte_terminal_new,[VTE=yes])
+  if test "$VTE" = no; then
+       AC_MSG_ERROR([you should install vte and vte-devel ],)
+  else
+       TERM_NAME=vte
+       TERM_LDFLAGS=VTE_LDFLAGS
+       GTK_PKGS_CFLAGS="$GTK_PKGS_CFLAGS vte"
+       GTK_PKGS_LIBS="$GTK_PKGS_LIBS vte"
+  fi
+  LIBS=$ac_save_LIBS
+
+  # try to use readline with the gtk2 version
+  ac_save_LIBS="$LIBS"
+  case "$host" in
+   *-*-freebsd* | *-*-netbsd*)
+    ac_save_LDFLAGS="$LDFLAGS"
+    LIBS="$TERMCAPLIB  $LIBS"
+    LDFLAGS='-L/usr/pkg/lib'
+    AC_CHECK_LIB(readline, rl_callback_read_char,[READLINE="-L/usr/pkg/lib -lreadline"])
+    LDFLAGS="$ac_save_LDFLAGS"
+    LIBS=$ac_save_LIBS
+    TERMCAPLIB="$READLINE $TERMCAPLIB"
+    if test "no$READLINE" != no; then
+     ZZLEDT="zzledt-rl.o"
+     AC_DEFINE(WITH_READLINE,[], [with readline])
+    else
+     AC_MSG_ERROR([Could not find readline library.],)
+    fi
+    ;;
+    *-*-openbsd*)
+    ac_save_LDFLAGS="$LDFLAGS"
+    LIBS="$TERMCAPLIB  $LIBS"
+    LDFLAGS='-L/usr/lib'
+    AC_CHECK_LIB(readline, rl_callback_read_char,[READLINE="-L/usr/lib -lreadline"])
+    LDFLAGS="$ac_save_LDFLAGS"
+    LIBS=$ac_save_LIBS
+    TERMCAPLIB="$READLINE $TERMCAPLIB"
+    if test "no$READLINE" != no; then
+     ZZLEDT="zzledt-rl.o"
+     AC_DEFINE(WITH_READLINE,[], [with readline])
+    else
+     AC_MSG_ERROR([Could not find readline library.],)
+    fi
+    ;;
+   *)
+   LIBS="$TERMCAPLIB  $LIBS"
+   AC_CHECK_LIB(readline, rl_callback_read_char,[READLINE=-lreadline])
+   LIBS=$ac_save_LIBS
+   TERMCAPLIB="$READLINE $TERMCAPLIB"
+   if test "no$READLINE" != no; then
+     ZZLEDT="zzledt-rl.o"
+     AC_DEFINE(WITH_READLINE,[], [with readline])
+   else
+     AC_MSG_ERROR([Could not find readline library.],)
+   fi
+  esac
+  # we remove the X libs they were just used above during tcl/tk check
+  if test "$with_gtk2" = yes; then
+    XAWLIB=
+    XMULIB=
+    XAW_LOCAL_SUBDIR=
+    XAW_LOCAL_LIB=
+    X_CFLAGS=
+    XAW_LOCAL_INCLUDES=
+    X_EXTRA_LIBS=
+    XXTXEXT=
+    XX11=
+    X_LIBS=
+    X_PRE_LIBS=
+    if test "$TK_INC_PATH" = '-I/usr/include' ; then
+        TK_INC_PATH=
+    fi
+    if test "$TCL_INC_PATH" = '-I/usr/include' ; then
+        TCL_INC_PATH=
+    fi
+  fi
+fi
+
+#--------------------
+# check for WebKit
+#---------------------
+
+HELP_OBJS="helpvoid.o"
+
+if test xx"$with_webkit" = xx; then
+   # default value is to check for webkit and use it if found.
+   with_webkit=yes
+fi
+
+if test "$with_webkit" = yes; then
+  PKG_CHECK_MODULES(webkit, webkit-1.0 , have_webkit=yes, have_webkit=no)
+  if test "x${have_webkit}" = "xyes" ; then
+     GTK_PKGS_CFLAGS="$GTK_PKGS_CFLAGS webkit-1.0"
+     GTK_PKGS_LIBS="$GTK_PKGS_LIBS webkit-1.0"
+     GTKCFLAGS="\`$PKG_CONFIG $GTK_PKGS_CFLAGS --cflags\`"
+     GTKLIBS="\`$PKG_CONFIG $GTK_PKGS_LIBS --libs\`"
+     HELP_OBJS="helpwebkit.o eggfindbar.o"
+     AC_DEFINE(HAVE_WEBKIT,[] , [Whether WebKit is available])
+     PKG_CHECK_MODULES(webkit_zoom, webkit-1.0 >= 1.0.1 , have_webkit_zoom=yes, have_webkit_zoom=no)
+     if test "x${have_webkit_zoom}" = "xyes" ; then
+             AC_DEFINE(HAVE_WEBKIT_ZOOM,[] , [Whether WebKit has zoom API])
+     fi
+  fi
+else
+  have_webkit=no
+fi
+
+#--------------------------
+# check for libgtkhtml-2.0
+# if WebKit not found
+#--------------------------
+
+GTKHTML=no
+
+if test "x${have_webkit}" = "xno" ; then
+   ac_save_LIBS="$LIBS"
+   LIBS=`$PKG_CONFIG libgtkhtml-2.0 --cflags --libs`
+   AC_CHECK_LIB(gtkhtml-2,html_document_open_stream,[GTKHTML=yes])
+   if test "$GTKHTML" = no; then
+      AC_MSG_WARN([Could not find webkit or the libgtkhtml-2.0 package.],)
+      AC_MSG_WARN([WARNING interactive help will not be build.],)
+   else
+             GTK_PKGS_CFLAGS="$GTK_PKGS_CFLAGS libgtkhtml-2.0"
+             GTK_PKGS_LIBS="$GTK_PKGS_LIBS libgtkhtml-2.0"
+             GTKCFLAGS="\`$PKG_CONFIG $GTK_PKGS_CFLAGS --cflags\`"
+             GTKLIBS="\`$PKG_CONFIG $GTK_PKGS_LIBS --libs\`"
+             HELP_OBJS="helpbrowser.o"
+             AC_DEFINE(WITH_GTKHTML,[],[gtkhtml])
+   fi
+   LIBS=$ac_save_LIBS
+fi
+
+
+
+#################
+## atlas
+#################
+
+# check user arguments
+USER_ATLAS_LIB_PATH=""
+
+AC_ARG_WITH(atlas-library,
+    [  --with-atlas-library=DIR  Atlas library files are in DIR and we use Atlas ],
+    [  USER_ATLAS_LIB_PATH=$withval ],
+    )
+
+if test "$USER_ATLAS_LIB_PATH" = ""; then
+        WHICH_BLAS="STD_BLAS"
+        IN_ATLAS=LOCAL
+else
+        echo "using Atlas library"
+        WHICH_BLAS="ATLAS_LAPACKBLAS"
+        ATLAS_DIR=$USER_ATLAS_LIB_PATH
+        IN_ATLAS=ATLAS
+        AC_DEFINE(WITH_ATLAS,[], [atlas library])
+fi
+
+#################
+## ocaml
+#################
+
+OCAMLTARGET=ocaml_disabled
+OCAMLTARGET_DISTCLEAN=ocaml_disabled
+
+if test "$with_ocaml" != no; then
+        AC_CHECK_PROG(with_ocamlc,ocamlc,yes,no)
+        if test "$with_ocamlc" = no; then
+        AC_MSG_WARN([ocamlc not found: I will not build ScicosLab compilers])
+        else
+        AC_CHECK_PROG(with_ocamlopt,ocamlopt,yes,no)
+        if test "$with_ocamlopt" = no; then
+        AC_MSG_WARN([ocamlopt not found: I will not build ScicosLab compilers])
+        else
+        AC_CHECK_PROG(with_ocamldep,ocamldep,yes,no)
+        if test "$with_ocamldep" = no; then
+        AC_MSG_WARN([ocamldep not found: I will not build ScicosLab compilers])
+        else
+        AC_DEFINE(WITH_OCAML,[], [objective caml ])
+        OCAMLTARGET=scilex-lib
+        OCAMLTARGET_DISTCLEAN=distclean
+        fi
+        fi
+        fi
+fi
+
+#################
+## expat
+#################
+
+EXPATSCIDIR=""
+EXPAT_INC_PATH=""
+EXPAT_LIB_PATH=""
+EXPAT_LIBS=""
+EXPATSCILIB=""
+
+if test "$with_expat" != no; then
+
+  AC_CHECK_HEADER(
+         [expat.h],
+         AC_CHECK_LIB(
+            [expat],
+            [XML_ParserCreate],
+            AC_DEFINE(WITH_EXPAT,[], [expat library])
+            EXPATSCIDIR="expatsci"
+            EXPAT_LIBS="-lexpat"
+            EXPATSCILIB="\$(SCIDIR)/libs/expatsci.a",
+            AC_MSG_WARN([expat not found: I will not build ScicosLab expat interfaces])
+                      ))
+fi
+
+##########
+##fftw
+##########
+FFTW3_CFLAGS=
+FFTW3_LIBS=
+
+#look at for fftw3
+if test "$with_fftw" != no; then
+  AC_CHECK_HEADERS(
+         [fftw3.h],
+         AC_CHECK_LIB(
+            [fftw3],
+            [fftw_plan_dft_1d],
+            FFTW3_CFLAGS="-DWITH_FFTW3=1"
+            FFTW3_LIBS="-lfftw3 -lm"
+            WITH_FFTW3="1"
+            [HAVE_FFTW3="yes"],
+            FFTW3_CFLAGS=
+            FFTW3_LIBS=
+            WITH_FFTW3=
+            [HAVE_FFTW3="no"]),
+            FFTW3_CFLAGS="-DWITH_FFTW3=1"
+            FFTW3_LIBS="-lfftw3 -lm"
+            WITH_FFTW3="1"
+            [HAVE_FFTW3="no"])
+fi
+
+#################
+## Man management
+#################
+
+MAN_FR=
+MAN_ENG=
+
+if test "$with_man" != no; then
+
+  # Sablotron or xsltproc
+  # ===================
+
+  AC_CHECK_PROG(WITH_XSLTPROC,xsltproc,yes,no)
+  if test "$WITH_XSLTPROC" = yes; then
+    MANTARGET=man
+    MANGENERATOR=xsltproc
+  else
+    AC_CHECK_PROG(WITH_SABCMD,sabcmd,yes,no)
+    if test "$WITH_SABCMD" = yes; then
+      MANTARGET=man
+      MANGENERATOR=sabcmd
+    else
+      AC_MSG_WARN([Sablotron "sabcmd" or xmlto not found: I will not build man pages])
+      MANTARGET=
+    fi
+  fi
+
+  # Now check if man sources
+  # are checked out or not
+  # ===================
+
+  case "$host" in
+   *-*-mingw32*)
+        AC_MSG_WARN([cannot check for man])
+           ;;
+   *)
+        AC_CHECK_FILE(man/fr/Makefile.in,[MAN_FR=man/fr/Makefile],[MAN_FR=])
+           if test "$MAN_FR" = ''; then
+           MANTARGET=
+           AC_MSG_WARN([man/fr/Makefile.in not found : I will not build man pages])
+              else
+           AC_CHECK_FILE(man/eng/Makefile.in,[MAN_ENG=man/eng/Makefile],[MAN_ENG=])
+           if test "$MAN_ENG" = ''; then
+        MANTARGET=
+        AC_MSG_WARN([man/eng/Makefile.in not found : I will not build man pages])
+           fi
+            fi
+         ;;
+   esac
+fi
+
+#########################
+## is scicos present
+#########################
+
+SCICOS=scicos-v
+
+AC_CHECK_FILE(routines/scicos/scicos.c,[SCICOS=scicos],[SCICOS=scicos-v])
+
+
+#########################
+## substituting variables
+#########################
+
+AC_SUBST(RM)
+AC_SUBST(AR)
+AC_SUBST(AR_FLAGS)
+AC_SUBST(RC)
+AC_SUBST(RC_FLAGS)
+AC_SUBST(FILES_TO_CLEAN)
+AC_SUBST(CC)
+AC_SUBST(CC_OPTIONS)
+AC_SUBST(CC_OPTIONS_PLUS)
+AC_SUBST(CC_LDFLAGS)
+AC_SUBST(CC_PICFLAGS)
+AC_SUBST(CXX)
+AC_SUBST(CXXFLAGS)
+AC_SUBST(CXXCPP)
+AC_SUBST(FC)
+AC_SUBST(FC_OPTIONS)
+AC_SUBST(FC_OPTIONS_PLUS)
+AC_SUBST(FC_OPTIONS1)
+AC_SUBST(CC_OPTIONS1)
+AC_SUBST(FC_OPTIONS2)
+AC_SUBST(FC_LDFLAGS)
+AC_SUBST(FC_PICFLAGS)
+AC_SUBST(LD)
+AC_SUBST(LD_LDFLAGS)
+AC_SUBST(SCILAB_GS)
+AC_SUBST(SCILABSCRIPT)
+AC_SUBST(FGETARG)
+AC_SUBST(GETARG)
+AC_SUBST(SCIDCOPY)
+AC_SUBST(UNSFDCOPY)
+AC_SUBST(HPPA_OLD)
+AC_SUBST(DLDLIB)
+AC_SUBST(DLD_SUBDIR)
+AC_SUBST(XAWLIB)
+AC_SUBST(XAW)
+AC_SUBST(XMULIB)
+AC_SUBST(XAW_LOCAL_SUBDIR)
+AC_SUBST(XAW_LOCAL_INCLUDES)
+AC_SUBST(XAW_LOCAL_LIB)
+AC_SUBST(GTKCFLAGS)
+AC_SUBST(GTKLIBS)
+AC_SUBST(GNOMECFLAGS)
+AC_SUBST(TERMCAPLIB)
+AC_SUBST(MAIN)
+AC_SUBST(MAKEFILE_TARGET)
+AC_SUBST(PERIFILE)
+AC_SUBST(GUILIB)
+AC_SUBST(GZVT)
+AC_SUBST(XDRLIB)
+AC_SUBST(XDRLIBNAME)
+AC_SUBST(WINXFLAGS)
+AC_SUBST(MENUSOBJS)
+AC_SUBST(MALLOC)
+
+AC_SUBST(PVMARCH)
+AC_SUBST(PVMLIB)
+AC_SUBST(PVMSCIDIR)
+AC_SUBST(PVMSCILIB)
+AC_SUBST(PVMGLIB)
+AC_SUBST(PVMTARGET)
+AC_SUBST(PVMTARGET_DISTCLEAN)
+AC_SUBST(PVMROOT)
+AC_SUBST(PVMROOTR)
+AC_SUBST(PVMINST)
+AC_SUBST(PVMINST1)
+AC_SUBST(PVMINCLUDE)
+AC_SUBST(PVMHOSTERFILES)
+AC_SUBST(PVMHOSTER)
+AC_SUBST(PVMHELP)
+
+# tcl/tk
+AC_SUBST(TKBASE)
+AC_SUBST(TCLTK_INC_PATH)
+AC_SUBST(TCLTK_LIBS)
+AC_SUBST(TCLSCILIB)
+AC_SUBST(TCLSCIDIR)
+AC_SUBST(TCLTKHELP)
+AC_SUBST(TK_MINOR_VERSION)
+AC_SUBST(TK_MAJOR_VERSION)
+AC_SUBST(GETLIBTK)
+AC_SUBST(GETLIBTK_WIN)
+#
+AC_SUBST(NOINLINE)
+AC_SUBST(WHICH_BLAS)
+AC_SUBST(ATLAS_DIR)
+AC_SUBST(IN_ATLAS)
+
+AC_SUBST(OCAMLTARGET)
+AC_SUBST(OCAMLTARGET_DISTCLEAN)
+AC_SUBST(WITH_OCAML)
+
+AC_SUBST(EXPATSCIDIR)
+AC_SUBST(EXPAT_INC_PATH)
+AC_SUBST(EXPAT_LIB_PATH)
+AC_SUBST(EXPAT_LIBS)
+AC_SUBST(EXPATSCILIB)
+
+AC_SUBST(FFTW3_CFLAGS)
+AC_SUBST(FFTW3_LIBS)
+
+AC_SUBST(MANTARGET)
+# for Makemex
+
+AC_SUBST(SHELL)
+AC_SUBST(DLLTOOL)
+AC_SUBST(LD)
+AC_SUBST(LIBM)
+AC_SUBST(LIBTOOL)
+AC_SUBST(LIBTOOL_DEPS)
+AC_SUBST(LN_S)
+AC_SUBST(NM)
+AC_SUBST(OBJDUMP)
+AC_SUBST(PACKAGE)
+AC_SUBST(RANLIB)
+AC_SUBST(STATIC)
+AC_SUBST(SCIVERSION)
+AC_SUBST(CPPFLAGS)
+AC_SUBST(LDFLAGS)
+AC_SUBST(LIBS)
+AC_SUBST(FLIBS)
+AC_SUBST(FLIBS_SH)
+AC_SUBST(SONAME)
+AC_SUBST(SHREXT_NAME)
+#AC_SUBST(CC)
+AC_SUBST(CFLAGS)
+#AC_SUBST(FC_USE_CDEC)
+AC_SUBST(FC_SUBDIR)
+AC_SUBST(BLPR_SCRIPTS)
+AC_SUBST(SED_CYGDRIVE)
+AC_SUBST(F2C_SUBDIR)
+AC_SUBST(F2C_DIR)
+AC_SUBST(F2C_LIB)
+AC_SUBST(EXAMPLES_TESTS)
+AC_SUBST(IMPPREF)
+AC_SUBST(IMPENV)
+AC_SUBST(ZZLEDT)
+AC_SUBST(STRIP)
+AC_SUBST(HTMLFLAGS)
+AC_SUBST(GTKPLUGBUG)
+AC_SUBST(XXTXEXT)
+AC_SUBST(XX11)
+AC_SUBST(PERIX11NOPT)
+
+AC_SUBST(MANGENERATOR)
+AC_SUBST(TERM_NAME)
+AC_SUBST(TERM_LDFLAGS)
+AC_SUBST(JAVASCITARGET)
+AC_SUBST(JAVASCITARGET_DISTCLEAN)
+AC_SUBST(JAVA_INCL)
+AC_SUBST(GCCFIX)
+AC_SUBST(FORMATFILE)
+AC_SUBST(SCIMALLOC)
+AC_SUBST(EXEEXT)
+AC_SUBST(DATE)
+AC_SUBST(HELP_OBJS)
+AC_SUBST(SCICOS)
+
+AC_SUBST(ALLOCPTR)
+AC_SUBST(ALLOCSTD)
+AC_SUBST(MSTD)
+AC_SUBST(MFPTR)
+AC_SUBST(INIFPTR)
+
+AC_OUTPUT(Makefile
+          Makemex
+          Makefile.OBJ
+          Makefile.incl
+          scicoslab.iss
+          config/configuration
+          config/Makefile.aix
+          config/Makefile.ultrix
+          config/Makeso.incl
+          config/Version.incl
+          config/scicoslab-deb.desktop
+          imp/Makefile
+          examples/Makefile
+          macros/util/browsehelp.sci
+          macros/util/gettklib.sci
+          macros/util/gettkversion.sci
+          macros/util/ilib_unix_soname.sci
+          macros/util/xmlfiletohtml.sci
+          $MAN_FR
+          $MAN_ENG
+          pvm3/Makefile
+          pvm3/Makefile.aimk
+          pvm3/hoster/Makefile.aimk
+          routines/Makefile
+          routines/version.h
+          routines/calelm/Makefile
+          routines/control/Makefile
+          routines/default/Makefile
+          routines/default/fundef
+          routines/expatsci/Makefile
+          routines/graphics/Makefile
+          routines/gtksci/Makefile
+          routines/gzvt2/Makefile
+          routines/interf/Makefile
+          routines/Javasci/Makelib
+          routines/lapack/Makefile
+          routines/menusX/Makefile
+          routines/os_specific/Makefile
+          routines/optim/Makefile
+          routines/poly/Makefile
+          routines/sparse/Makefile
+          routines/system/Makefile
+          routines/system/banier.c
+          routines/system2/Makefile
+          routines/xsci/Makefile
+          scripts/Makefile
+          scripts/scilab.g
+          scripts/scilab-gtk.g
+	  routines/system/storeglobal.f
+	  routines/interf/matsys.f
+	  routines/stack.h
+	  routines/system/inisci.f
+         )
+
+echo
+echo
+echo "*******************"
+echo "*     Summary     *"
+echo "*******************"
+echo
+echo
+echo "Managed by pkg-config..:" $GTK_PKGS_CFLAGS
+echo "Lapack and Blas........:" $LAPACK_LIBS $BLAS_LIBS
+echo "Terminal...............:" $TERMCAPLIB
+echo "C compiler.............:" $CC
+echo "C options..............:" $CC_OPTIONS
+echo "Fortran compiler.......:" $FC
+echo "Fortran options........:" $FC_OPTIONS
+echo

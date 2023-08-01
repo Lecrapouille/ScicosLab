@@ -1,0 +1,157 @@
+(*
+2011-12-23:
+
+Compilation des blocs:
+
+- static hidden memory in blocks
+
+- 
+
+let block_body y0 v =
+  let u = bA(v) in
+  let y =
+    if u > 0 then
+      (y0 := bB(u); !y0)
+    else
+      !y0 in
+  let z = bC(y) in
+  z
+;;
+
+let block_sB init =
+  let y0 = ref init in
+  block_body y0
+;;
+
+To create a sB block with initial condition x0 you should evaluate
+  block_sB x0
+
+Example:
+*)
+let bA = sin;;
+let bB = cos;;
+let bC = sqrt;;
+
+let sB_body y0 v =
+  let u = bA(v) in
+  let y =
+    if u > 0. then
+      (y0 := bB(u); !y0)
+    else
+      !y0 in
+  let z = bC(y) in
+  z
+;;
+
+let sB_block init =
+  let y0 = ref init in
+  sB_body y0
+;;
+
+let sB1 = sB_block 0.0;;
+let sB2 = sB_block 1.0;;
+
+(*
+
+Diagram:
+
+constant 1 -> sB1 -> sB2
+
+*)
+
+(* Defining the constant block. *)
+let constant_block init () = init;;
+
+(* The block that generates the constant 1.0 *)
+let sconstant1 = constant_block 1.0;;
+(* The block that generates the constant 2.0 *)
+let sconstant2 = constant_block 2.0;;
+
+let diagram () =
+  sB2 (sB1 (sconstant1 ()))
+;;
+
+diagram ();;
+
+(*
+let rec block_body =
+
+let rec loop n =
+  if n <> 0 then begin
+    pr_endline n;
+    loop (n - 1)
+  end
+;;
+
+loop 10;;
+
+let rec rloop n =
+  if !n <> 0 then begin
+    pr_endline !n;
+    n := !n -1;
+    rloop n;
+  end
+;;
+
+rloop (ref 10);;
+*)
+
+(* A line of n sB_block blocks *)
+
+let rec nSB = function
+  | [] -> fun v -> v
+  | [ init ] -> sB_block init
+  | init :: inits ->
+    let sBn = sB_block init in
+    let rest = nSB inits in
+    fun v -> sBn (rest v)
+  | _ -> invalid_arg "nSB"
+;;
+
+nSB (3; 1];;
+
+let fix f eps =
+  let rec fix_loop u =
+    let y = f u in
+    if abs_float (y -. u) > eps then fix_loop y else y in
+  fix_loop
+;;
+
+let fix f eps =
+
+  let rec fix_loop u =
+    let y = f u in
+    if abs_float (y -. u) > eps then fix_loop y else y in
+  fix_loop
+
+;;
+
+let eps = 0.0001;;
+let f = sin;;
+
+let rec fix_loop_body y0 =
+  let u = f !y0 in
+  if abs_float (u -. !y0) > eps then begin
+    y0 := u; fix_loop_body y0 end
+  else !y0
+;;
+
+let fix_loop v =
+  fix_loop_body (ref v)
+;;
+
+let fix_loop v =
+
+  let y0 = ref v in
+
+  let rec fix_loop_body () =
+    let u = f !y0 in
+    if abs_float (u -. !y0) > eps then begin
+      y0 := u; fix_loop_body () end
+    else !y0 in
+
+  fix_loop_body ()
+
+;;
+
+

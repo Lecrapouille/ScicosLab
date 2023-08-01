@@ -1,0 +1,42 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>imabsdiff</title>
+</head>
+<body bgcolor="#FFFFFF">
+<center>SIVP Toolbox</center>
+<div align="right">Last update : July, 2006</div>
+<p><b>imabsdiff</b> - Calculate absolute difference of two images</p>
+<h3><font color="blue">Calling Sequence</font></h3>
+<dl><dd><tt>imout = imabsdiff(im1, im2)</tt></dd></dl>
+<h3><font color="blue">Parameters</font></h3>
+<ul>
+<li>
+<b><tt>im1, im2</tt></b>:
+       Input images, which can be any kinds of images, but must have the same width, height, class and number of channels.
+     </li>
+<li>
+<b><tt>imout</tt></b>:
+       The absolute difference of two input images.
+     </li>
+</ul>
+<h3><font color="blue">Description</font></h3>
+<p><tt>imabsdiff</tt> calculate the absolute difference of two images. The two input images must have the same width, height, class and number of channels.</p>
+<p>
+If <tt>im1</tt> and <tt>im2</tt> are an integer matrices, 
+the elements in the output matrix <tt>imout</tt> that 
+exceed the range of the integer type will be truncated.
+</p>
+<p>
+  Supported classes: INT8, UINT8, INT16, UINT16, INT32, DOUBLE.
+</p>
+<h3><font color="blue">Authors</font></h3>
+<dl><dd>
+<b></b> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </dd></dl>
+<h3><font color="blue">Availability</font></h3>
+The latest version of SIVP can be found at
+<p><a href="http://sivp.sourceforge.net">http://sivp.sourceforge.net</a></p>
+<h3><font color="blue">See Also</font></h3>
+<p><a href="imadd.htm"><tt><b>imadd</b></tt></a>,&nbsp;&nbsp;<a href="imsubtract.htm"><tt><b>imsubtract</b></tt></a>,&nbsp;&nbsp;<a href="immultiply.htm"><tt><b>immultiply</b></tt></a>,&nbsp;&nbsp;<a href="imdivide.htm"><tt><b>imdivide</b></tt></a>,&nbsp;&nbsp;<a href="imcomplement.htm"><tt><b>imcomplement</b></tt></a>,&nbsp;&nbsp;<a href="imlincomb.htm"><tt><b>imlincomb</b></tt></a>,&nbsp;&nbsp;</p>
+</body>
+</html>

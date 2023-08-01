@@ -1,0 +1,63 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>avifile</title>
+</head>
+<body bgcolor="#FFFFFF">
+<center>SIVP Toolbox</center>
+<div align="right">Last update : Sep, 2006</div>
+<p><b>avifile</b> - Create a new video file to write. (experimental)</p>
+<h3><font color="blue">Calling Sequence</font></h3>
+<dl>
+<dd><tt>n = avifile(filename, dims)</tt></dd>
+<dd><tt>n = avifile(filename, dims, fps)</tt></dd>
+</dl>
+<h3><font color="blue">Parameters</font></h3>
+<ul>
+<li>
+<b><tt>filename</tt></b>:
+   A string, the video filename to be created.
+   </li>
+<li>
+<b><tt>dims</tt></b>:
+   A 2x1 vector, which indicates the frame size (width, height).
+   </li>
+<li>
+<b><tt>fps</tt></b>:
+   A integer scalar, and the default value is 25.
+   </li>
+<li>
+<b><tt>n</tt></b>:
+   A number, the opened video file index.
+   </li>
+</ul>
+<h3><font color="blue">Description</font></h3>
+<p><tt>avifile</tt> create a new video file. After the video file is created, <tt>addframe</tt> can be used to add frame to the file. Remember to close the opened file using <tt>aviclose(n)</tt> or <tt>avicloseall()</tt>.
+</p>
+<p>
+Video support for SIVP is only available when SIVP is compiled with OpenCV which support video I/O.
+</p>
+<h3><font color="blue">Examples</font></h3>
+<pre>
+	
+    im = imread('lena.png');
+    n = avifile('lena.avi', [300;300], 30);
+
+    for ii=1:200
+        ims = im(ii:512-ii, ii:512-ii, :);
+        addframe(n, ims);
+    end
+
+    aviclose(n);
+
+</pre>
+<h3><font color="blue">Authors</font></h3>
+<dl><dd>
+<b></b> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </dd></dl>
+<h3><font color="blue">Availability</font></h3>
+The latest version of SIVP can be found at
+<p><a href="http://sivp.sourceforge.net">http://sivp.sourceforge.net</a></p>
+<h3><font color="blue">See Also</font></h3>
+<p><a href="aviinfo.htm"><tt><b>aviinfo</b></tt></a>,&nbsp;&nbsp;<a href="aviopen.htm"><tt><b>aviopen</b></tt></a>,&nbsp;&nbsp;<a href="camopen.htm"><tt><b>camopen</b></tt></a>,&nbsp;&nbsp;<a href="addframe.htm"><tt><b>addframe</b></tt></a>,&nbsp;&nbsp;<a href="aviclose.htm"><tt><b>aviclose</b></tt></a>,&nbsp;&nbsp;<a href="avicloseall.htm"><tt><b>avicloseall</b></tt></a>,&nbsp;&nbsp;<a href="avilistopened.htm"><tt><b>avilistopened</b></tt></a>,&nbsp;&nbsp;<a href="avireadframe.htm"><tt><b>avireadframe</b></tt></a>,&nbsp;&nbsp;</p>
+</body>
+</html>

@@ -1,0 +1,106 @@
+; Copyright (C) 2002-2004 Todd Kulesza <todd@dropline.net>
+;
+; This program is free software; you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation; either version 2 of the License, or
+; (at your option) any later version.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; You should have received a copy of the GNU General Public License
+; along with this program; if not, write to the Free Software
+; Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+; HOWTO CREATE THE INSTALLER
+;
+; First, you'll need My Inno Setup Extensions, the program used to
+; generate the installation executable.  It can be freely downloaded from
+; http://www.wintax.nl/isx/.  Once that's installed, you can use it to
+; open this file, make any changed you feel are necessary, and hit "compile"
+; to create a new installation file.  This .iss file must be placed in the
+; root of the GTK+ library hierarchy, i.e. if you have C:\Src\GTK+ with all of
+; the GTK+ .dll files in it, and sub-directories for bin, lib, etc, and share,
+; then this file must also be in C:\src\GTK+.  The documentation for My Inno
+; Setup Extensions is very complete and clearly explains what all of the
+; options listed below do.
+
+[Setup]
+AppName=ScicosLab @PACKAGE_VERSION@
+AppVerName=ScicosLab @PACKAGE_VERSION@
+AppVersion=@PACKAGE_VERSION@
+AppPublisher=Inria Enpc
+AppPublisherURL=http://www.scicoslab.org/
+AppSupportURL=http://www.scicoslab.org/
+AppUpdatesURL=http://www.scicoslab.org/
+CreateAppDir=yes
+DefaultDirName={sd}\Program Files\scicoslab-@PACKAGE_VERSION@
+DefaultGroupName=ScicosLab @PACKAGE_VERSION@
+UninstallDisplayIcon={app}\MyProg.exe
+LicenseFile=license.txt
+;AdminPrivilegesRequired=yes
+;DisableDirPage=yes
+DisableProgramGroupPage=yes
+DisableStartupPrompt=yes
+WindowShowCaption=yes
+WindowVisible=no
+;BackColor=$FF8200
+BackColor=clPurple
+BackColor2=clBlack
+Compression=bzip/9
+OutputDir=..
+OutputBaseFilename=scicoslab@PACKAGE_VERSION@-install
+
+[Files]
+Source: bin\*.*; DestDir: {app}\bin; Flags: recursesubdirs
+Source: config\*.*; DestDir: {app}\config; Flags: recursesubdirs
+Source: routines\*.h; DestDir: {app}\routines; Flags: recursesubdirs
+;;Source: "routines\scicos\*.c"; DestDir: "{app}\routines\scicos"; Flags: recursesubdirs
+;;Source: "routines\scicos\*.f"; DestDir: "{app}\routines\scicos"; Flags: recursesubdirs
+Source: routines\scicos\sundials\LICENSE; DestDir: {app}\routines\scicos\sundials
+Source: man\*.*; DestDir: {app}\man\; Flags: recursesubdirs
+Source: macros\*.*; DestDir: {app}\macros\; Flags: recursesubdirs
+;;Source: "intersci\*.*"; DestDir: "{app}\intersci\"; Flags: recursesubdirs
+;;Source: "tests\*.*"; DestDir: "{app}\tests\"; Flags: recursesubdirs
+Source: demos\*.*; DestDir: {app}\demos\; Flags: recursesubdirs
+Source: examples\*.*; DestDir: {app}\examples\; Flags: recursesubdirs
+Source: tests\*.*; DestDir: {app}\tests\; Flags: recursesubdirs
+Source: tcl\*.*; DestDir: {app}\tcl\; Flags: recursesubdirs
+Source: imp\*.*; DestDir: {app}\imp\; Flags: recursesubdirs
+Source: util\*.*; DestDir: {app}\util\; Flags: recursesubdirs
+Source: lcc\*.*; DestDir: {app}\lcc\; Flags: recursesubdirs
+Source: scilab.star; DestDir: {app}\; Flags: recursesubdirs
+Source: scilab.quit; DestDir: {app}\; Flags: recursesubdirs
+Source: Path.incl; DestDir: {app}\; Flags: recursesubdirs
+Source: pvmconf.*; DestDir: {app}\; Flags: recursesubdirs
+Source: contrib\*.*; DestDir: {app}\contrib\; Flags: recursesubdirs
+Source: Win-util\*.*; DestDir: {app}\Win-util\; Flags: recursesubdirs
+Source: ACKNOWLEDGEMENTS; DestDir: {app}\
+Source: CHANGES; DestDir: {app}\
+Source: README_Unix; DestDir: {app}\
+Source: RELEASE_NOTES; DestDir: {app}\
+Source: WinConfigure.verif; DestDir: {app}\
+Source: Makefile.*; DestDir: {app}\
+Source: libtool; DestDir: {app}\
+Source: licence.txt; DestDir: {app}\
+Source: license.txt; DestDir: {app}\
+
+[Icons]
+;;Name: {commonprograms}\ScicosLab @PACKAGE_VERSION@; Filename: {app}\bin\wscilex.exe
+Name: {commondesktop}\ScicosLab @PACKAGE_VERSION@; Filename: {app}\bin\wscilex.exe
+Name: {group}\ScicosLab @PACKAGE_VERSION@; Filename: {app}\bin\wscilex.exe
+Name: {group}\Uninstall ScicosLab @PACKAGE_VERSION@; Filename: {uninstallexe}
+
+[Tasks]
+Name: fileassoc; Description: {cm:AssocFileExtension,ScicosLab @PACKAGE_VERSION@,.sce}
+Name: fileassoc; Description: {cm:AssocFileExtension,ScicosLab @PACKAGE_VERSION@,.sci}
+Name: fileassoc; Description: {cm:AssocFileExtension,ScicosLab @PACKAGE_VERSION@,.cos}
+Name: fileassoc; Description: {cm:AssocFileExtension,ScicosLab @PACKAGE_VERSION@,.cosf}
+
+[Run]
+Filename: {app}\bin\wevu.exe; Parameters: "-p ""{app}\bin"" HKLM PATH"
+
+[UninstallRun]
+Filename: {app}\bin\wevu.exe; Parameters: "-r ""{app}\bin"" HKLM PATH"

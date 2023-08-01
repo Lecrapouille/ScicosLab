@@ -1,0 +1,47 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>xs2im</title>
+</head>
+<body bgcolor="#FFFFFF">
+<center>SIVP Toolbox</center>
+<div align="right">Last update : Nov., 2006</div>
+<p><b>xs2im</b> - Convert graphics to an image matrix.</p>
+<h3><font color="blue">Calling Sequence</font></h3>
+<dl><dd><tt>im = xs2im(win_num,[color])</tt></dd></dl>
+<h3><font color="blue">Parameters</font></h3>
+<ul>
+<li>
+<b><tt>win_num</tt></b>:
+       Integer scalar or vector.
+     </li>
+<li>
+<b><tt>color</tt></b>:
+       Optional integer. 0 means black and white and 1 means color. The default value is 1.
+     </li>
+<li>
+<b><tt>im</tt></b>:
+       The returned image, uint8 type hyper-matrix.
+     </li>
+</ul>
+<h3><font color="blue">Description</font></h3>
+<p><tt>xs2im</tt> convert the recorded graphics of the window <tt>win_num</tt> to an image matrix. This function works only if the selected driver is  "Rec"  in the window  win_num  or if the window is in "new style". 
+</p>
+<h3><font color="blue">Examples</font></h3>
+<pre>
+
+    scf(0)
+    plot2d()
+    im = xs2im(0);
+    imshow(im);
+</pre>
+<h3><font color="blue">Authors</font></h3>
+<dl><dd>
+<b></b> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </dd></dl>
+<h3><font color="blue">Availability</font></h3>
+The latest version of SIVP can be found at
+<p><a href="http://sivp.sourceforge.net">http://sivp.sourceforge.net</a></p>
+<h3><font color="blue">See Also</font></h3>
+<p><a href="im2double.htm"><tt><b>im2double</b></tt></a>,&nbsp;&nbsp;</p>
+</body>
+</html>

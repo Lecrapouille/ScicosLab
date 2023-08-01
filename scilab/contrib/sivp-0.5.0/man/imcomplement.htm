@@ -1,0 +1,56 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>imcomplement</title>
+</head>
+<body bgcolor="#FFFFFF">
+<center>SIVP Toolbox</center>
+<div align="right">Last update : July, 2006</div>
+<p><b>imcomplement</b> - Complement image</p>
+<h3><font color="blue">Calling Sequence</font></h3>
+<dl><dd><tt>imout = imcomplement(im)</tt></dd></dl>
+<h3><font color="blue">Parameters</font></h3>
+<ul>
+<li>
+<b><tt>im</tt></b>:
+       Input image.
+     </li>
+<li>
+<b><tt>imout</tt></b>:
+       The complement image, which has the same size and class with <tt>im</tt>.
+     </li>
+</ul>
+<h3><font color="blue">Description</font></h3>
+<p><tt>imcomplement</tt> computes the complement image of <tt>im</tt>.
+In the output image <tt>imout</tt>, 
+dark pixels become lighter and light pixels become darker.
+</p>
+<p>
+  Supported classes: BOOLEAN, INT8, UINT8, INT16, UINT16, INT32, DOUBLE.
+</p>
+<h3><font color="blue">Examples</font></h3>
+<pre>
+
+    im = [%F, %T];
+    imcomplement(im)
+
+    im = uint8([0, 50, 100; 150, 200, 250]);
+    imcomplement(im)
+
+    im = int8([-100, -50, 0; 50, 100, 150]);
+    imcomplement(im)
+
+    im = [0, 0.2, 0.4; 0.6, 0.8, 1.0];
+    imcomplement(im)
+
+</pre>
+<h3><font color="blue">Authors</font></h3>
+<dl><dd>
+<b></b> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </dd></dl>
+<h3><font color="blue">Availability</font></h3>
+The latest version of SIVP can be found at
+<p><a href="http://sivp.sourceforge.net">http://sivp.sourceforge.net</a></p>
+<h3><font color="blue">See Also</font></h3>
+<p><a href="imabsdiff.htm"><tt><b>imabsdiff</b></tt></a>,&nbsp;&nbsp;<a href="imadd.htm"><tt><b>imadd</b></tt></a>,&nbsp;&nbsp;<a href="imsubtract.htm"><tt><b>imsubtract</b></tt></a>,&nbsp;&nbsp;<a href="immultiply.htm"><tt><b>immultiply</b></tt></a>,&nbsp;&nbsp;<a href="imdivide.htm"><tt><b>imdivide</b></tt></a>,&nbsp;&nbsp;<a href="imlincomb.htm"><tt><b>imlincomb</b></tt></a>,&nbsp;&nbsp;</p>
+</body>
+</html>

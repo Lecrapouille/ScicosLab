@@ -1,0 +1,52 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ind2rgb</title>
+</head>
+<body bgcolor="#FFFFFF">
+<center>SIVP Toolbox</center>
+<div align="right">Last update : August, 2007</div>
+<p><b>ind2rgb</b> - convert indexed image to true color image  </p>
+<h3><font color="blue">Calling Sequence</font></h3>
+<dl><dd><tt>rgb = ind2rgb(ind,cmap)</tt></dd></dl>
+<h3><font color="blue">Parameters</font></h3>
+<ul>
+<li>
+<b><tt>rgb</tt></b>:
+    MxNx3 true color image in the 0-1 range
+  </li>
+<li>
+<b><tt>ind  </tt></b>:
+    MxN indexed image, integer matrix
+  </li>
+<li>
+<b><tt>cmap  </tt></b>:
+    color map
+  </li>
+</ul>
+<h3><font color="blue">Description</font></h3>
+<p>
+  ind2rgb utility function converts an indexed image to true color image for pseudo color visualization.
+  </p>
+<h3><font color="blue">Examples</font></h3>
+<pre>
+  a=[1:0.05:16];
+  b=int32(a'*a);
+  cmap=jetcolormap(256);
+  c=ind2rgb(b,cmap);
+  imshow(c);
+ </pre>
+<h3><font color="blue">Authors</font></h3>
+<dl>
+<dd>
+<b></b>Roger Liu</dd>
+<dd>
+<b></b>Isaac Zhi</dd>
+</dl>
+<h3><font color="blue">Availability</font></h3>
+The latest version of SIVP can be found at
+<p><a href="http://sivp.sourceforge.net">http://sivp.sourceforge.net</a></p>
+<h3><font color="blue">See Also</font></h3>
+<p> None ,&nbsp;&nbsp;</p>
+</body>
+</html>

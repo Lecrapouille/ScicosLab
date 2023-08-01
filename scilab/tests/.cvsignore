@@ -1,0 +1,8 @@
+##   svn propset svn:ignore -F .cvsignore -R .
+*.dia
+test.wav
+test1.bin
+test2.bin
+test_macro_exec
+test3.bin
+test.bin

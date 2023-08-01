@@ -1,0 +1,147 @@
+SHELL = /bin/sh
+
+SCIDIR=../..
+
+LIBRARY = $(SCIDIR)/libs/xsci.a
+
+OBJSC = wf_w_dir.o wf_w_file.o wf_w_util.o wf_w_cursor.o \
+	wf_f_util.o wf_f_read.o \
+	wf_w_msgpanel.o wf_w_setup.o wf_e_edit.o wf_w_init.o \
+	jpc_windows.o jpc_command.o  jpc_utils.o jpc_inter.o   \
+	jpc_SGraph.o jpc_xwidgets.o \
+	jpc_coloredit.o \
+	x_button.o x_charproc.o x_cursor.o \
+	x_data.o x_input.o \
+	x_main.o x_menu.o x_misc.o x_screen.o \
+	x_scrollbar.o x_tabs.o \
+	x_util.o x_VTPrsTbl.o
+
+OBJSF  = 
+
+include ../../Makefile.incl
+
+CFLAGS = $(CC_OPTIONS) $(XFLAGS) $(TK_INC_PATH) $(TCL_INC_PATH)
+
+FFLAGS = $(FC_OPTIONS)
+
+XSCILAB_DEFAULT = $(SCIDIR)/X11_defaults/Xscilab
+
+all:: $(XSCILAB_DEFAULT) Xscilab.ad.h 
+
+include ../Make.lib
+
+Xscilab.ad.h: Xscilab.ad
+	./ad2c.script Xscilab.ad > Xscilab.ad.h
+
+$(XSCILAB_DEFAULT): Xscilab.ad
+	$(RM) $(XSCILAB_DEFAULT)
+	cp Xscilab.ad $(XSCILAB_DEFAULT)
+
+distclean::
+	$(RM) $(XSCILAB_DEFAULT)
+
+
+OBJTEST = x_test_loop.o
+
+# $(SCIDIR)/libs/xgc.a 
+
+test: $(OBJTEST) $(OBJSC) ../os_specific/zzledt.o ../os_specific/flags.o  ../os_specific/men_Sutils.o ../os_specific/tmpdir.o ../os_specific/timer.o
+	cd ../graphics; make ;cd ../xsci
+	$(RM) $@
+	$(CC) -g -o $@ $(OBJTEST) ../os_specific/zzledt.o ../os_specific/flags.o  ../os_specific/tmpdir.o \
+	../os_specific/men_Sutils.o ../os_specific/inffic.o ../os_specific/timer.o \
+	$(OBJSC) $(SCIDIR)/libs/graphics.a $(SCIDIR)/libs/menusX.a \
+	$(SCIDIR)/$(SCIDIR)/libs/tclsci.a $(CC_LDFLAGS) $(XLIBS) $(TERMCAPLIB) \
+	$(TCLTK_LIBS) -lm
+
+clean::
+	$(RM) $(OBJTEST)
+distclean::
+	$(RM) $(OBJTEST) test
+
+OBJWFTEST = wf_xcommand.o
+
+wf_test: $(OBJWFTEST) $(OBJS)
+	$(RM) $@
+	$(CC) -o $@ $(OBJWFTEST) $(OBJS) $(CC_LDFLAGS) $(XLIBS) -lm
+
+clean::
+	$(RM) $(OBJWFTEST)
+distclean::
+	$(RM) $(OBJWFTEST) wf_test
+
+# generated with gcc -MMD
+
+jpc_SGraph.o: jpc_SGraph.c ../graphics/Math.h ../machine.h \
+	../graphics/Graphics.h ../os_specific/men_Sutils.h ../menusX/men_scilab.h \
+	All-extern.h All-extern-x1.h ../graphics/bcg.h \
+	../graphics/GetProperty.h ../graphics/DestroyObjects.h \
+	../stack-c.h ../stack-def.h ../interf/stack1.h ../interf/stack2.h \
+	../interf/stack3.h
+jpc_coloredit.o: jpc_coloredit.c wf_fig.h wf_figx.h wf_resources.h \
+	wf_mode.h wf_w_drawprim.h wf_w_util.h wf_w_setup.h ../machine.h \
+	All-extern.h All-extern-x1.h
+jpc_command.o: jpc_command.c jpc_global.h ../machine.h jpc_defs.h \
+	All-extern.h ../os_specific/Os_specific.h All-extern-x1.h ../graphics/Graphics.h
+jpc_inter.o: jpc_inter.c x_ptyxP.h x_ptyx.h x_data.h ../machine.h \
+	All-extern-x.h All-extern.h ../os_specific/Os_specific.h Xscilab.ad.h
+jpc_utils.o: jpc_utils.c jpc_global.h ../machine.h jpc_defs.h \
+	All-extern.h
+jpc_windows.o: jpc_windows.c x_ptyx.h x_data.h jpc_global.h ../machine.h \
+	jpc_defs.h All-extern.h ../version.h x_xbas.icon.X
+jpc_xwidgets.o: jpc_xwidgets.c ../graphics/Math.h ../machine.h \
+	../graphics/Graphics.h
+test.o: test.c
+wf_e_edit.o: wf_e_edit.c wf_fig.h wf_figx.h wf_resources.h wf_mode.h \
+	wf_w_drawprim.h wf_w_util.h
+wf_f_read.o: wf_f_read.c wf_fig.h wf_figx.h wf_resources.h wf_mode.h \
+	wf_w_setup.h wf_w_util.h ../machine.h All-extern.h
+wf_f_util.o: wf_f_util.c wf_fig.h wf_resources.h wf_mode.h wf_w_util.h \
+	../machine.h All-extern.h
+wf_w_cursor.o: wf_w_cursor.c wf_fig.h wf_figx.h wf_resources.h
+wf_w_dir.o: wf_w_dir.c wf_w_util.h wf_fig.h wf_figx.h wf_resources.h \
+	wf_mode.h wf_w_dir.h wf_w_setup.h wf_w_drawprim.h ../machine.h \
+	All-extern.h
+wf_w_file.o: wf_w_file.c wf_fig.h wf_figx.h wf_resources.h wf_mode.h \
+	wf_w_drawprim.h wf_w_dir.h wf_w_util.h wf_w_setup.h ../machine.h \
+	All-extern.h ../menusX/men_scilab.h ../graphics/Math.h \
+	../graphics/Graphics.h ../os_specific/men_Sutils.h
+wf_w_init.o: wf_w_init.c wf_fig.h wf_figx.h wf_resources.h ../machine.h \
+	All-extern.h
+wf_w_msgpanel.o: wf_w_msgpanel.c wf_fig.h wf_figx.h wf_resources.h \
+	wf_mode.h wf_w_util.h wf_w_setup.h ../machine.h All-extern.h
+wf_w_setup.o: wf_w_setup.c wf_fig.h wf_resources.h wf_w_setup.h \
+	wf_w_util.h ../machine.h All-extern.h
+wf_w_util.o: wf_w_util.c wf_fig.h wf_figx.h wf_resources.h \
+	wf_w_drawprim.h wf_w_util.h wf_w_setup.h ../machine.h All-extern.h
+wf_xcommand.o: wf_xcommand.c ../machine.h wf_resources.h
+x_VTPrsTbl.o: x_VTPrsTbl.c x_VTparse.h
+x_button.o: x_button.c x_ptyxP.h x_ptyx.h x_data.h x_error.h x_menu.h \
+	../machine.h All-extern-x.h
+x_charproc.o: x_charproc.c ../machine.h x_ptyxP.h x_ptyx.h x_VTparse.h \
+	x_data.h x_error.h x_menu.h x_main.h ../tclsci/TCL_Global.h \
+	../stack-def.h All-extern-x.h All-extern.h
+x_cursor.o: x_cursor.c x_ptyxP.h x_ptyx.h ../machine.h All-extern-x.h
+x_data.o: x_data.c x_ptyxP.h x_ptyx.h x_data.h
+x_input.o: x_input.c x_ptyxP.h x_ptyx.h ../machine.h All-extern-x.h
+x_main.o: x_main.c x_ptyxP.h x_ptyx.h x_data.h x_error.h x_menu.h \
+	../version.h ../machine.h ../graphics/Math.h ../graphics/Graphics.h \
+	All-extern-x.h All-extern.h Xscilab.ad.h ../graphics/DestroyObjects.h
+x_menu.o: x_menu.c x_ptyxP.h x_ptyx.h x_data.h x_menu.h ../machine.h \
+	All-extern-x.h
+x_misc.o: x_misc.c x_ptyxP.h x_ptyx.h ../machine.h x_data.h x_error.h \
+	x_menu.h All-extern-x.h
+x_screen.o: x_screen.c x_ptyxP.h x_ptyx.h x_error.h x_data.h ../machine.h \
+	All-extern-x.h All-extern.h
+x_screen.nok.o: x_screen.nok.c x_ptyxP.h x_ptyx.h x_error.h x_data.h \
+	../machine.h
+x_scrollbar.o: x_scrollbar.c x_ptyxP.h x_ptyx.h x_data.h x_error.h \
+	x_menu.h ../machine.h All-extern-x.h
+x_tabs.o: x_tabs.c x_ptyxP.h x_ptyx.h ../machine.h All-extern-x.h
+x_test_loop.o: x_test_loop.c ../machine.h ../menusX/men_scilab.h \
+	../graphics/Math.h ../graphics/Graphics.h ../os_specific/men_Sutils.h \
+	All-extern-x1.h All-extern.h
+x_util.o: x_util.c x_ptyxP.h x_ptyx.h x_data.h x_error.h x_menu.h \
+	../machine.h All-extern-x.h
+x_zzledt.o: x_zzledt.c ../machine.h ../os_specific/Os_specific.h x_VTparse.h
+zzledt.o: zzledt.c ../machine.h x_VTparse.h

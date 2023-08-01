@@ -1,0 +1,52 @@
+#!/bin/sh
+#######################################################################
+#                                                                     #
+#                           Simport                                   #
+#                                                                     #
+#          Pierre Weis, INRIA Rocquencourt                            #
+#                                                                     #
+#  Copyright 2010-2016,                                               #
+#  Institut National de Recherche en Informatique et en Automatique.  #
+#  All rights reserved.                                               #
+#                                                                     #
+#  This file is distributed under the terms of the BSD License.       #
+#                                                                     #
+#######################################################################
+
+# $Id: configure 5890 2013-09-10 00:20:33Z weis $
+
+# The script to configure Config.mk to set up the value of SRCROOTDIR and the
+# value of the ${PREFIX} directory for installation.
+
+PREFIX_INSTALL_DIR_DEFAULT="/usr/local"
+SRC_ROOT_DIR_DEFAULT="$(pwd)"
+
+usage () {
+ echo "Usage: ./configure [prefix directory for installation (default ${PREFIX_INSTALL_DIR_DEFAULT})]"\
+      "[root directory for sources (default ${SRC_ROOT_DIR_DEFAULT})]";
+}
+
+case $# in
+ 2) PREFIX_INSTALL_DIR="$1"; SRC_ROOT_DIR="$2";
+    ;;
+ 1) PREFIX_INSTALL_DIR="$1"; SRC_ROOT_DIR="`pwd`";
+    ;;
+ 0) PREFIX_INSTALL_DIR=$PREFIX__INSTALL_DIR_DEFAULT; SRC_ROOT_DIR="`pwd`";
+    ;;
+ *) usage; exit 2;;
+esac
+
+# if CONFIG_FILE exists 
+# it give a script to execute 
+
+execute_config_file () {
+  ok=false
+  eval \$$1 2> /dev/null || ok=true;
+  if test $ok = "true"; then 
+      . $CONFIG_FILE
+  fi 
+}
+
+execute_config_file CONFIG_FILE
+
+(cd config && . ./configure ) 

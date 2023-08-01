@@ -1,0 +1,19 @@
+\documentstyle[11pt]{article}
+% Copyright ENPC
+
+             \textheight=660pt 
+             \textwidth=15cm
+             \topmargin=-27pt 
+             \oddsidemargin=0.7cm
+             \evensidemargin=0.7cm
+             \marginparwidth=60pt
+             \title{A rolling wheel} 
+             \author{J.Ph. Chancelier\thanks{Cermics. \'Ecole Nationale des Ponts et Chauss\'ees}}
+	
+\begin{document}\maketitle
+\def\LL(#1){ {d\over dt}  \left({\partial {\cal L} \over
+\dot{#1}}\right) - {\partial {\cal L} \over #1 }}
+\input wheel.tex 
+\dessin{wheel}{wheel}
+\input systeme.tex
+\end{document}

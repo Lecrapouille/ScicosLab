@@ -1,0 +1,36 @@
+# $Source: /u/cermics/m/stochopt/cvsroot/nsp2-jpc/contribs/nlink-pendulum/version2/tex.msl,v $
+# tex.msl -- Maple share library information file for package tex
+_Share := SHAREINFO(
+	"ShareName" = "tex",
+	"ShareType" = "MapleCode",
+	"Description" = "For generating LaTeX, plain TeX and AMS TeX output.\n\
+Includes facilities for breaking up large expressions\n\
+(for sums and products and vectors but not quotients)",
+	"Authors" = ["Yu, Yunliang"],
+	"Emails" = ["yu@math.duke.edu"],
+	"Subjects" = ["System", "Code Generation"],
+	"Files" = [
+            "tex.i",
+            "tex.mhp",
+            "tex.mpl",
+            "tex.r",
+            "tex.tst",
+            "tex1.i",
+            "tex2.i",
+            "tex3.i"
+            ],
+	"FunctionList" = [
+		"clct",
+		"mtex",
+		"rlms",
+		"sq",
+		"stex",
+		"test",
+		"tex"
+	],
+	"HelpWks" = "index.mws",
+	"MapleVersions" = ["5.5"],
+	"Status" = "Ready",
+NULL):
+
+

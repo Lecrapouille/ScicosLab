@@ -1,0 +1,9 @@
+Sémantiques des blocs:
+* semantics of I/O behaviour of blocks: a pure function ?
+* semantics of the so-called state; is it really a writable state or some hidden (output) results ?
+* semantics of scheduling
+
+* semantics of type-checking (static semantics): which algebra ? which
+  algorithms ? Need polymorphism ? Need overloading ?
+  Is there already some results about inference, complexity
+  tracktability ?

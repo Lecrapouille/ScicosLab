@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>weakbasis  </TITLE>
+  <TYPE>Maxplus Function  </TYPE>
+  <DATE>   </DATE>
+  <SHORT_DESCRIPTION name="weakbasis ">  maxplus matrix image weak basis  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>B=weakbasis(A,[pre])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>A  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : full maxplus  matrix
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>pre  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : precision
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>B  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : full maxplus matrix (basis)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    B is the weak basis of Im(A) (up to precision pre).
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+a=#([2,0;0,1]); b=weakbasis(a)
+a=#([2,0,1;0,1,1]); b=weakbasis(a)
+a=#([2,0,1,0;0,1,1,%0]); b=weakbasis(a)
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>maxplus</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>includespan</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>equalspan</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>weakbasis</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>mpsolve</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

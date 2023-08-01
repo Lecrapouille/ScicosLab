@@ -1,0 +1,112 @@
+SHELL = /bin/sh
+
+SCIDIR=..
+include ../Makefile.incl
+
+# just add -DEPSFIG 
+# il you prefer epsfig to special to insert postscript files in LaTeX 
+
+CFLAGS = $(CC_OPTIONS)
+PREF=@IMPPREF@
+ENV=@IMPENV@
+
+all:: $(SCIDIR)/bin/$(PREF)lpr$(EXEEXT) \
+	$(SCIDIR)/bin/$(PREF)latexprs$(EXEEXT) \
+	$(SCIDIR)/bin/$(PREF)latexpr2$(EXEEXT) \
+	$(SCIDIR)/util/$(PREF)latdocs$(EXEEXT) \
+	$(SCIDIR)/bin/$(PREF)Epsf$(EXEEXT) \
+	$(SCIDIR)/bin/$(PREF)latexpr$(EXEEXT) \
+	$(SCIDIR)/util/$(PREF)latdoc$(EXEEXT)
+
+$(SCIDIR)/bin/$(PREF)lpr$(EXEEXT): Slpr.o util.o $(ENV)
+	@@$(RM) $@
+	@echo compiling $@
+	@$(CC) -o $@ Slpr.o util.o $(ENV) $(CC_LDFLAGS)
+
+clean::
+	@$(RM) Slpr.o util.o $(ENV)
+
+distclean::
+	@$(RM) Slpr.o util.o $(ENV) $(SCIDIR)/bin/$(PREF)lpr
+
+$(SCIDIR)/bin/$(PREF)Epsf$(EXEEXT): SEpsf.o util.o $(ENV)
+	@$(RM) $@
+	@echo compiling $@
+	@$(CC) -o $@ SEpsf.o util.o $(ENV) $(CC_LDFLAGS)
+
+clean::
+	@$(RM) SEpsf.o util.o
+
+distclean::
+	@$(RM) SEpsf.o util.o $(SCIDIR)/bin/$(PREF)Epsf
+
+$(SCIDIR)/bin/$(PREF)latexpr$(EXEEXT): Slatexpr.o util.o $(ENV)
+	@$(RM) $@
+	@echo compiling $@
+	@$(CC) -o $@ Slatexpr.o util.o $(ENV) $(CC_LDFLAGS)
+
+clean::
+	@$(RM) Slatexpr.o util.o
+
+distclean::
+	@$(RM) Slatexpr.o util.o $(SCIDIR)/bin/$(PREF)latexpr
+
+$(SCIDIR)/bin/$(PREF)latexprs$(EXEEXT): Slatexprs.o util.o $(ENV)
+	@$(RM) $@
+	@echo compiling $@
+	@$(CC) -o $@ Slatexprs.o util.o $(ENV) $(CC_LDFLAGS)
+
+clean::
+	@$(RM) Slatexprs.o util.o
+
+distclean::
+	@$(RM) Slatexprs.o util.o $(SCIDIR)/bin/$(PREF)latexprs
+
+$(SCIDIR)/bin/$(PREF)latexpr2$(EXEEXT): Slatexpr2.o util.o $(ENV)
+	@$(RM) $@
+	@echo compiling $@
+	@$(CC) -o $@ Slatexpr2.o util.o $(ENV) $(CC_LDFLAGS)
+
+clean::
+	@$(RM) Slatexpr2.o util.o
+
+distclean::
+	@$(RM) Slatexpr2.o util.o $(SCIDIR)/bin/$(PREF)latexpr2
+
+$(SCIDIR)/util/$(PREF)latdocs$(EXEEXT): Slatdocs.o util.o $(ENV)
+	@$(RM) $@
+	@echo compiling $@
+	@$(CC) -o $@ Slatdocs.o util.o $(ENV)  $(CC_LDFLAGS)
+
+clean::
+	@$(RM) Slatdocs.o util.o
+
+distclean::
+	@$(RM) Slatdocs.o util.o $(SCIDIR)/util/$(PREF)latdocs
+
+$(SCIDIR)/util/$(PREF)latdoc$(EXEEXT): Slatdoc.o util.o $(ENV)
+	@$(RM) $@
+	@echo compiling $@
+	@$(CC) -o $@ Slatdoc.o util.o $(ENV)  $(CC_LDFLAGS)
+
+clean::
+	@$(RM) Slatdoc.o util.o
+
+distclean::
+	@$(RM) Slatdoc.o util.o $(SCIDIR)/util/$(PREF)latdoc
+
+.c.o:
+	@echo "compiling $<"
+	@$(CC) $(CFLAGS)  -c $<
+
+.cc.o:
+	@echo "compiling $<"
+	@$(CXX) $(CXXFLAGS) -c $<
+
+.cpp.o:
+	@echo "compiling $<"
+	@$(CXX) $(CXXFLAGS) -c $<
+
+.f.o:
+	@echo "compiling $<"
+	@$(FC) $(FFLAGS) -c $<

@@ -1,0 +1,50 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>imcrop</title>
+</head>
+<body bgcolor="#FFFFFF">
+<center>SIVP Toolbox</center>
+<div align="right">Last update : March, 2006</div>
+<p><b>imcrop</b> - Crop image</p>
+<h3><font color="blue">Calling Sequence</font></h3>
+<dl><dd><tt>subim = imcrop(im, rect)</tt></dd></dl>
+<h3><font color="blue">Parameters</font></h3>
+<ul>
+<li>
+<b><tt>im</tt></b>:
+     An image, which can be one channel or three channel image.
+   </li>
+<li>
+<b><tt>rect</tt></b>:<tt>rect=[x, y, width, height]</tt> is a vector. <tt>(x, y)</tt> is the top-left corner of the rentangle.
+   </li>
+<li>
+<b><tt>subim</tt></b>:<tt>subim</tt> is the sub-region of the image <tt>im</tt>.
+   </li>
+</ul>
+<h3><font color="blue">Description</font></h3>
+<p>Crop image at regin <tt>rect</tt> to <tt>subim</tt>.
+</p>
+<h3><font color="blue">Examples</font></h3>
+<pre>
+
+    im = imread(SCI + '/contrib/sivp/images/lena.png');
+    subim = imcrop(im, [20, 30, 200, 300]);
+    imshow(subim);
+
+</pre>
+<h3><font color="blue">TODO</font></h3>
+<p>
+If <tt>rect</tt> is not specified, a window which showing the image should be poped out,
+and let the user to select the region using mouse.
+</p>
+<h3><font color="blue">Authors</font></h3>
+<dl><dd>
+<b></b> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </dd></dl>
+<h3><font color="blue">Availability</font></h3>
+The latest version of SIVP can be found at
+<p><a href="http://sivp.sourceforge.net">http://sivp.sourceforge.net</a></p>
+<h3><font color="blue">See Also</font></h3>
+<p><a href="imresize.htm"><tt><b>imresize</b></tt></a>,&nbsp;&nbsp;</p>
+</body>
+</html>

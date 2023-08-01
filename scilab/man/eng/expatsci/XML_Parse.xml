@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>XML_Parse</TITLE>
+
+  <TYPE>ScicosLab Function</TYPE>
+
+  <DATE>22 September 2009</DATE>
+
+  <SHORT_DESCRIPTION name="XML_Parse">Parse XML strings</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>XML_Parse(%ptr,txt)</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>%ptr</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP> : a Scilab pointer pointing to an Expat object.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>txt</PARAM_NAME>
+        <PARAM_DESCRIPTION>
+          <SP> : a vector of strings that encloses an XML text.</SP>
+          </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>
+    This function run the XML parser.
+    The XML pointer must be created with XML_ParserCreate.
+    </P>
+    <P>
+     Note that :
+    </P>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <ITEMIZE>
+      <ITEM>
+       <SP>
+        When an error is encountered during the parsing, the XML pointer is automatically free.
+       </SP>
+      </ITEM>
+      <ITEM>
+       <SP>
+        When the parsing is successful, the XML pointer is automatically free.
+       </SP>
+      </ITEM>
+    </ITEMIZE>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+   txt = mgetl('SCI/man/eng/expatsci/XML_Parse.xml');
+   data = struct('store',%f,'tag','PARAM_NAME','str',[]);
+   
+   function [data]=char_handl(data,txt)
+     if data.store then
+       data.str=[data.str;
+                 txt]
+     end
+   endfunction
+
+   function [data]=start_handl(data,el,attr)
+     if el==data.tag then
+       data.store=%t
+     end
+   endfunction
+
+   function [data]=end_handl(data,el)
+     if el==data.tag then
+       data.store=%f
+     end
+   endfunction
+
+   %ptr=XML_ParserCreate();
+   XML_SetUserData(%ptr,'data');
+   XML_SetElementHandler(%ptr,'start_handl','end_handl');
+   XML_SetCharDataHandler(%ptr,'char_handl');
+   XML_Parse(%ptr, txt);
+ 
+   //display the value enclosed in xml tag 'PARAM_NAME'
+   data.str
+  ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>XML_ParserCreate</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>XML_ParserFree</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>XML_SetUserData</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>XML_SetElementHandler</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>XML_SetCharDataHandler</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>XML_Conv2Latin</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>XML_StopParser</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>XML_ResumeParser</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM label='METALAU project-team, INRIA'>
+    A.Layec
+    </AUTHORS_ITEM>
+  </AUTHORS>
+
+  <BIBLIO>
+   <P>
+   'The Expat XML Parser', Available: http://expat.sourceforge.net/
+   </P>
+  </BIBLIO>
+</MAN>

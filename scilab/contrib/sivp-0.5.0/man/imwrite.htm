@@ -1,0 +1,83 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>imwrite</title>
+</head>
+<body bgcolor="#FFFFFF">
+<center>SIVP Toolbox</center>
+<div align="right">Last update : Oct, 2006</div>
+<p><b>imwrite</b> - Write image to file</p>
+<h3><font color="blue">Calling Sequence</font></h3>
+<dl><dd><tt>ret=imwrite(im, filename)</tt></dd></dl>
+<h3><font color="blue">Parameters</font></h3>
+<ul>
+<li>
+<b><tt>im</tt></b>:<tt>im</tt> can be an M-by-N (greyscale image) or M-by-N-by-3 (color image) matrix. 
+If <tt>im</tt> is not of class uint8,  <tt>imwrite</tt> will convert the datatype before writing using <tt>im2uint8(im)</tt>.
+   </li>
+<li>
+<b><tt>filename</tt></b>:
+   A string that specifies the name of the output file.
+   </li>
+<li>
+<b><tt>ret</tt></b>:
+   Return value. If the image is successfully writed into a file, <tt>ret</tt> will be 1.
+   </li>
+</ul>
+<h3><font color="blue">Description</font></h3>
+<p><tt>imwrite</tt> writes a matrix into a image file. The format of the  file is inferred from the extension in the <tt>filename</tt> parameter. Currently the following file formats are supported:</p>
+<dl>
+<dt><b></b></dt>
+<dd>
+    * Windows bitmaps - BMP, DIB;
+   </dd>
+</dl>
+<dl>
+<dt><b></b></dt>
+<dd>
+    * JPEG files - JPEG, JPG, JPE;
+   </dd>
+</dl>
+<dl>
+<dt><b></b></dt>
+<dd>
+    * Portable Network Graphics - PNG;
+   </dd>
+</dl>
+<dl>
+<dt><b></b></dt>
+<dd>
+    * Portable image format - PBM, PGM, PPM;
+   </dd>
+</dl>
+<dl>
+<dt><b></b></dt>
+<dd>
+    * Sun rasters - SR, RAS;
+   </dd>
+</dl>
+<dl>
+<dt><b></b></dt>
+<dd>
+    * TIFF files - TIFF, TIF. 
+   </dd>
+</dl>
+<h3><font color="blue">Examples</font></h3>
+<pre>
+    im=rand(200,300);
+    ret = imwrite(im, 'rand.png');
+</pre>
+<h3><font color="blue">Authors</font></h3>
+<dl><dd>
+<b></b> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </dd></dl>
+<h3><font color="blue">Bugs and Shortcomings</font></h3>
+<p>
+Images with a palette are not supported.
+</p>
+<h3><font color="blue">Availability</font></h3>
+The latest version of SIVP can be found at
+<p><a href="http://sivp.sourceforge.net">http://sivp.sourceforge.net</a></p>
+<h3><font color="blue">See Also</font></h3>
+<p><a href="imread.htm"><tt><b>imread</b></tt></a>,&nbsp;&nbsp;<a href="imshow.htm"><tt><b>imshow</b></tt></a>,&nbsp;&nbsp;<a href="imfinfo.htm"><tt><b>imfinfo</b></tt></a>,&nbsp;&nbsp;</p>
+</body>
+</html>

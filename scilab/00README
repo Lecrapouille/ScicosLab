@@ -1,0 +1,8 @@
+ttk_mdialog est bloquant
+si on utilise juste tk_mdialog c'est ok
+
+J'ai upgradé les bwidget et ça corrige
+jpc 2019
+Attention il faut 
+sudo apt-get install libwebkitgtk-dev
+pour le man

@@ -1,0 +1,53 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>mat2gray</title>
+</head>
+<body bgcolor="#FFFFFF">
+<center>SIVP Toolbox</center>
+<div align="right">Last update : April, 2006</div>
+<p><b>mat2gray</b> - Convert matrix to grayscale image</p>
+<h3><font color="blue">Calling Sequence</font></h3>
+<dl>
+<dd><tt>G = mat2gray(M)</tt></dd>
+<dd><tt>G = mat2gray(M, [mmin, mmax])</tt></dd>
+</dl>
+<h3><font color="blue">Parameters</font></h3>
+<ul>
+<li>
+<b><tt>M</tt></b>:
+     An matrix/image.
+   </li>
+<li>
+<b><tt>[mmin, mmax]</tt></b>:<tt>[mmin, mmax]</tt> is the values in <tt>M</tt> that correspond to <tt>0.0</tt> and <tt>1.0</tt> in <tt>G</tt>. The elements in <tt>M</tt> which is lower than <tt>mmin</tt> will be converted to <tt>0.0</tt>, and greater than <tt>mmax</tt> will be converted to <tt>1.0</tt>.
+   </li>
+<li>
+<b><tt>G</tt></b>:
+     A double precision matrix/image which data value in the range [0,1].
+   </li>
+</ul>
+<h3><font color="blue">Description</font></h3>
+<p><tt>mat2gray(M,[mmin, mmax])</tt> converts the matrix <tt>M</tt> to the double precision image. 
+The output matrix contains values in the range <tt>[0.0, 1.0]</tt>. 
+<tt>mmin</tt> and <tt>mmax</tt> are the values in <tt>M</tt> that correspond to 0.0 and 1.0 in the output image.
+</p>
+<p>
+When <tt>[mmin, mmax]</tt> is not specified, <tt>minimum</tt> and <tt>maximum</tt> of <tt>M</tt> are the values in <tt>M</tt> that correspond to 0.0 and 1.0 in the output image.
+</p>
+<h3><font color="blue">Examples</font></h3>
+<pre>
+
+    M = [0:10;0:10];
+    I = mat2gray(im);
+
+</pre>
+<h3><font color="blue">Authors</font></h3>
+<dl><dd>
+<b></b> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </dd></dl>
+<h3><font color="blue">Availability</font></h3>
+The latest version of SIVP can be found at
+<p><a href="http://sivp.sourceforge.net">http://sivp.sourceforge.net</a></p>
+<h3><font color="blue">See Also</font></h3>
+<p><a href="rgb2gray.htm"><tt><b>rgb2gray</b></tt></a>,&nbsp;&nbsp;<a href="im2bw.htm"><tt><b>im2bw</b></tt></a>,&nbsp;&nbsp;<a href="im2uint8.htm"><tt><b>im2uint8</b></tt></a>,&nbsp;&nbsp;<a href="im2int8.htm"><tt><b>im2int8</b></tt></a>,&nbsp;&nbsp;<a href="im2uint16.htm"><tt><b>im2uint16</b></tt></a>,&nbsp;&nbsp;<a href="im2int16.htm"><tt><b>im2int16</b></tt></a>,&nbsp;&nbsp;<a href="im2int32.htm"><tt><b>im2int32</b></tt></a>,&nbsp;&nbsp;<a href="im2double.htm"><tt><b>im2double</b></tt></a>,&nbsp;&nbsp;</p>
+</body>
+</html>

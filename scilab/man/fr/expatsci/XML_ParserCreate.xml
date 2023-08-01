@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../../manrev.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>XML_ParserCreate</TITLE>
+
+  <TYPE>ScicosLab Function</TYPE>
+
+  <DATE>22 September 2009</DATE>
+
+  <SHORT_DESCRIPTION name="XML_ParserCreate">Create a new XML pointer</SHORT_DESCRIPTION>
+
+  <CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>%ptr=XML_ParserCreate()</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>%ptr</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP> : a new Scilab pointer pointing to an Expat object.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+    <P>This function create a pointer to a new XML structure.</P>
+  </DESCRIPTION>
+
+  <EXAMPLE><![CDATA[
+  %ptr=XML_ParserCreate();
+  ]]></EXAMPLE>
+
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM>
+      <LINK>XML_ParserFree</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>XML_SetUserData</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>XML_SetElementHandler</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>XML_SetCharDataHandler</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>XML_Parse</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>XML_Conv2Latin</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>XML_StopParser</LINK>
+    </SEE_ALSO_ITEM>
+
+    <SEE_ALSO_ITEM>
+      <LINK>XML_ResumeParser</LINK>
+    </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+
+  <AUTHORS>
+    <AUTHORS_ITEM label='METALAU project-team, INRIA'>
+    A.Layec
+    </AUTHORS_ITEM>
+  </AUTHORS>
+
+  <BIBLIO>
+   <P>
+   'The Expat XML Parser', Available: http://expat.sourceforge.net/
+   </P>
+  </BIBLIO>
+</MAN>

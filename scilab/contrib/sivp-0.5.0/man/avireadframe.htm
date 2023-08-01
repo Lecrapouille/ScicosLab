@@ -1,0 +1,52 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>avireadframe</title>
+</head>
+<body bgcolor="#FFFFFF">
+<center>SIVP Toolbox</center>
+<div align="right">Last update : April, 2006</div>
+<p><b>avireadframe</b> - Grabs and returns a frame from a opened video file or camera (experimental)</p>
+<h3><font color="blue">Calling Sequence</font></h3>
+<dl><dd><tt>im = avireadframe(n)</tt></dd></dl>
+<h3><font color="blue">Parameters</font></h3>
+<ul>
+<li>
+<b><tt>n</tt></b>:
+   The opened video file/camera index.
+   </li>
+<li>
+<b><tt>im</tt></b>:
+   The returned frame/image. If no frame, return 0.
+   </li>
+</ul>
+<h3><font color="blue">Description</font></h3>
+<p><tt>avireadframe</tt> grabs and returns a frame from an opened video file or camera. It can only get the current frame and move to the pointer to the next frame.
+</p>
+<p>
+Video support for SIVP is only available when SIVP is compiled with OpenCV which support video I/O.
+</p>
+<h3><font color="blue">Examples</font></h3>
+<pre>
+	
+    n = aviopen(SCI+'/contrib/sivp/images/video.avi');
+    im = avireadframe(n); //get a frame
+    imshow(im);
+
+    avilistopened()
+    aviclose(n);
+
+</pre>
+<h3><font color="blue">Bugs and Shortcomings</font></h3>
+<p><tt>avireadframe</tt> can only get the current frame now.
+</p>
+<h3><font color="blue">Authors</font></h3>
+<dl><dd>
+<b></b> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </dd></dl>
+<h3><font color="blue">Availability</font></h3>
+The latest version of SIVP can be found at
+<p><a href="http://sivp.sourceforge.net">http://sivp.sourceforge.net</a></p>
+<h3><font color="blue">See Also</font></h3>
+<p><a href="aviinfo.htm"><tt><b>aviinfo</b></tt></a>,&nbsp;&nbsp;<a href="aviopen.htm"><tt><b>aviopen</b></tt></a>,&nbsp;&nbsp;<a href="camopen.htm"><tt><b>camopen</b></tt></a>,&nbsp;&nbsp;<a href="avifile.htm"><tt><b>avifile</b></tt></a>,&nbsp;&nbsp;<a href="addframe.htm"><tt><b>addframe</b></tt></a>,&nbsp;&nbsp;<a href="aviclose.htm"><tt><b>aviclose</b></tt></a>,&nbsp;&nbsp;<a href="avicloseall.htm"><tt><b>avicloseall</b></tt></a>,&nbsp;&nbsp;<a href="avilistopened.htm"><tt><b>avilistopened</b></tt></a>,&nbsp;&nbsp;</p>
+</body>
+</html>

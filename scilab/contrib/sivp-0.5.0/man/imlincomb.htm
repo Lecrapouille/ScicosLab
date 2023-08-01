@@ -1,0 +1,74 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>imlincomb</title>
+</head>
+<body bgcolor="#FFFFFF">
+<center>SIVP Toolbox</center>
+<div align="right">Last update : July, 2006</div>
+<p><b>imlincomb</b> - Linear combination of images</p>
+<h3><font color="blue">Calling Sequence</font></h3>
+<dl>
+<dd><tt>imout = imlincomb(k1, im1, k2, im2, ..., kn, imn)</tt></dd>
+<dd><tt>imout = imlincomb(k1, im1, k2, im2, ..., kn, imn, K)</tt></dd>
+<dd><tt>imout = imlincomb(..., output_class)</tt></dd>
+</dl>
+<h3><font color="blue">Parameters</font></h3>
+<ul>
+<li>
+<b><tt>im1, im2, ..., imn</tt></b>:
+       Input images with the same size and class.
+     </li>
+<li>
+<b><tt>k1, k2, ..., kn</tt></b>:
+       Double scalars.
+     </li>
+<li>
+<b><tt>K</tt></b>:
+       Offset, a double scalar.
+     </li>
+<li>
+<b><tt>output_class</tt></b>:
+       A string which specifies the output image class. 
+       The value of <tt>output_class</tt> can be 
+       'int8', 'uint8', 'int16', 'uint16', 'int32' or 'constant'.
+     </li>
+<li>
+<b><tt>imout</tt></b>:
+       The linear combination of input images, 
+       which has the same size and class with input images or specified by <tt>output_class</tt>.
+     </li>
+</ul>
+<h3><font color="blue">Description</font></h3>
+<p><tt>imcomplement</tt> computes the linear combination of input images.
+</p>
+<p><tt>imout = k1*im1 + k2*im2 + ... + kn*imn [+K]</tt></p>
+<p>
+If <tt>imout</tt> is an integer matrix, 
+the elements in the output matrix <tt>imout</tt> that 
+exceed the range of the integer type will be truncated.
+</p>
+<p>
+  Supported classes: INT8, UINT8, INT16, UINT16, INT32, DOUBLE.
+</p>
+<h3><font color="blue">Examples</font></h3>
+<pre>
+
+    im1 = uint8([0, 50, 100; 150, 200, 250]);
+    im2 = uint8([1, 52, 103; 154, 205, 255]);
+    imlincomb( 0.43, im1, 0.7, im2)
+    imlincomb( 0.43, im1, 0.7, im2, 4)
+    imlincomb( 0.43, im1, 0.7, im2, 4, 'int16')
+    imlincomb( 0.43, im1, 0.7, im2, 4, 'constant')
+
+</pre>
+<h3><font color="blue">Authors</font></h3>
+<dl><dd>
+<b></b> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </dd></dl>
+<h3><font color="blue">Availability</font></h3>
+The latest version of SIVP can be found at
+<p><a href="http://sivp.sourceforge.net">http://sivp.sourceforge.net</a></p>
+<h3><font color="blue">See Also</font></h3>
+<p><a href="imabsdiff.htm"><tt><b>imabsdiff</b></tt></a>,&nbsp;&nbsp;<a href="imadd.htm"><tt><b>imadd</b></tt></a>,&nbsp;&nbsp;<a href="imsubtract.htm"><tt><b>imsubtract</b></tt></a>,&nbsp;&nbsp;<a href="immultiply.htm"><tt><b>immultiply</b></tt></a>,&nbsp;&nbsp;<a href="imdivide.htm"><tt><b>imdivide</b></tt></a>,&nbsp;&nbsp;<a href="imcomplement.htm"><tt><b>imcomplement</b></tt></a>,&nbsp;&nbsp;</p>
+</body>
+</html>

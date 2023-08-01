@@ -1,0 +1,72 @@
+11 Dec. 2010
+
+You may want to try the very very beginning of a Simulink import
+mechanism that I have developed in ScicosLab as a prototype for
+the more serious Caml version.
+
+1./
+Just go to MDL/scilab, open the file "sciparse.sci" and edit the line
+ getd("c:/cygwin/home/ramin/MDL/scilab/")
+by putting the right path for you. Then open scicoslab and do
+
+2./
+cd XXXX/MDL/scilab
+
+3./
+
+exec('sciparse.sce',-1);
+testing('../test_data/untitled.mdl')
+
+after the pause (_do_not_resume_!_) :
+
+scicos(scs_m)
+
+Don't expect too much !
+
+
+
+
+
+
+5 Dec. 201O
+
+I just updated sciparse to show how the translation of new blocks can be added.
+The two blocks unitdealy and scope I just added are very partially supported;
+simulink has more options. I also found a limitation in Scicos:
+the input sizes of the CMSCOPE block cannot be negative. The reasons seem to be that
+1- the sizes are used to make sure there are enough colors,
+2- the sizes are placed inside ipar in job='set', and used in C.
+
+For 1, we can just remove the test and change the C code so that it takes the last
+color if we don't have enough colors.
+
+For 2, it is now possible to reset ipar in job='compile' (we can even do the test for 1-).
+But the sizes of inputs are already available in C so there is no point even placing it ipar.
+Unfortunately chanign ipar can affect backward compatibility with compiled diagrams.
+o it is better to use job='compile'.
+
+
+Note that the translator replaces simulinks blocks with super blocks and places
+ the parameters of each block in the context of the super block, except for a few
+ blocks that it knows (inport, outport, unitdelay, scope, mux, demux) which are fully translated.
+
+If a subsystem is masked, it is also masked in scicos.
+
+Not useful for now because there is no way to enter a super block without removing the mask,
+but it was a good test for the translation of masking--try forexample the kalmanfilter model
+(don't worry about the error messages about unknown parameters; the simulink model contains
+ parameters that must be defined in Matlab before).
+
+Normally a lot of models should pass the translator. The ones that will not pass contain
+1- unknown block types (not defined in MDL/simulinkslib/mdl_pervasives.mdli).
+   Unfortunately some of our test examples use fancy libraries such as powerlib not in pervasive
+
+2- implicit links: links of type "connection". I have not had the time to parse those yet.
+   A lot of them are among the test examples we have.
+
+If you have straight classical simulinks models, try sciparse on them (or just commit to test_data) and let me know.
+
+
+6 Dec 2010
+
+The first diagram that runs: simple1. It requires latest SVN.

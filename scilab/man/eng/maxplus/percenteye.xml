@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>eye  </TITLE>
+  <TYPE>Maxplus Function  </TYPE>
+  <DATE>   </DATE>
+  <SHORT_DESCRIPTION name="percenteye"> (%eye) maxplus identity matrix  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>y=%eye(m,n)  </CALLING_SEQUENCE_ITEM>
+  <CALLING_SEQUENCE_ITEM>y=%eye(x)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <DESCRIPTION>
+  <P>
+    Returns a maxplus identity matrix.
+  </P>
+ 
+
+  <DESCRIPTION_ITEM  label='%eye(m,n)'> 
+    Returns a <VERB>m x n</VERB> maxplus matrix with 0 on the diagonal and <VERB>-inf</VERB> elsewhere. 
+  </DESCRIPTION_ITEM>
+
+  <DESCRIPTION_ITEM  label='%eye(x)'> 
+    Returns a  maxplus identity matrix with the same size as <VERB>x</VERB>.
+  </DESCRIPTION_ITEM>
+  <P>
+    Note that <VERB>%eye(3)</VERB> is <VERB>%eye(a)</VERB> with <VERB>a=3</VERB> i.e. it is NOT 
+    a 3x3 matrix!
+  </P>
+ 
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>percentones</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>percentzeros</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

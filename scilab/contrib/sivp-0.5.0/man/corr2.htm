@@ -1,0 +1,35 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>corr2</title>
+</head>
+<body bgcolor="#FFFFFF">
+<center>SIVP Toolbox</center>
+<div align="right">Last update : March, 2006</div>
+<p><b>corr2</b> - 2D correlation coefficient</p>
+<h3><font color="blue">Calling Sequence</font></h3>
+<dl><dd><tt>c = corr2(imA, imB)</tt></dd></dl>
+<h3><font color="blue">Parameters</font></h3>
+<ul>
+<li>
+<b><tt>imA, imB</tt></b>:<tt>imA</tt> and <tt>imB</tt> are 2D matrices of the same size.
+   </li>
+<li>
+<b><tt>c</tt></b>:
+     Correlation coefficient, a scalar of class double.
+   </li>
+</ul>
+<h3><font color="blue">Description</font></h3>
+<p><tt>corr2</tt> computes correlation coefficient of two 2D matrices <tt>imA</tt> and <tt>imB</tt>.</p>
+<p><tt>c = sum( (imA-mA).*(imB-mB) / sqrt(sum((imA-mA).^2) * sum((imB-mB).^2))</tt></p>
+<p><tt>mA=mean2(imA)</tt> and <tt>mB=mean2(imB)</tt></p>
+<h3><font color="blue">Authors</font></h3>
+<dl><dd>
+<b></b> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </dd></dl>
+<h3><font color="blue">Availability</font></h3>
+The latest version of SIVP can be found at
+<p><a href="http://sivp.sourceforge.net">http://sivp.sourceforge.net</a></p>
+<h3><font color="blue">See Also</font></h3>
+<p><a href="mean2.htm"><tt><b>mean2</b></tt></a>,&nbsp;&nbsp;<a href="std2.htm"><tt><b>std2</b></tt></a>,&nbsp;&nbsp;<a href="std2.htm"><tt><b>stdev2</b></tt></a>,&nbsp;&nbsp;</p>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>imadd</title>
+</head>
+<body bgcolor="#FFFFFF">
+<center>SIVP Toolbox</center>
+<div align="right">Last update : July, 2006</div>
+<p><b>imadd</b> - Add two images or add a constant to an image</p>
+<h3><font color="blue">Calling Sequence</font></h3>
+<dl><dd><tt>imout = imadd(im1, im2)</tt></dd></dl>
+<h3><font color="blue">Parameters</font></h3>
+<ul>
+<li>
+<b><tt>im1</tt></b>:
+       Input image.
+     </li>
+<li>
+<b><tt>im2</tt></b>:
+       Input image with the same size and same class with <tt>im1</tt>, or a double scalar.
+     </li>
+<li>
+<b><tt>imout</tt></b>:
+       The sum of <tt>im1</tt> and <tt>im2</tt>.
+     </li>
+</ul>
+<h3><font color="blue">Description</font></h3>
+<p>
+If <tt>im1</tt> and <tt>im2</tt> are images with the same size and same class, 
+<tt>imadd</tt> adds each element in <tt>im1</tt> to the corresponding one in <tt>im2</tt>. 
+If <tt>im2</tt> is a double scalar, the element in <tt>imout</tt> 
+is the sum of the corresponding one in <tt>im1</tt> with the double scalar.
+<tt>imout</tt> has the same size and class with <tt>im1</tt>.
+</p>
+<p>
+If <tt>im1</tt> is an integer matrix, 
+the elements in the output matrix <tt>imout</tt> that 
+exceed the range of the integer type will be truncated.
+</p>
+<p>
+  Supported classes: INT8, UINT8, INT16, UINT16, INT32, DOUBLE.
+</p>
+<h3><font color="blue">Examples</font></h3>
+<pre>
+
+    im1 = imread('lena.png');
+    im2 = imread('peppers.png');
+    ims1 = imadd(im1, im2);
+    ims2 = imadd(im1, 50);
+
+</pre>
+<h3><font color="blue">Authors</font></h3>
+<dl><dd>
+<b></b> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </dd></dl>
+<h3><font color="blue">Availability</font></h3>
+The latest version of SIVP can be found at
+<p><a href="http://sivp.sourceforge.net">http://sivp.sourceforge.net</a></p>
+<h3><font color="blue">See Also</font></h3>
+<p><a href="imabsdiff.htm"><tt><b>imabsdiff</b></tt></a>,&nbsp;&nbsp;<a href="imsubtract.htm"><tt><b>imsubtract</b></tt></a>,&nbsp;&nbsp;<a href="immultiply.htm"><tt><b>immultiply</b></tt></a>,&nbsp;&nbsp;<a href="imdivide.htm"><tt><b>imdivide</b></tt></a>,&nbsp;&nbsp;<a href="imcomplement.htm"><tt><b>imcomplement</b></tt></a>,&nbsp;&nbsp;<a href="imlincomb.htm"><tt><b>imlincomb</b></tt></a>,&nbsp;&nbsp;</p>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>imhist</title>
+</head>
+<body bgcolor="#FFFFFF">
+<center>SIVP Toolbox</center>
+<div align="right">Last update : April, 2006</div>
+<p><b>imhist</b> - get the histogram of an image</p>
+<h3><font color="blue">Calling Sequence</font></h3>
+<dl>
+<dd><tt>[counts, cells] = imhist(im)</tt></dd>
+<dd><tt>[counts, cells] = imhist(im, bins)</tt></dd>
+<dd><tt>[counts, cells] = imhist(im, bins [,width [,color]])</tt></dd>
+</dl>
+<h3><font color="blue">Parameters</font></h3>
+<ul>
+<li>
+<b><tt>im</tt></b>:
+   An image, which can be a boolean, <tt>uint8</tt>, <tt>int8</tt>, <tt>uint16</tt>, <tt>int16</tt>, <tt>int32</tt> or <tt>double</tt> image.
+   </li>
+<li>
+<b><tt>bins</tt></b>:
+     The number of bins of the histogram. If <tt>bins</tt> is not specified, the function will used default value which determined by the image type: 2 for boolen, 2^8 for uint8 and int8, 2^16 for uint16 and int16, 2^16 for int32 (2^32 will need huge computer memory), and 10 for double.
+   </li>
+<li>
+<b><tt>width</tt></b>:
+     This argument will be sent to <tt>bar</tt> function. It is a real scalar, defines the width (a percentage of the available room) for the bar (default: 0.8, i.e 80%). 
+   </li>
+<li>
+<b><tt>color</tt></b>:
+    This argument will be sent to <tt>bar</tt> function. It is a string (default: 'blue'), specifing the inside color bar. 
+   </li>
+<li>
+<b><tt>counts</tt></b>:
+     the returned histogram.
+   </li>
+<li>
+<b><tt>cells</tt></b>:
+     the intervals for bins.
+   </li>
+</ul>
+<h3><font color="blue">Description</font></h3>
+<p><tt>imhist</tt> return the histogram of an image. If more than 2 arguments are give, the histogram will be shown in a figure.
+</p>
+<p>
+If <tt>step</tt> is the step of scalar <tt>cells</tt> (<tt>cells(i+1)=cells(i)+step</tt>),
+the i'th bin is half-open interval <tt>(cells(i)-step/2, cells(i)+step/2]</tt> for <tt>i &gt; 1</tt>,
+and  <tt>[cells(1)-step/2, cells(1)+step/2]</tt> for <tt>i=1</tt>.
+</p>
+<p>
+If more than 2 arguments are given, the function will call <tt>bar(cells, counts, ...)</tt> and send rest arguments to <tt>bar</tt> function to display the histogram.
+</p>
+<h3><font color="blue">Supported image type</font></h3>
+<p>BOOLEAN, UINT8, INT8, UINT16, INT16, INT32, DOUBLE.</p>
+<h3><font color="blue">Examples</font></h3>
+<pre>
+
+    im = imread('lena.png');
+    im = rgb2gray(im);
+    [count, cells]=imhist(im);
+    [count, cells]=imhist(im, 10);
+    scf(0); imhist(im, 10, '');
+    scf(1); imhist(im, 10, 0.5);
+    scf(2); imhist(im, 10, 'green');
+    scf(3); imhist(im, 10, 0.8, 'green');
+
+</pre>
+<h3><font color="blue">Authors</font></h3>
+<dl><dd>
+<b></b> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </dd></dl>
+<h3><font color="blue">Availability</font></h3>
+The latest version of SIVP can be found at
+<p><a href="http://sivp.sourceforge.net">http://sivp.sourceforge.net</a></p>
+<h3><font color="blue">See Also</font></h3>
+<p><a href="mean2.htm"><tt><b>mean2</b></tt></a>,&nbsp;&nbsp;<a href="corr2.htm"><tt><b>corr2</b></tt></a>,&nbsp;&nbsp;</p>
+</body>
+</html>

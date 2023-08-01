@@ -1,0 +1,54 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>impyramid</title>
+</head>
+<body bgcolor="#FFFFFF">
+<center>SIVP Toolbox</center>
+<div align="right">Last update : September, 2008</div>
+<p><b>impyramid</b> - Image pyramid reduction and expansion</p>
+<h3><font color="blue">Calling Sequence</font></h3>
+<dl><dd><tt>imout = imresize(imin, direction)</tt></dd></dl>
+<h3><font color="blue">Parameters</font></h3>
+<ul>
+<li>
+<b><tt>imin</tt></b>:
+       An image which will be downsampled or upsampled.
+     </li>
+<li>
+<b><tt>direction</tt></b>:
+       Can be 'reduce' or 'expand'. If direction is 'reduce', <tt>impyramid</tt> computes a Gaussian pyramid reduction of imin by one level. If direction is 'expand', <tt>impyramid</tt> computes a Gaussian pyramid expansion of imin by one level. Gaussian 5x5 filter is currently supported.
+     </li>
+<li>
+<b><tt>imout</tt></b>:
+       The output reduced or expanded image.
+     </li>
+</ul>
+<h3><font color="blue">Description</font></h3>
+<p><tt>imout=impyramid(imin,direction)</tt> computes a Gaussian pyramid reduction or expasion of imin by one level. Direction can be 'reduce' or 'expand'. If imin is mxn and direction is 'reduce', then the size of imout is ceil(m/2)xceil(n/2). If direction is 'expand', then the size of imout is (2xm)x(2xn).
+</p>
+<h3><font color="blue">Examples</font></h3>
+<pre>
+    Compute a four-level multiresolution pyramid of the 'lena' image.
+    
+    im0 = imread(SCI + '/contrib/sivp/images/lena.png');
+    im1 = impyramid(im0, 'reduce');
+    im2 = impyramid(im1, 'reduce');
+    im3 = impyramid(im2, 'reduce');
+
+    imshow(im0);
+    imshow(im1);
+    imshow(im2);
+    imshow(im3);
+
+</pre>
+<h3><font color="blue">Authors</font></h3>
+<dl><dd>
+<b></b> Jia Wu &lt;jiawu83[at]gmail.com&gt; </dd></dl>
+<h3><font color="blue">Availability</font></h3>
+The latest version of SIVP can be found at
+<p><a href="http://sivp.sourceforge.net">http://sivp.sourceforge.net</a></p>
+<h3><font color="blue">See Also</font></h3>
+<p><a href="imresize.htm"><tt><b>imresize</b></tt></a>,&nbsp;&nbsp;</p>
+</body>
+</html>

@@ -1,0 +1,7 @@
+all1:: $(LIBRARY)
+# options compilation a modifier sous hp & solaris
+$(LIBRARY): $(OBJS)
+	@echo Creation of $(LIBRARY)
+	@$(RM) $@;
+	@echo "linking";
+	@$(FC)  -dynamiclib -single_module ${wl}-flat_namespace  ${wl}-undefined ${wl}suppress -o $@ $(OBJS) $(DEFAULTS) $(FC_LDFLAGS) $(LIBR) $(TCLTK_LIBS) $(XLIBS) $(TERMCAPLIB);

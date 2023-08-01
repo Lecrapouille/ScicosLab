@@ -1,0 +1,45 @@
+#!/bin/sh
+#######################################################################
+#                                                                     #
+#                           ScicosLab                                 #
+#                                                                     #
+#          Pierre Weis, INRIA Rocquencourt                            #
+#                                                                     #
+#  Copyright 2010-2011,                                               #
+#  Institut National de Recherche en Informatique et en Automatique.  #
+#  All rights reserved.                                               #
+#                                                                     #
+#  This file is distributed under the terms of the BSD License.       #
+#                                                                     #
+#######################################################################
+
+# $Id: configure 4588 2011-10-21 09:34:15Z weis $
+
+PREFIX_INSTALL_DIR_DEFAULT="/usr/local"
+SRC_ROOT_DIR="$(pwd)"
+
+SUB_DIRS="config compilers scilab"
+
+usage () {
+ echo "Usage: ./configure [prefix directory for installation" \
+      " (default is ${PREFIX_INSTALL_DIR_DEFAULT})]"
+}
+
+case $# in
+ 1) PREFIX_INSTALL_DIR=$1;;
+ 0) PREFIX_INSTALL_DIR=$PREFIX_INSTALL_DIR_DEFAULT;;
+ *) usage; exit 2;;
+esac
+
+for d in ${SUB_DIRS}; do
+  echo "--> Configuring directory $d" &&
+  (cd $d &&\
+   PREFIX=\"${PREFIX_INSTALL_DIR}\" SRC_ROOT_DIR=\"${SRC_ROOT_DIR}\"\
+   ${SRC_ROOT_DIR}/$d/configure --prefix=${PREFIX_INSTALL_DIR});
+  ERR=$? &&
+  case $ERR in
+   0) echo "<-- Directory $SRC_ROOT_DIR/$d configured";;
+   *) echo "Cannot configure sub directory $SRC_ROOT_DIR/$d";
+      exit $ERR;;
+  esac;
+done

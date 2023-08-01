@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>mpprojspec  </TITLE>
+  <TYPE>Maxplus Function  </TYPE>
+  <DATE>   </DATE>
+  <SHORT_DESCRIPTION name="mpprojspec">  maxplus spectral projector  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[P,n]=eigenspace(A)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>A  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : maxplus square matrix full
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>P  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : spectral projector (sparse maxplus matrix)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>n  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : weak dimension of the spectral space 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Computes the spectral projector associated with the largest eigenvalue
+    of a maxplus matrix and gives the number of strongly connected components
+    of the critical graph which is the dimension of the corresponding
+    spectral space.
+  </P>
+  <P>
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+[P,n]=mpprojspec(#(1))
+a=#([1,2;3,4]);[P,n]=mpprojspec(a)
+P*a==P*4
+a=#([1,0;0,1]); [P,n]=mpprojspec(a)
+P*a==P*1
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>karp</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>howard</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>semihoward</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>eigenspace</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

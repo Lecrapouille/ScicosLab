@@ -1,0 +1,14 @@
+## After changing, run
+##   svn propset svn:ignore -F .cvsignore -R .
+*.cm*
+*.o
+*.output
+*.exe
+*.bin
+*.byt
+*.annot
+xMLLexer.ml
+stringLexer.ml
+xMLParser.ml
+stringParser.ml
+XML2Modelica

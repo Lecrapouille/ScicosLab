@@ -1,0 +1,39 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>im2bw</title>
+</head>
+<body bgcolor="#FFFFFF">
+<center>SIVP Toolbox</center>
+<div align="right">Last update : April, 2006</div>
+<p><b>im2bw</b> - Convert image to binary</p>
+<h3><font color="blue">Calling Sequence</font></h3>
+<dl><dd><tt>im2 = im2bw(im, thresh)</tt></dd></dl>
+<h3><font color="blue">Parameters</font></h3>
+<ul>
+<li>
+<b><tt>im</tt></b>:
+     An matrix/image, which can be ANY image supported by SIVP.
+   </li>
+<li>
+<b><tt>thresh</tt></b>:
+     Threshold value. You specify <tt>thresh</tt> in the range [0,1], regardless of the class of the input image.
+   </li>
+<li>
+<b><tt>im2</tt></b>:
+     Boolean matrix.
+   </li>
+</ul>
+<h3><font color="blue">Description</font></h3>
+<p><tt>im2bw</tt> convert intensity or RGB images to binary images. The output is a boolean matrix, which has value of <tt>%T</tt> for all pixels in the input image with luminance grater than <tt>thresh</tt> and <tt>%F</tt> for all the other pixels. (You specify <tt>thresh</tt> in the range [0,1], regardless of the type of the input image.)
+</p>
+<h3><font color="blue">Authors</font></h3>
+<dl><dd>
+<b></b> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </dd></dl>
+<h3><font color="blue">Availability</font></h3>
+The latest version of SIVP can be found at
+<p><a href="http://sivp.sourceforge.net">http://sivp.sourceforge.net</a></p>
+<h3><font color="blue">See Also</font></h3>
+<p><a href="im2uint8.htm"><tt><b>im2uint8</b></tt></a>,&nbsp;&nbsp;<a href="im2int8.htm"><tt><b>im2int8</b></tt></a>,&nbsp;&nbsp;<a href="im2uint16.htm"><tt><b>im2uint16</b></tt></a>,&nbsp;&nbsp;<a href="im2int16.htm"><tt><b>im2int16</b></tt></a>,&nbsp;&nbsp;<a href="im2int32.htm"><tt><b>im2int32</b></tt></a>,&nbsp;&nbsp;<a href="im2double.htm"><tt><b>im2double</b></tt></a>,&nbsp;&nbsp;<a href="mat2gray.htm"><tt><b>mat2gray</b></tt></a>,&nbsp;&nbsp;</p>
+</body>
+</html>

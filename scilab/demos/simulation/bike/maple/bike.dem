@@ -1,0 +1,19 @@
+// This is just a graphic demo of the bike
+// Copyright INRIA
+
+mode(0);
+xbasc();
+fs = get('figure_style');
+
+path='./';
+getf(path+'macros/'+'velod.sci');
+getf(path+'macros/'+'velodp.sci');
+getf(path+'macros/'+'show.sci');
+getf(path+'macros/'+'velo10.sci');
+
+x=read('../data/'+'xdemo.dat',46,401,"(e10.4)");
+xbasc();
+set figure_style old;
+// show(x(:,1:340),1.6,1.47,velo1);
+
+show(x(:,1)*ones(1,10),0,%pi/2,velo10);

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>eigenspace  </TITLE>
+  <TYPE>Maxplus Function  </TYPE>
+  <DATE>   </DATE>
+  <SHORT_DESCRIPTION name="eigenspace">  maxplus eigenelements  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[v,l]=eigenspace(A)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>A  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : maxplus full square matrix 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>v  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    :  eigenspace basis
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>l  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : eigenvalue
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Maxplus eigenvalues and basis of the corresponding eigenspace
+    for a maxplus matrix
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+[v,l]=eigenspace(#(1))
+a=#([1,2;3,4]);[v,l]=eigenspace(a)
+a*v==l*v
+a=#([1,0;0,1]); [v,l]=eigenspace(a)
+a*v==l*v
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>karp</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>howard</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>semihoward</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

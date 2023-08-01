@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>astarb  </TITLE>
+  <TYPE>Maxplus Function  </TYPE>
+  <DATE>   </DATE>
+  <SHORT_DESCRIPTION name="astarb">  maxplus linear system solution  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>w=astarb(A,b)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>A  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : maxplus full or sparse  square matrix
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>b  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : maxplus full or sparse vector
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>w  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : (Id+A+A^2+.....)*b
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    Solve <VERB>x=Ax+b</VERB> in the maxplus algebra
+    when there is no circuits with positive weight in
+    G(A&apos;) (the incidence graph of A&apos;, that is it exists an arc from j to i 
+    if A_ij is nonzero).
+  </P>
+  <P>
+    It is much more efficient in time and memory than star(A)*b.
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+A=#([-3,-2;-1,0]) 
+b=[%0;%1]
+w=astarb(A,b)
+n=10;A=#(-rand(n,n));b=#(rand(n,1));astarb(A,b)-star(A)*b
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>star</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>karp</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>howard</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>semihoward</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>maxplus</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>shortest_path</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

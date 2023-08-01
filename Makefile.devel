@@ -1,0 +1,94 @@
+#######################################################################
+#                                                                     #
+#                           ScicosLab                                 #
+#                                                                     #
+#          Pierre Weis, INRIA Rocquencourt                            #
+#                                                                     #
+#  Copyright 2010-2011,                                               #
+#  Institut National de Recherche en Informatique et en Automatique.  #
+#  All rights reserved.                                               #
+#                                                                     #
+#  This file is distributed under the terms of the BSD License.       #
+#                                                                     #
+#######################################################################
+
+# This Makefile is only for ScicosLab developers
+
+# $Id: Makefile.devel 4588 2011-10-21 09:34:15Z weis $
+
+ROOT_DIR=.
+
+include $(ROOT_DIR)/config/Params.mk
+include $(ROOT_DIR)/config/Commands.mk
+
+SUB_DIRS=config scilab compilers
+
+LOCAL_FILES_TO_BANNERIZE=Makefile Makefile.devel README configure TODO
+
+.PHONY: default all
+.PHONY: bannerize bannerize_local bannerize_sub_dirs
+.PHONY: tarball identity ignore
+
+default: all
+
+all:
+	echo "****************************************************";
+	echo "** This Makefile is for ScicosLab developers only **";
+	echo "** If you are not a ScicosLab developers,         **";
+	echo "** please refrain from using this file!           **";
+	echo "****************************************************";
+
+bannerize_local:
+	for file in $(LOCAL_FILES_TO_BANNERIZE); do\
+	  $(BH) -bft ml -bf $(ROOT_DIR)/config/banner $$file;\
+	  IER=$$? &&\
+	  case $$IER in\
+	   0) ;;\
+	   *) exit $$IER;;\
+	  esac;\
+	done
+
+bannerize_sub_dirs:
+	for dir in $(SUB_DIRS); do\
+	  (cd $$dir && $(MAKE) $@);\
+	  IER=$$? &&\
+	  case $$IER in\
+	   0) ;;\
+	   *) echo "make $@ failed for $$dir" && exit $$IER;;\
+	  esac;\
+	done
+
+bannerize: bannerize_local bannerize_sub_dirs
+
+tarball:
+	echo "Not yet"
+
+identity:
+	FILES=`find . -type f -a -exec grep -l '$$Id:' {} \; | grep -v .svn` &&\
+	for file in $$FILES; do\
+	  svn propset svn:keywords "Id" $$file;\
+	  IER=$$? &&\
+	  case $$IER in\
+	    0) ;;\
+	    *) echo "make $@ failed for file $$file" &&\
+	       exit $$IER;;\
+	  esac;\
+	done
+
+ignore:
+	DIRS=`find . -type d | grep -v .svn` &&\
+	for dir in $$DIRS; do\
+	  echo $$dir &&\
+	  if test -d $$dir/.svn; then\
+	    if test -r $$dir/.cvsignore; then\
+	      (cd $$dir &&\
+	       svn propset svn:ignore -F ./.cvsignore .);\
+	    fi;\
+	  fi;\
+	  IER=$$? &&\
+	  case $$IER in\
+	    0) ;;\
+	    *) echo "make $@ failed for directory $$dir" &&\
+	       exit $$IER;;\
+	  esac;\
+	done

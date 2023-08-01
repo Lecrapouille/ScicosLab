@@ -1,0 +1,46 @@
+#######################################################################
+#                                                                     #
+#                           Simport                                   #
+#                                                                     #
+#          Pierre Weis, INRIA Rocquencourt                            #
+#                                                                     #
+#  Copyright 2010-2013,                                               #
+#  Institut National de Recherche en Informatique et en Automatique.  #
+#  All rights reserved.                                               #
+#                                                                     #
+#  This file is distributed under the terms of the BSD License.       #
+#                                                                     #
+#######################################################################
+
+# $Id: Config.mk.in 5925 2013-09-14 18:30:37Z weis $
+
+SRC_ROOT_DIR="@SRC_ROOT_DIR@"
+PREFIX_INSTALL_DIR="@PREFIX_INSTALL_DIR@"
+SRC_INSTALL_DIR="@SRC_INSTALL_DIR@"
+
+OCAMLC="@OCAMLC@"
+OCAMLOPT="@OCAMLOPT@"
+CAML_BYT_COMP_FLAGS=@CAML_BYT_COMP_FLAGS@
+CAML_BIN_COMP_FLAGS=@CAML_BIN_COMP_FLAGS@
+OCAMLLIB="@OCAMLLIB@"
+OCAMLLEX="@OCAMLLEX@"
+OCAMLYACC="@OCAMLYACC@"
+OCAMLDEP="@OCAMLDEP@"
+OCAMLDEP_FLAGS=@OCAMLDEP_FLAGS@
+OCAMLPRINTC="@OCAMLPRINTC@"
+OCAMLPRINTC_FLAGS=@OCAMLPRINTC_FLAGS@
+HTMLC_CONF_INCLUDES=@HTMLC_CONF_INCLUDES@
+HTMLC_CONF_ENV=@HTMLC_CONF_ENV@
+HTMLC_FLAGS=@HTMLC_FLAGS@
+HTMLC_COMMAND="@HTMLC_COMMAND@"
+
+OCAMLVERSION="@OCAMLVERSION@"
+OCAML_VERSION_MAJOR="@OCAML_VERSION_MAJOR@"
+OCAML_VERSION_MINOR="@OCAML_VERSION_MINOR@"
+
+# To be done 
+# ocaml_moca
+# ocamldoc
+
+include $(MAIN_DIR)/config/Params.mk
+include $(MAIN_DIR)/config/Commands.mk

@@ -1,0 +1,101 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>fspecial</title>
+</head>
+<body bgcolor="#FFFFFF">
+<center>SIVP Toolbox</center>
+<div align="right">Last update : June, 2006</div>
+<p><b>fspecial</b> - Create some 2D special filters</p>
+<h3><font color="blue">Calling Sequence</font></h3>
+<dl>
+<dd><tt>F = fspecial(type)</tt></dd>
+<dd><tt>F = fspecial(type, op1)</tt></dd>
+<dd><tt>F = fspecial(type, op1, op2)</tt></dd>
+</dl>
+<h3><font color="blue">Parameters</font></h3>
+<ul>
+<li>
+<b><tt>type</tt></b>:
+       Filter type. It can be one of these string: 'sobel', 'prewitt', 'gaussion', 'laplacian', 'log', 'average', 'unsharp'. ('motion', 'disk' in future.)
+     </li>
+<li>
+<b><tt>op1</tt></b>:
+       The first parameter for the filter. Some type of filters do not need it.
+     </li>
+<li>
+<b><tt>op2</tt></b>:
+       The second parameter for the filter. Some type of filters do not need it.
+     </li>
+<li>
+<b><tt>F</tt></b>:
+       The returned filter, which is of type double.
+     </li>
+</ul>
+<h3><font color="blue">Description</font></h3>
+<p><tt>fspecial</tt> create some 2D special filters. If no parameters are given, <tt>fspecial</tt> will uses default values.</p>
+<p>The supported filters and the syntax for each filter type are listed in the following list:</p>
+<dl>
+<dt><b>F=fspecial('sobel')</b></dt>
+<dd>
+       returns a 3x3 horizontal edges sobel filter. If you want avertical edges sobel filter, you can use transposition of <tt>F</tt>. <tt>F</tt> is [ 1 2 1; 0 0 0; -1 -2 -1].
+     </dd>
+<dt><b>F=fspecial('prewitt')</b></dt>
+<dd>
+       returns a 3x3 horizontal edges prewitt filter. If you want avertical edges prewitt filter, you can use transposition of <tt>F</tt>. <tt>F</tt> is [ 1 1 1; 0 0 0; -1 -1 -1].
+     </dd>
+<dt><b>F=fspecial('gaussian', hsize, sigma)</b></dt>
+<dd>
+       returns a Gaussian lowpass filter. 
+The size of returned filter is determined by parameter <tt>hsize</tt>. 
+<tt>hsize</tt> can be a 1x2 vector which indicate the rows and columns of <tt>F</tt>. 
+If <tt>hsize</tt> is a scalar, <tt>F</tt> is a square matrix. 
+The default value for <tt>hsize</tt> is [3, 3]; the default value for <tt>sigma</tt> is 0.5.
+     </dd>
+<dt><b>F=fspecial('laplacian',alpha)</b></dt>
+<dd>
+       returns a 3-by-3 Laplacian filter. 
+The returned filter is <tt>[alpha, 1-alpha, alpha; 1-alpha, -4, 1-alpha; alpha, 1-alpha, alpha]/(alpha+1)</tt>.
+The default value for <tt>alpha</tt> is 0.2.
+     </dd>
+<dt><b>F=fspecial('log',hsize,sigma)</b></dt>
+<dd>
+       returns a Laplacian of Gaussian filter. 
+       The size of returned filter is determined by parameter <tt>hsize</tt>. 
+       <tt>hsize</tt> can be a 1x2 vector which indicate the rows and columns of <tt>F</tt>. 
+       If <tt>hsize</tt> is a scalar, <tt>F</tt> is a square matrix. 
+       The default value for <tt>hsize</tt> is [5, 5]; the default value for <tt>sigma</tt> is 0.5.
+     </dd>
+<dt><b>F=fspecial('average',hsize)</b></dt>
+<dd>
+       returns an averaging filter.
+       The size of returned filter is determined by parameter <tt>hsize</tt>. 
+       <tt>hsize</tt> can be a 1x2 vector which indicate the rows and columns of <tt>F</tt>. 
+       If <tt>hsize</tt> is a scalar, <tt>F</tt> is a square matrix. 
+       The default value for <tt>hsize</tt> is [3, 3].
+     </dd>
+<dt><b>F=fspecial('unsharp',alpha)</b></dt>
+<dd>
+       returns a 3x3 unsharp contrast enhancement filter.
+       <tt>alpha</tt> must be in the range [0.0, 1.0]. The default value of <tt>alpha</tt> is 0.2.
+     </dd>
+</dl>
+<h3><font color="blue">Examples</font></h3>
+<pre>
+
+    im = imread('lena.png');
+    filter = fspecial('sobel');
+    imf = imfilter(im, filter);
+    imshow(imf);
+
+</pre>
+<h3><font color="blue">Authors</font></h3>
+<dl><dd>
+<b></b> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </dd></dl>
+<h3><font color="blue">Availability</font></h3>
+The latest version of SIVP can be found at
+<p><a href="http://sivp.sourceforge.net">http://sivp.sourceforge.net</a></p>
+<h3><font color="blue">See Also</font></h3>
+<p><a href="imfilter.htm"><tt><b>imfilter</b></tt></a>,&nbsp;&nbsp;<a href="filter2.htm"><tt><b>filter2</b></tt></a>,&nbsp;&nbsp;</p>
+</body>
+</html>

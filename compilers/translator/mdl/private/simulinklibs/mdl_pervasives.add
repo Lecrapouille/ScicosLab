@@ -1,0 +1,157 @@
+BlockInterfaces {
+Block {
+	BlockType	Assertion
+	SourceType	Simulink
+	SourceBlock	"simulink/Model\nVerification/Assertion"
+	Ports	[1]
+	BlockInterfaceParameters {
+	Enabled : "boolean"
+	AssertionFailFcn : "string"
+	StopWhenAssertionFail : "boolean"
+	SampleTime : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Checks_Gradient"
+	SourceBlock	"simulink/Model\nVerification/Check\nDiscrete Gradient"
+	Ports	[1]
+	BlockInterfaceParameters {
+	gradient : "string"
+	enabled : "boolean"
+	callback : "string"
+	stopWhenAssertionFail : "boolean"
+	export : "boolean"
+	icon : "enum"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Checks_DGap"
+	SourceBlock	"simulink/Model\nVerification/Check \nDynamic Gap"
+	Ports	[3]
+	BlockInterfaceParameters {
+	enabled : "boolean"
+	callback : "string"
+	stopWhenAssertionFail : "boolean"
+	export : "boolean"
+	icon : "enum"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Checks_DRange"
+	SourceBlock	"simulink/Model\nVerification/Check \nDynamic Range"
+	Ports	[3]
+	BlockInterfaceParameters {
+	enabled : "boolean"
+	callback : "string"
+	stopWhenAssertionFail : "boolean"
+	export : "boolean"
+	icon : "enum"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Checks_SGap"
+	SourceBlock	"simulink/Model\nVerification/Check \nStatic Gap"
+	Ports	[1]
+	BlockInterfaceParameters {
+	max : "string"
+	max_included : "boolean"
+	min : "string"
+	min_included : "boolean"
+	enabled : "boolean"
+	callback : "string"
+	stopWhenAssertionFail : "boolean"
+	export : "boolean"
+	icon : "enum"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Checks_SRange"
+	SourceBlock	"simulink/Model\nVerification/Check \nStatic Range"
+	Ports	[1]
+	BlockInterfaceParameters {
+	max : "string"
+	max_included : "boolean"
+	min : "string"
+	min_included : "boolean"
+	enabled : "boolean"
+	callback : "string"
+	stopWhenAssertionFail : "boolean"
+	export : "boolean"
+	icon : "enum"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Checks_DMin"
+	SourceBlock	"simulink/Model\nVerification/Check Dynamic \nLower Bound"
+	Ports	[2]
+	BlockInterfaceParameters {
+	Enabled : "boolean"
+	callback : "string"
+	stopWhenAssertionFail : "boolean"
+	export : "boolean"
+	icon : "enum"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Checks_DMax"
+	SourceBlock	"simulink/Model\nVerification/Check Dynamic \nUpper Bound"
+	Ports	[2]
+	BlockInterfaceParameters {
+	enabled : "boolean"
+	callback : "string"
+	stopWhenAssertionFail : "boolean"
+	export : "boolean"
+	icon : "enum"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Checks_Resolution"
+	SourceBlock	"simulink/Model\nVerification/Check Input \nResolution"
+	Ports	[1]
+	BlockInterfaceParameters {
+	resolution : "string"
+	enabled : "boolean"
+	callback : "string"
+	stopWhenAssertionFail : "boolean"
+	export : "boolean"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Checks_SMin"
+	SourceBlock	"simulink/Model\nVerification/Check Static \nLower Bound"
+	Ports	[1]
+	BlockInterfaceParameters {
+	min : "string"
+	min_included : "boolean"
+	enabled : "boolean"
+	callback : "string"
+	stopWhenAssertionFail : "boolean"
+	export : "boolean"
+	icon : "enum"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Checks_SMax"
+	SourceBlock	"simulink/Model\nVerification/Check Static \nUpper Bound"
+	Ports	[1]
+	BlockInterfaceParameters {
+	max : "string"
+	max_included : "boolean"
+	enabled : "boolean"
+	callback : "string"
+	stopWhenAssertionFail : "boolean"
+	export : "boolean"
+	icon : "enum"
+ }
+}
+}

@@ -1,0 +1,28 @@
+# This file is not executable ``ON PURPOSE''.
+
+# It should be sourced via the `.' shell build-in as follows:
+# $ . ./configure.OpenBSD
+
+# If this file were executable the bindings it defines could only be valid for
+# the duration of the of this very script execution, which is far from enough!
+
+# This script defines the global environement variable necessary to run
+# the script autogen.sh for an OpenBSd box.
+
+PATH=/usr/local/bin:$PATH
+
+export AUTOCONF_VERSION=2.62
+export AUTOMAKE_VERSION=1.9
+
+
+# List of packages you must have to run scicoslab properly:
+# - tcl/tk
+# - gtk
+
+# List of packages you should have to be comfortable with scicoslab:
+# - /usr/ports/www/gtkhtml4 (or /usr/ports/www/gtkhtml3)
+#
+
+./autogen.sh\
+ --with-tcl=/usr/local/lib/tcl/tcl8.5\
+ --with-tk=/usr/local/lib/tcl/tk8.5

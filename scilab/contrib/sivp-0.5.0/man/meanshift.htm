@@ -1,0 +1,73 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>meanshift</title>
+</head>
+<body bgcolor="#FFFFFF">
+<center>SIVP Toolbox</center>
+<div align="right">Last update : September, 2008</div>
+<p><b>meanshift</b> - Track an object by color.</p>
+<h3><font color="blue">Calling Sequence</font></h3>
+<dl>
+<dd><tt>obj_win = meanshift(im, init_win)</tt></dd>
+<dd><tt>obj_win = meanshift(im)</tt></dd>
+</dl>
+<h3><font color="blue">Parameters</font></h3>
+<ul>
+<li>
+<b><tt>im</tt></b>:
+   Input image which must be a 3-channel image.
+   </li>
+<li>
+<b><tt>init_win</tt></b>:
+   Initial search window which is a 1x4 matrix [x,y,w,h].
+   <tt>x</tt> is the x-coordinate of the left-top window corner.
+   <tt>y</tt> is the y-coordinate of the left-top window corner.
+   <tt>w</tt> is the width of the window.
+   <tt>h</tt> is the height of the window.
+   </li>
+<li>
+<b><tt>obj_win</tt></b>:
+   Object window which is a 1x4 matrix [x,y,w,h].
+   <tt>x</tt> is the x-coordinate of the left-top window corner.
+   <tt>y</tt> is the y-coordinate of the left-top window corner.
+   <tt>w</tt> is the width of the window.
+   </li>
+</ul>
+<h3><font color="blue">Description</font></h3>
+<p>
+   The function iterates to find the object center given its back projection and initial position of search window. When using it, please first use <tt>obj_win=meanshift(im, init_win)</tt> to initialize the tracker, then use <tt>obj_win=meanshift(im)</tt> to track the object.    
+</p>
+<h3><font color="blue">Examples</font></h3>
+<pre>
+	
+    n = aviopen(SCI+'/contrib/sivp-svn-trunk/images/red_car_video.avi');
+    im = avireadframe(n); //get a frame
+    obj_win = meanshift(im, [12, 6, 39, 13]); //initialize tracker
+
+    while ~isempty(im),
+          obj_win = meanshift(im); //meanshift tracking
+
+          im = rectangle(im, obj_win, [0,255,0]);
+          imshow(im);
+
+          im = avireadframe(n);
+    end;
+
+    aviclose(n);
+
+</pre>
+<h3><font color="blue">Authors</font></h3>
+<dl>
+<dd>
+<b></b> Jia Wu &lt;jiawu83[at]gmail.com&gt; </dd>
+<dd>
+<b></b> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </dd>
+</dl>
+<h3><font color="blue">Availability</font></h3>
+The latest version of SIVP can be found at
+<p><a href="http://sivp.sourceforge.net">http://sivp.sourceforge.net</a></p>
+<h3><font color="blue">See Also</font></h3>
+<p><a href="camshift.htm"><tt><b>camshift</b></tt></a>,&nbsp;&nbsp;</p>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>includespan  </TITLE>
+  <TYPE>Maxplus Function  </TYPE>
+  <DATE>   </DATE>
+  <SHORT_DESCRIPTION name="includespan">  maxplus matrix image inclusion  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>includespan(A,B,[pre])  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>A  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : full maxplus matrix
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>B  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : full maxplus matrix
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>pre  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : precision
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>b  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : boolean 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    b is true if Im(B) is included in Im(A) else it is false.
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+a=#([1,0;0,1]);
+includespan(a,#([10;10]))
+includespan(a,#([2,1;1,2]))
+includespan(a,#([2.0001;1]))
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>maxplus</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>equalspan</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>mpkernel</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>mpsolve</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

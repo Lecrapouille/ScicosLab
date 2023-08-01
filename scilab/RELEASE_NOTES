@@ -1,0 +1,21 @@
+ScicosLab 4.4 Release Notes
+***************************
+
+     ScicosLab (formerly Scilabgtk) 4.4 is released by the 
+Metalau Project-team and ENPC. ScicosLab 4.4 is primarily 
+used to distribute the latest versions of Scicos and Scipad. 
+
+The Scicos version included in this release is Scicos 4.4. 
+
+- The binary versions are built:
+    - for Linux and MacOSX:   with gcc/gfortran compilers.
+    - for Windows: Cross-compilation on a Linux host and target i686-pc-mingw32
+      	  	   with a gcc/gfortran 4.4.
+
+See the README_unix file for more details.
+
+
+ScicosLab is distributed under the Scilab 4 license. See license files included in this directory.
+
+
+

@@ -1,0 +1,45 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>imshow</title>
+</head>
+<body bgcolor="#FFFFFF">
+<center>SIVP Toolbox</center>
+<div align="right">Last update : Aug 2005</div>
+<p><b>imshow</b> - Displays images in graphic window</p>
+<h3><font color="blue">Calling Sequence</font></h3>
+<dl><dd><tt>imshow(im)</tt></dd></dl>
+<h3><font color="blue">Parameters</font></h3>
+<ul><li>
+<b><tt>im</tt></b>:
+      MxN matrix, a grayscale (0-255 range) image, or MxNx3, a color (0-255 range) image.
+   </li></ul>
+<h3><font color="blue">Description</font></h3>
+<dl>
+<dt><b>imshow(im)</b></dt>
+<dd>
+<tt>imshow</tt> can only show images in 0-255 range. Before showing a image,
+it convert <tt>im</tt> to unsigned char first using <tt>uint8()</tt>.
+   </dd>
+</dl>
+<h3><font color="blue">Examples</font></h3>
+<pre>
+
+    im = imread(SCI + '/contrib/sivp/images/lena.png');
+    imshow(im);
+
+</pre>
+<h3><font color="blue">Bugs and Shortcomings</font></h3>
+<p><tt>imshow</tt> using an interface developed by SIVP, not the figure object using in Scilab.
+Only one imshow window can pop up. 
+</p>
+<h3><font color="blue">Authors</font></h3>
+<dl><dd>
+<b></b> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </dd></dl>
+<h3><font color="blue">Availability</font></h3>
+The latest version of SIVP can be found at
+<p><a href="http://sivp.sourceforge.net">http://sivp.sourceforge.net</a></p>
+<h3><font color="blue">See Also</font></h3>
+<p><a href="imread.htm"><tt><b>imread</b></tt></a>,&nbsp;&nbsp;<a href="imwrite.htm"><tt><b>imwrite</b></tt></a>,&nbsp;&nbsp;<a href="imfinfo.htm"><tt><b>imfinfo</b></tt></a>,&nbsp;&nbsp;</p>
+</body>
+</html>

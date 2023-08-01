@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>top  </TITLE>
+  <TYPE>Maxplus Function  </TYPE>
+  <DATE>   </DATE>
+  <SHORT_DESCRIPTION name="percenttop"> (%top) maxplus constant top  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>%top  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <P>  </P>
+  <DESCRIPTION>
+  <P>
+    The Maxplus &quot;top&quot; (equal to +inf).
+  </P>
+  </DESCRIPTION>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>percent1</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>percent0</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

@@ -1,0 +1,58 @@
+ast.cmi :
+ast_pprint.cmi : ast.cmi
+deep_ast_pprint.cmi : deep_ast.cmi
+scoping.cmi : ast.cmi
+deep_ast.cmi :
+splice_ast_pprint.cmi : splice_ast.cmi
+machine.cmi : deep_ast.cmi
+treat_polish.cmi :
+ast_print.cmo : /usr/local/lib/ocaml/ocamlgen/lib_print.cmi ast.cmi
+ast_print.cmx : /usr/local/lib/ocaml/ocamlgen/lib_print.cmx ast.cmi
+ast_pprint.cmo : ast.cmi ast_pprint.cmi
+ast_pprint.cmx : ast.cmi ast_pprint.cmi
+lexer.cmo : parser.cmi
+lexer.cmx : parser.cmx
+parser.cmo : ast.cmi parser.cmi
+parser.cmx : ast.cmi parser.cmi
+scoping.cmo : ast.cmi scoping.cmi
+scoping.cmx : ast.cmi scoping.cmi
+transl.cmo : deep_ast.cmi ast.cmi
+transl.cmx : deep_ast.cmi ast.cmi
+deep_ast_print.cmo : /usr/local/lib/ocaml/ocamlgen/lib_print.cmi \
+    deep_ast.cmi
+deep_ast_print.cmx : /usr/local/lib/ocaml/ocamlgen/lib_print.cmx \
+    deep_ast.cmi
+deep_ast_pprint.cmo : transl.cmo deep_ast.cmi deep_ast_pprint.cmi
+deep_ast_pprint.cmx : transl.cmx deep_ast.cmi deep_ast_pprint.cmi
+splice_ast_print.cmo : splice_ast.cmi deep_ast_print.cmo deep_ast.cmi
+splice_ast_print.cmx : splice_ast.cmi deep_ast_print.cmx deep_ast.cmi
+splice_ast_pprint.cmo : transl.cmo splice_ast.cmi deep_ast.cmi \
+    splice_ast_pprint.cmi
+splice_ast_pprint.cmx : transl.cmx splice_ast.cmi deep_ast.cmi \
+    splice_ast_pprint.cmi
+splicing.cmo : splice_ast.cmi deep_ast.cmi
+splicing.cmx : splice_ast.cmi deep_ast.cmi
+machine_print.cmo : machine.cmi /usr/local/lib/ocaml/ocamlgen/lib_print.cmi \
+    deep_ast_print.cmo
+machine_print.cmx : machine.cmi /usr/local/lib/ocaml/ocamlgen/lib_print.cmx \
+    deep_ast_print.cmx
+exec.cmo : machine.cmi deep_ast.cmi
+exec.cmx : machine.cmi deep_ast.cmi
+compile.cmo : splice_ast.cmi machine.cmi
+compile.cmx : splice_ast.cmi machine.cmi
+polish.cmo : transl.cmo splicing.cmo splice_ast_pprint.cmi splice_ast.cmi \
+    deep_ast.cmi
+polish.cmx : transl.cmx splicing.cmx splice_ast_pprint.cmx splice_ast.cmi \
+    deep_ast.cmi
+print_polish.cmo :
+print_polish.cmx :
+treat_polish.cmo : transl.cmo splicing.cmo splice_ast_print.cmo \
+    splice_ast_pprint.cmi scoping.cmi print_polish.cmo polish.cmo parser.cmi \
+    machine_print.cmo lexer.cmo deep_ast_print.cmo compile.cmo ast_print.cmo \
+    treat_polish.cmi
+treat_polish.cmx : transl.cmx splicing.cmx splice_ast_print.cmx \
+    splice_ast_pprint.cmx scoping.cmx print_polish.cmx polish.cmx parser.cmx \
+    machine_print.cmx lexer.cmx deep_ast_print.cmx compile.cmx ast_print.cmx \
+    treat_polish.cmi
+main_polish.cmo : treat_polish.cmi
+main_polish.cmx : treat_polish.cmx

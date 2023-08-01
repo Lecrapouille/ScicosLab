@@ -1,0 +1,55 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>camopen</title>
+</head>
+<body bgcolor="#FFFFFF">
+<center>SIVP Toolbox</center>
+<div align="right">Last update : April, 2006</div>
+<p><b>camopen</b> - Open a camera. (experimental)</p>
+<h3><font color="blue">Calling Sequence</font></h3>
+<dl>
+<dd><tt>n = camopen()</tt></dd>
+<dd><tt>n = camopen(i)</tt></dd>
+</dl>
+<h3><font color="blue">Parameters</font></h3>
+<ul>
+<li>
+<b><tt>i</tt></b>:
+   The i'th camera.
+   </li>
+<li>
+<b><tt>n</tt></b>:
+   A number, the opened video file/camera index.
+   </li>
+</ul>
+<h3><font color="blue">Description</font></h3>
+<p><tt>camopen</tt> open a camera, but it does not read frames from the camera. Please use <tt>im=avireadframe(n)</tt> to get a frame from the n'th opened video file. Remember to close the opened camera using <tt>aviclose(n)</tt> or <tt>avicloseall()</tt>.
+</p>
+<p>
+Video support for SIVP is only available when SIVP is compiled with OpenCV which support video I/O.
+</p>
+<h3><font color="blue">Examples</font></h3>
+<pre>
+	
+    n = camopen();
+    im = avireadframe(n); //get a frame
+    imshow(im);
+
+    avilistopened()
+    aviclose(n);
+
+</pre>
+<h3><font color="blue">Bugs and Shortcomings</font></h3>
+Currently, video frame size is forced to be 320x240. 
+The frame size could be set by user in later version.
+<h3><font color="blue">Authors</font></h3>
+<dl><dd>
+<b></b> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </dd></dl>
+<h3><font color="blue">Availability</font></h3>
+The latest version of SIVP can be found at
+<p><a href="http://sivp.sourceforge.net">http://sivp.sourceforge.net</a></p>
+<h3><font color="blue">See Also</font></h3>
+<p><a href="aviinfo.htm"><tt><b>aviinfo</b></tt></a>,&nbsp;&nbsp;<a href="aviopen.htm"><tt><b>aviopen</b></tt></a>,&nbsp;&nbsp;<a href="avifile.htm"><tt><b>avifile</b></tt></a>,&nbsp;&nbsp;<a href="addframe.htm"><tt><b>addframe</b></tt></a>,&nbsp;&nbsp;<a href="aviclose.htm"><tt><b>aviclose</b></tt></a>,&nbsp;&nbsp;<a href="avicloseall.htm"><tt><b>avicloseall</b></tt></a>,&nbsp;&nbsp;<a href="avilistopened.htm"><tt><b>avilistopened</b></tt></a>,&nbsp;&nbsp;<a href="avireadframe.htm"><tt><b>avireadframe</b></tt></a>,&nbsp;&nbsp;</p>
+</body>
+</html>

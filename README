@@ -1,0 +1,33 @@
+#######################################################################
+#                                                                     #
+#                           ScicosLab                                 #
+#                                                                     #
+#          Pierre Weis, INRIA Rocquencourt                            #
+#                                                                     #
+#  Copyright 2010-2011,                                               #
+#  Institut National de Recherche en Informatique et en Automatique.  #
+#  All rights reserved.                                               #
+#                                                                     #
+#  This file is distributed under the terms of the BSD License.       #
+#                                                                     #
+#######################################################################
+
+# $Id: README 4594 2011-10-21 09:39:40Z weis $
+
+The repository for scicoslab.
+
+** To get the sources up-and-running, you first need to execute:
+
+cd "directory for scicoslab sources"/scilab; ./autogen.sh
+
+until you get a running scilab/configure file.
+
+** Then install as usual:
+from the directory ``directory for scicoslab sources'', type
+
+./configure
+make
+make install
+
+Enjoy!
+

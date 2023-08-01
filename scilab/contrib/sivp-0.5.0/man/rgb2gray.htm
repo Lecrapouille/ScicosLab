@@ -1,0 +1,46 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>rgb2gray</title>
+</head>
+<body bgcolor="#FFFFFF">
+<center>SIVP Toolbox</center>
+<div align="right">Last update : April, 2006</div>
+<p><b>rgb2gray</b> - Convert RGB images to gray images</p>
+<h3><font color="blue">Calling Sequence</font></h3>
+<dl><dd><tt>G = rgb2gray(RGB)</tt></dd></dl>
+<h3><font color="blue">Parameters</font></h3>
+<ul>
+<li>
+<b><tt>RGB</tt></b>:
+   A RGB image (hypermat), the dimension of <tt>RGB</tt> should be <tt>M x N x 3</tt>.
+   </li>
+<li>
+<b><tt>G</tt></b>:
+   Output image, a gray image which dimension is <tt>M x N</tt> and has the same data type as <tt>RGB</tt>.
+   </li>
+</ul>
+<h3><font color="blue">Description</font></h3>
+<p><tt>rgb2gry</tt> convert RGB images to gray scale images using <tt>G = 0.299*R + 0.587*G + 0.114*B</tt>.
+</p>
+<h3><font color="blue">Examples</font></h3>
+<pre>
+
+    RGB = imread('lena.png');
+    G = rgb2gray(RGB);
+    imshow(G);
+
+</pre>
+<h3><font color="blue">Bugs and Shortcomings</font></h3>
+<p>The algorithm should be optimized to improve performance.
+</p>
+<h3><font color="blue">Authors</font></h3>
+<dl><dd>
+<b></b> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </dd></dl>
+<h3><font color="blue">Availability</font></h3>
+The latest version of SIVP can be found at
+<p><a href="http://sivp.sourceforge.net">http://sivp.sourceforge.net</a></p>
+<h3><font color="blue">See Also</font></h3>
+<p><a href="im2bw.htm"><tt><b>im2bw</b></tt></a>,&nbsp;&nbsp;<a href="mat2gray.htm"><tt><b>mat2gray</b></tt></a>,&nbsp;&nbsp;</p>
+</body>
+</html>

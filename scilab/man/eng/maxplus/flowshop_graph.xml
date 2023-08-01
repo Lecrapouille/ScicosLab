@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?> 
+<!DOCTYPE MAN SYSTEM "../../man.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+  <TITLE>flowshop_graph  </TITLE>
+  <TYPE>Maxplus Function  </TYPE>
+  <DATE>   </DATE>
+  <SHORT_DESCRIPTION name="flowshop_graph ">  flowshop graph builder ( maxplus )  </SHORT_DESCRIPTION>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>[g,T,N]=flowshop_graph(PT,nm,np,l)  </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+  <PARAM>
+ <PARAM_INDENT>
+  <PARAM_ITEM>
+  <PARAM_NAME>PT  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : maxplus matrix of processing times
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>nm  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : machine numbers
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>np  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : pallet numbers
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>l  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : scaling number for plotting the flowshop (start with l=50)
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>g  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : flowshop graph
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>T  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : maxplus matrix of timing
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+  <PARAM_ITEM>
+  <PARAM_NAME>N  </PARAM_NAME>
+  <PARAM_DESCRIPTION>
+    : maxplus matrix of initial marking 
+  </PARAM_DESCRIPTION> 
+  </PARAM_ITEM>
+ </PARAM_INDENT>
+  </PARAM>
+  <DESCRIPTION>
+  <P>
+    PT_ij ((i,j)-entry of matrix PT) is the processing time of part j by machine i
+    (T_ij = -inf if part j does not visit machine i) in a flowshop
+    (in a flowshop, as opposed to a jobshop, all parts visit machines in
+    the increasing order of the machine numbers with the possibility of skipping
+    some machines). 
+  </P>
+  <P>
+    nm is a vector with size equal to the PT row number: it yields
+    the numbers of machines of each type working in parallel.
+  </P>
+  <P>
+    np is a vector of size equal to the PT column number: it yields the numbers
+    of pallets of each type (parts of each type are carried by specialized
+    pallets).
+  </P>
+  <P>
+    Given this data,  flowshop_graph:
+  </P>
+  <P>
+    -  builds a flowshop graph (g) (metanet graph-list) depicting the corresponding
+    cyclic flowshop (where it is assumed that as soon as machines and pallets have
+    finished with all tasks of a cycle, they start another cycle),
+  </P>
+  <P>
+    -  builds a maxplus matrix of the timings (T) for the corresponding event
+    graph, Tkl contains the processing time of edge from k to l where the
+    states corresponds here tp couples (i,j).
+  </P>
+  <P>
+    -  builds a maxplus matrix of the initial markings (N) for the corresponding
+    event graph, Nkl contains the initial marking of edge from k to l.
+  </P>
+  <P>
+    - plots the flowshop in a metanet window.
+  </P>
+  <P>
+    PT must not have a row or a column identical to -inf.
+  </P>
+  <P>
+    Remarks: 
+  </P>
+  <P>
+    Some nodes  are duplicated artificially to see the system
+    as an input-output system with  feedback.
+    Then red nodes may considered as input nodes (U), green nodes
+    as  output nodes and the feedback as the identity (Y=U).
+  </P>
+  <P>
+  </P>
+  <P>
+  </P>
+  <P>
+  </P>
+  <P>
+  </P>
+  <P>
+    The black edge weights are processing times, the blue are resource
+    (machine or pallet numbers). The yellow edges (feedback) have 0
+    processing time and 0 resource.
+  </P>
+  <P>
+    The arc weights (processing time or resource number) are 
+    in the &quot;edge_length&quot; field (called flow in menus) of the graph-list g
+    because either the processing time or the resource number 
+    is 0 in this modelling, and, by this way, no manipulations
+    are necessary to visualize these quantities in metanet.
+  </P>
+  <P>
+  </P>
+  </DESCRIPTION>
+  <EXAMPLE><![CDATA[
+PT=#([2,1;%0,1;4,%0])
+xsetech([0 0 0.5 0.5]);
+[g,T,N]=flowshop_graph(PT,[1,1,1],[1,1],50);
+[l,v]=semihoward(T,N) // l gives the throughput of the flowshop
+ ]]></EXAMPLE>
+  <SEE_ALSO>
+    <SEE_ALSO_ITEM> <LINK>flowshop</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>mpsyslin</LINK> </SEE_ALSO_ITEM>     <SEE_ALSO_ITEM> <LINK>semihoward</LINK> </SEE_ALSO_ITEM>
+  </SEE_ALSO>
+</MAN>

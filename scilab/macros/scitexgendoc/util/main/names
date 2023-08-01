@@ -1,0 +1,10 @@
+check_flag
+create_gendoc_dirs
+get_sup_lang
+set_gendoc_def
+gendoc_def
+gendoc_printf
+get_extname
+get_gimp_cmd
+get_sup_flag
+get_tdate

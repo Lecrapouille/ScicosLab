@@ -1,0 +1,57 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>imresize</title>
+</head>
+<body bgcolor="#FFFFFF">
+<center>SIVP Toolbox</center>
+<div align="right">Last update : July, 2006</div>
+<p><b>imresize</b> - Resizes image</p>
+<h3><font color="blue">Calling Sequence</font></h3>
+<dl>
+<dd><tt>imout = imresize(imin, scale)</tt></dd>
+<dd><tt>imout = imresize(imin, scale, interp)</tt></dd>
+<dd><tt>imout = imresize(imin, [mrows ncols])</tt></dd>
+<dd><tt>imout = imresize(imin, [mrows ncols], interp)</tt></dd>
+</dl>
+<h3><font color="blue">Parameters</font></h3>
+<ul>
+<li>
+<b><tt>imin</tt></b>:
+       An image which will be resized.
+     </li>
+<li>
+<b><tt>scale</tt></b>:
+       The size of resized image is <tt>[width, height] x scale</tt>.
+     </li>
+<li>
+<b><tt>[mrows ncols]</tt></b>:
+       The size of resized image.
+     </li>
+<li>
+<b><tt>interp</tt></b>:
+       Interpolation method. The value of <tt>interp</tt> must be one of the follows: 1. 'nearest' - nearest-neigbor interpolation (default value); 2. 'bilinear' - bilinear interpolation; 3. 'bicubic' - bicubic interpolation; 4.  'area' - resampling using pixel area relation.
+     </li>
+</ul>
+<h3><font color="blue">Description</font></h3>
+<p><tt>imresize</tt> resize the input image. When <tt>scale</tt> parameter is specified, the width and height of the image is resized in the same scale. There are four interpolation method can be used: nearest-neigbor, bilinear, bicubic and area methods. The default method is nearest-neigbor method.
+</p>
+<h3><font color="blue">Examples</font></h3>
+<pre>
+
+    im = imread(SCI + '/contrib/sivp/images/lena.png');
+    ima = imresize(im, 1.5);
+    imb = imresize(im, 1.5, 'bilinear');
+    imc = imresize(im, [100,200], 'bicubic');
+
+</pre>
+<h3><font color="blue">Authors</font></h3>
+<dl><dd>
+<b></b> Shiqi Yu &lt;shiqi.yu[at]gmail.com&gt; </dd></dl>
+<h3><font color="blue">Availability</font></h3>
+The latest version of SIVP can be found at
+<p><a href="http://sivp.sourceforge.net">http://sivp.sourceforge.net</a></p>
+<h3><font color="blue">See Also</font></h3>
+<p><a href="imcrop.htm"><tt><b>imcrop</b></tt></a>,&nbsp;&nbsp;</p>
+</body>
+</html>

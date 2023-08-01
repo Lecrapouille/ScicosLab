@@ -1,0 +1,3733 @@
+BlockInterfaces {
+Block {
+	BlockType	ForIterator
+	SourceType	Simulink
+	SourceBlock	"simulink/Ports &\nSubsystems/If Action\nSubsystem/ForIterator"
+	Ports	[0,1]
+	BlockInterfaceParameters {
+        ResetStates : "string"
+        IterationSource : "string"
+        IterationLimit : "string"
+        ExternalIncrement : "boolean"
+        ShowIterationPort : "boolean"
+        IndexMode : "string"
+        IterationVariableDataType : "string"
+	 }
+}
+Block {
+	BlockType	WhileIterator
+	SourceType	Simulink
+	SourceBlock	"simulink/Ports &\nSubsystems/If Action\nSubsystem/WhileIterator"
+	Ports	[1]
+	BlockInterfaceParameters {
+        MaxIters : "string"
+        WhileBlockType : "string"
+        ResetStates : "string"
+        ShowIterationPort : "boolean"
+        OutputDataType : "string"
+	 }
+}
+Block {
+	BlockType	ActionPort
+	SourceType	Simulink
+	SourceBlock	"simulink/Ports &\nSubsystems/If Action\nSubsystem/ActionPort"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+        InitializeStates : "string"
+	ActionType : "string"
+	 }
+}
+Block {
+	BlockType	"S-Function"
+	SourceType	"Split"
+	SourceBlock	""
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	 }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Unknown"
+	SourceBlock	""
+	Ports	[1,1]
+	BlockInterfaceParameters {
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"LTI Block"
+	SourceBlock	"cstblocks/LTI System"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	sys : "string"
+	IC : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Integer Delay (masked)"
+	SourceBlock	"cstextras/Integer Delay\n(masked)"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	Td : "string"
+	u0 : "string"
+	Ts : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Transport Delay (masked)"
+	SourceBlock	"cstextras/Transport Delay\n(masked)"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	Td : "string"
+	u0 : "string"
+	bufsize : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Discrete Transfer Function with Initial Outputs"
+	SourceBlock	"simulink_extras/Additional\nDiscrete/Discrete\nTransfer Fcn\n(with initial outputs)"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	N : "string"
+	D : "string"
+	U0 : "string"
+	Y0 : "string"
+	TS : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Discrete Transfer Function with Initial States"
+	SourceBlock	"simulink_extras/Additional\nDiscrete/Discrete\nTransfer Fcn\n(with initial states)"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	N : "string"
+	D : "string"
+	X0 : "string"
+	TS : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Discrete Zero-Pole with Initial Outputs"
+	SourceBlock	"simulink_extras/Additional\nDiscrete/Discrete\nZero-Pole\n(with initial outputs)"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	Z : "string"
+	P : "string"
+	K : "string"
+	U0 : "string"
+	Y0 : "string"
+	TS : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Discrete Zero-Pole with Initial States"
+	SourceBlock	"simulink_extras/Additional\nDiscrete/Discrete\nZero-Pole\n(with initial states)"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	Z : "string"
+	P : "string"
+	K : "string"
+	X0 : "string"
+	TS : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"IdealADC"
+	SourceBlock	"simulink_extras/Additional\nDiscrete/Idealized ADC quantizer"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	NumberOfConverterBits : "string"
+	Vmin : "string"
+	Vmax : "string"
+	OutputDataType : "enum"
+	OutputNegativeValues : "boolean"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"PID Controller"
+	SourceBlock	"simulink_extras/Additional\nLinear/PID Controller"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	P : "string"
+	I : "string"
+	D : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"PID(2) Controller"
+	SourceBlock	"simulink_extras/Additional\nLinear/PID Controller\n(with Approximate\nDerivative)"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	P : "string"
+	I : "string"
+	D : "string"
+	N : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"State-Space with Initial Outputs"
+	SourceBlock	"simulink_extras/Additional\nLinear/State-Space\n(with initial outputs)"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	A : "string"
+	B : "string"
+	C : "string"
+	D : "string"
+	U0 : "string"
+	Y0 : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Transfer Function with Initial Outputs"
+	SourceBlock	"simulink_extras/Additional\nLinear/Transfer Fcn\n(with initial outputs)"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	N : "string"
+	D : "string"
+	Y0 : "string"
+	U0 : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Transfer Function with Initial States"
+	SourceBlock	"simulink_extras/Additional\nLinear/Transfer Fcn\n(with initial states)"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	N : "string"
+	D : "string"
+	X0 : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Zero-Pole with Initial Outputs"
+	SourceBlock	"simulink_extras/Additional\nLinear/Zero-Pole\n(with initial outputs)"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	Z : "string"
+	P : "string"
+	K : "string"
+	Y0 : "string"
+	U0 : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Zero-Pole with Initial States"
+	SourceBlock	"simulink_extras/Additional\nLinear/Zero-Pole\n(with initial states)"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	Z : "string"
+	P : "string"
+	K : "string"
+	X0 : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Digital clock"
+	SourceBlock	"simulink_extras/Flip Flops/Clock"
+	Ports	[0,1]
+	BlockInterfaceParameters {
+	MaskParam1 : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"DFlipFlop"
+	SourceBlock	"simulink_extras/Flip Flops/D Flip-Flop"
+	Ports	[3,2]
+	BlockInterfaceParameters {
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"DLatch"
+	SourceBlock	"simulink_extras/Flip Flops/D Latch"
+	Ports	[2,2]
+	BlockInterfaceParameters {
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"JKFlipFlop"
+	SourceBlock	"simulink_extras/Flip Flops/J-K\nFlip-Flop"
+	Ports	[3,2]
+	BlockInterfaceParameters {
+	initial_condition : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"SRFlipFlop"
+	SourceBlock	"simulink_extras/Flip Flops/S-R\nFlip-Flop"
+	Ports	[2,2]
+	BlockInterfaceParameters {
+	initial_condition : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Auto Correlator"
+	SourceBlock	"simulink_extras/Additional\nSinks/Auto\nCorrelator"
+	Ports	[1]
+	BlockInterfaceParameters {
+	npts : "string"
+	HowOften : "string"
+	sampleT : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Averaging Power Spectral Density"
+	SourceBlock	"simulink_extras/Additional\nSinks/Averaging\nPower Spectral\nDensity"
+	Ports	[1]
+	BlockInterfaceParameters {
+	npts : "string"
+	fftpts : "string"
+	HowOften : "string"
+	sampleT : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Averaging Spectrum Analyzer"
+	SourceBlock	"simulink_extras/Additional\nSinks/Averaging\nSpectrum\nAnalyzer"
+	Ports	[2]
+	BlockInterfaceParameters {
+	npts : "string"
+	fftpts : "string"
+	HowOften : "string"
+	sampleT : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Cross Correlator"
+	SourceBlock	"simulink_extras/Additional\nSinks/Cross\nCorrelator"
+	Ports	[2]
+	BlockInterfaceParameters {
+	npts : "string"
+	HowOften : "string"
+	sampleT : "string"
+ }
+}
+Block {
+	BlockType	"S-Function"
+	SourceType	"Floating Bar Plot"
+	SourceBlock	"simulink_extras/Additional\nSinks/Floating Bar Plot"
+	Ports	[]
+	BlockInterfaceParameters {
+	yLim : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Power Spectral Density"
+	SourceBlock	"simulink_extras/Additional\nSinks/Power Spectral\nDensity"
+	Ports	[1]
+	BlockInterfaceParameters {
+	npts : "string"
+	fftpts : "string"
+	HowOften : "string"
+	sampleT : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Spectrum Analyzer"
+	SourceBlock	"simulink_extras/Additional\nSinks/Spectrum\nAnalyzer"
+	Ports	[2]
+	BlockInterfaceParameters {
+	npts : "string"
+	fftpts : "string"
+	HowOften : "string"
+	sampleT : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Fixed-Point State-Space"
+	SourceBlock	"simulink/Additional Math\n& Discrete/Additional\nDiscrete/Fixed-Point\nState-Space"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	A : "string"
+	B : "string"
+	C : "string"
+	D : "string"
+	X0 : "string"
+	InternalDataType : "string"
+	StateEqScaling : "string"
+	OutputEqScaling : "string"
+	LockScale : "boolean"
+	RndMeth : "enum"
+	DoSatur : "boolean"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Transfer Fcn Direct Form II"
+	SourceBlock	"simulink/Additional Math\n& Discrete/Additional\nDiscrete/Transfer Fcn\nDirect Form II"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	NumCoefVec : "string"
+	DenCoefVec : "string"
+	vinit : "string"
+	RndMeth : "enum"
+	DoSatur : "boolean"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Transfer Fcn Direct Form II Time Varying"
+	SourceBlock	"simulink/Additional Math\n& Discrete/Additional\nDiscrete/Transfer Fcn\nDirect Form II\nTime Varying"
+	Ports	[3,1]
+	BlockInterfaceParameters {
+	vinit : "string"
+	RndMeth : "enum"
+	DoSatur : "boolean"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Unit Delay Enabled"
+	SourceBlock	"simulink/Additional Math\n& Discrete/Additional\nDiscrete/Unit Delay\nEnabled"
+	Ports	[2,1]
+	BlockInterfaceParameters {
+	vinit : "string"
+	tsamp : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Unit Delay Enabled External Initial Condition"
+	SourceBlock	"simulink/Additional Math\n& Discrete/Additional\nDiscrete/Unit Delay\nEnabled\nExternal IC"
+	Ports	[3,1]
+	BlockInterfaceParameters {
+	tsamp : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Unit Delay Enabled Resettable"
+	SourceBlock	"simulink/Additional Math\n& Discrete/Additional\nDiscrete/Unit Delay\nEnabled\nResettable"
+	Ports	[3,1]
+	BlockInterfaceParameters {
+	vinit : "string"
+	tsamp : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Unit Delay Enabled Resettable External Initial Condition"
+	SourceBlock	"simulink/Additional Math\n& Discrete/Additional\nDiscrete/Unit Delay\nEnabled\nResettable\nExternal IC"
+	Ports	[4,1]
+	BlockInterfaceParameters {
+	tsamp : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Unit Delay External Initial Condition"
+	SourceBlock	"simulink/Additional Math\n& Discrete/Additional\nDiscrete/Unit Delay\nExternal IC"
+	Ports	[2,1]
+	BlockInterfaceParameters {
+	tsamp : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Unit Delay Resettable"
+	SourceBlock	"simulink/Additional Math\n& Discrete/Additional\nDiscrete/Unit Delay\nResettable"
+	Ports	[2,1]
+	BlockInterfaceParameters {
+	vinit : "string"
+	tsamp : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Unit Delay Resettable External Initial Condition"
+	SourceBlock	"simulink/Additional Math\n& Discrete/Additional\nDiscrete/Unit Delay\nResettable\nExternal IC"
+	Ports	[3,1]
+	BlockInterfaceParameters {
+	tsamp : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Unit Delay With Preview Enabled"
+	SourceBlock	"simulink/Additional Math\n& Discrete/Additional\nDiscrete/Unit Delay\nWith Preview\nEnabled"
+	Ports	[2,2]
+	BlockInterfaceParameters {
+	vinit : "string"
+	tsamp : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Unit Delay With Preview Enabled Resettable"
+	SourceBlock	"simulink/Additional Math\n& Discrete/Additional\nDiscrete/Unit Delay\nWith Preview\nEnabled\nResettable"
+	Ports	[3,2]
+	BlockInterfaceParameters {
+	vinit : "string"
+	tsamp : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Unit Delay With Preview Enabled Resettable External RV"
+	SourceBlock	"simulink/Additional Math\n& Discrete/Additional\nDiscrete/Unit Delay\nWith Preview\nEnabled\nResettable\nExternal RV"
+	Ports	[4,2]
+	BlockInterfaceParameters {
+	vinit : "string"
+	tsamp : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Unit Delay With Preview Resettable"
+	SourceBlock	"simulink/Additional Math\n& Discrete/Additional\nDiscrete/Unit Delay\nWith Preview\nResettable"
+	Ports	[2,2]
+	BlockInterfaceParameters {
+	vinit : "string"
+	tsamp : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Unit Delay With Preview Resettable External RV"
+	SourceBlock	"simulink/Additional Math\n& Discrete/Additional\nDiscrete/Unit Delay\nWith Preview\nResettable\nExternal RV"
+	Ports	[3,2]
+	BlockInterfaceParameters {
+	vinit : "string"
+	tsamp : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Real World Value Decrement"
+	SourceBlock	"simulink/Additional Math\n& Discrete/Additional Math:\nIncrement - Decrement/Decrement\nReal World"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Stored Integer Value Decrement"
+	SourceBlock	"simulink/Additional Math\n& Discrete/Additional Math:\nIncrement - Decrement/Decrement\nStored Integer"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Decrement To Zero"
+	SourceBlock	"simulink/Additional Math\n& Discrete/Additional Math:\nIncrement - Decrement/Decrement\nTo Zero"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Decrement Time To Zero"
+	SourceBlock	"simulink/Additional Math\n& Discrete/Additional Math:\nIncrement - Decrement/Decrement Time\nTo Zero"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Real World Value Increment"
+	SourceBlock	"simulink/Additional Math\n& Discrete/Additional Math:\nIncrement - Decrement/Increment\nReal World"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Stored Integer Value Increment"
+	SourceBlock	"simulink/Additional Math\n& Discrete/Additional Math:\nIncrement - Decrement/Increment\nStored Integer"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Fixed-Point State-Space"
+	SourceBlock	"simulink/Additional Math\n& Discrete/Additional\nDiscrete/Fixed-Point\nState-Space"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	A : "string"
+	B : "string"
+	C : "string"
+	D : "string"
+	X0 : "string"
+	InternalDataType : "string"
+	StateEqScaling : "string"
+	OutputEqScaling : "string"
+	LockScale : "boolean"
+	RndMeth : "enum"
+	DoSatur : "boolean"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Transfer Fcn Direct Form II"
+	SourceBlock	"simulink/Additional Math\n& Discrete/Additional\nDiscrete/Transfer Fcn\nDirect Form II"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	NumCoefVec : "string"
+	DenCoefVec : "string"
+	vinit : "string"
+	RndMeth : "enum"
+	DoSatur : "boolean"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Transfer Fcn Direct Form II Time Varying"
+	SourceBlock	"simulink/Additional Math\n& Discrete/Additional\nDiscrete/Transfer Fcn\nDirect Form II\nTime Varying"
+	Ports	[3,1]
+	BlockInterfaceParameters {
+	vinit : "string"
+	RndMeth : "enum"
+	DoSatur : "boolean"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Unit Delay Enabled"
+	SourceBlock	"simulink/Additional Math\n& Discrete/Additional\nDiscrete/Unit Delay\nEnabled"
+	Ports	[2,1]
+	BlockInterfaceParameters {
+	vinit : "string"
+	tsamp : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Unit Delay Enabled External Initial Condition"
+	SourceBlock	"simulink/Additional Math\n& Discrete/Additional\nDiscrete/Unit Delay\nEnabled\nExternal IC"
+	Ports	[3,1]
+	BlockInterfaceParameters {
+	tsamp : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Unit Delay Enabled Resettable"
+	SourceBlock	"simulink/Additional Math\n& Discrete/Additional\nDiscrete/Unit Delay\nEnabled\nResettable"
+	Ports	[3,1]
+	BlockInterfaceParameters {
+	vinit : "string"
+	tsamp : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Unit Delay Enabled Resettable External Initial Condition"
+	SourceBlock	"simulink/Additional Math\n& Discrete/Additional\nDiscrete/Unit Delay\nEnabled\nResettable\nExternal IC"
+	Ports	[4,1]
+	BlockInterfaceParameters {
+	tsamp : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Unit Delay External Initial Condition"
+	SourceBlock	"simulink/Additional Math\n& Discrete/Additional\nDiscrete/Unit Delay\nExternal IC"
+	Ports	[2,1]
+	BlockInterfaceParameters {
+	tsamp : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Unit Delay Resettable"
+	SourceBlock	"simulink/Additional Math\n& Discrete/Additional\nDiscrete/Unit Delay\nResettable"
+	Ports	[2,1]
+	BlockInterfaceParameters {
+	vinit : "string"
+	tsamp : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Unit Delay Resettable External Initial Condition"
+	SourceBlock	"simulink/Additional Math\n& Discrete/Additional\nDiscrete/Unit Delay\nResettable\nExternal IC"
+	Ports	[3,1]
+	BlockInterfaceParameters {
+	tsamp : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Unit Delay With Preview Enabled"
+	SourceBlock	"simulink/Additional Math\n& Discrete/Additional\nDiscrete/Unit Delay\nWith Preview\nEnabled"
+	Ports	[2,2]
+	BlockInterfaceParameters {
+	vinit : "string"
+	tsamp : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Unit Delay With Preview Enabled Resettable"
+	SourceBlock	"simulink/Additional Math\n& Discrete/Additional\nDiscrete/Unit Delay\nWith Preview\nEnabled\nResettable"
+	Ports	[3,2]
+	BlockInterfaceParameters {
+	vinit : "string"
+	tsamp : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Unit Delay With Preview Enabled Resettable External RV"
+	SourceBlock	"simulink/Additional Math\n& Discrete/Additional\nDiscrete/Unit Delay\nWith Preview\nEnabled\nResettable\nExternal RV"
+	Ports	[4,2]
+	BlockInterfaceParameters {
+	vinit : "string"
+	tsamp : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Unit Delay With Preview Resettable"
+	SourceBlock	"simulink/Additional Math\n& Discrete/Additional\nDiscrete/Unit Delay\nWith Preview\nResettable"
+	Ports	[2,2]
+	BlockInterfaceParameters {
+	vinit : "string"
+	tsamp : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Unit Delay With Preview Resettable External RV"
+	SourceBlock	"simulink/Additional Math\n& Discrete/Additional\nDiscrete/Unit Delay\nWith Preview\nResettable\nExternal RV"
+	Ports	[3,2]
+	BlockInterfaceParameters {
+	vinit : "string"
+	tsamp : "string"
+ }
+}
+Block {
+	BlockType	Derivative
+	SourceType	Simulink
+	SourceBlock	"simulink/Continuous/Derivative"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	LinearizePole : "string"
+ }
+}
+Block {
+	BlockType	Integrator
+	SourceType	Simulink
+	SourceBlock	"simulink/Continuous/Integrator"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	ExternalReset : "enum"
+	InitialConditionSource : "enum"
+	InitialCondition : "string"
+	LimitOutput : "boolean"
+	UpperSaturationLimit : "string"
+	LowerSaturationLimit : "string"
+	ShowSaturationPort : "boolean"
+	ShowStatePort : "boolean"
+	AbsoluteTolerance : "string"
+	IgnoreLimit : "boolean"
+	ZeroCross : "boolean"
+	ContinuousStateAttributes : "string"
+ }
+}
+Block {
+	BlockType	StateSpace
+	SourceType	Simulink
+	SourceBlock	"simulink/Continuous/State-Space"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	A : "string"
+	B : "string"
+	C : "string"
+	D : "string"
+	X0 : "string"
+	AbsoluteTolerance : "string"
+	ContinuousStateAttributes : "string"
+ }
+}
+Block {
+	BlockType	TransferFcn
+	SourceType	Simulink
+	SourceBlock	"simulink/Continuous/Transfer Fcn"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	Numerator : "string"
+	Denominator : "string"
+	AbsoluteTolerance : "string"
+	ContinuousStateAttributes : "string"
+ }
+}
+Block {
+	BlockType	TransportDelay
+	SourceType	Simulink
+	SourceBlock	"simulink/Continuous/Transport\nDelay"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	DelayTime : "string"
+	InitialOutput : "string"
+	BufferSize : "string"
+	FixedBuffer : "boolean"
+	TransDelayFeedthrough : "boolean"
+	PadeOrder : "string"
+ }
+}
+Block {
+	BlockType	VariableTransportDelay
+	SourceType	Simulink
+	SourceBlock	"simulink/Continuous/Variable\nTime Delay"
+	Ports	[2,1]
+	BlockInterfaceParameters {
+	VariableDelayType : "enum"
+	MaximumDelay : "string"
+	InitialOutput : "string"
+	MaximumPoints : "string"
+	FixedBuffer : "boolean"
+	ZeroDelay : "boolean"
+	TransDelayFeedthrough : "boolean"
+	PadeOrder : "string"
+	AbsoluteTolerance : "string"
+	ContinuousStateAttributes : "string"
+ }
+}
+Block {
+	BlockType	VariableTransportDelay
+	SourceType	Simulink
+	SourceBlock	"simulink/Continuous/Variable\nTransport Delay"
+	Ports	[2,1]
+	BlockInterfaceParameters {
+	VariableDelayType : "enum"
+	MaximumDelay : "string"
+	InitialOutput : "string"
+	MaximumPoints : "string"
+	FixedBuffer : "boolean"
+	ZeroDelay : "boolean"
+	TransDelayFeedthrough : "boolean"
+	PadeOrder : "string"
+	AbsoluteTolerance : "string"
+	ContinuousStateAttributes : "string"
+ }
+}
+Block {
+	BlockType	ZeroPole
+	SourceType	Simulink
+	SourceBlock	"simulink/Continuous/Zero-Pole"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	Zeros : "string"
+	Poles : "string"
+	Gain : "string"
+	AbsoluteTolerance : "string"
+	ContinuousStateAttributes : "string"
+ }
+}
+Block {
+	BlockType	Backlash
+	SourceType	Simulink
+	SourceBlock	"simulink/Discontinuities/Backlash"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	BacklashWidth : "string"
+	InitialOutput : "string"
+	ZeroCross : "boolean"
+	SampleTime : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Coulombic and Viscous Friction"
+	SourceBlock	"simulink/Discontinuities/Coulomb &\nViscous Friction"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	offset : "string"
+	gain : "string"
+ }
+}
+Block {
+	BlockType	DeadZone
+	SourceType	Simulink
+	SourceBlock	"simulink/Discontinuities/Dead Zone"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	LowerValue : "string"
+	UpperValue : "string"
+	SaturateOnIntegerOverflow : "boolean"
+	LinearizeAsGain : "boolean"
+	ZeroCross : "boolean"
+	SampleTime : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Dead Zone Dynamic"
+	SourceBlock	"simulink/Discontinuities/Dead Zone\nDynamic"
+	Ports	[3,1]
+	BlockInterfaceParameters {
+ }
+}
+Block {
+	BlockType	HitCross
+	SourceType	Simulink
+	SourceBlock	"simulink/Discontinuities/Hit \nCrossing"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	HitCrossingOffset : "string"
+	HitCrossingDirection : "enum"
+	ShowOutputPort : "boolean"
+	ZeroCross : "boolean"
+	SampleTime : "string"
+ }
+}
+Block {
+	BlockType	Quantizer
+	SourceType	Simulink
+	SourceBlock	"simulink/Discontinuities/Quantizer"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	QuantizationInterval : "string"
+	LinearizeAsGain : "boolean"
+	SampleTime : "string"
+ }
+}
+Block {
+	BlockType	RateLimiter
+	SourceType	Simulink
+	SourceBlock	"simulink/Discontinuities/Rate Limiter"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	RisingSlewLimit : "string"
+	FallingSlewLimit : "string"
+	SampleTimeMode : "enum"
+	InitialCondition : "string"
+	LinearizeAsGain : "boolean"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Rate Limiter Dynamic"
+	SourceBlock	"simulink/Discontinuities/Rate Limiter\nDynamic"
+	Ports	[3,1]
+	BlockInterfaceParameters {
+ }
+}
+Block {
+	BlockType	Relay
+	SourceType	Simulink
+	SourceBlock	"simulink/Discontinuities/Relay"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	OnSwitchValue : "string"
+	OffSwitchValue : "string"
+	OnOutputValue : "string"
+	OffOutputValue : "string"
+	OutMin : "string"
+	OutMax : "string"
+	OutDataTypeStr : "string"
+	ZeroCross : "boolean"
+	SampleTime : "string"
+ }
+}
+Block {
+	BlockType	Saturate
+	SourceType	Simulink
+	SourceBlock	"simulink/Discontinuities/Saturation"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	UpperLimit : "string"
+	LowerLimit : "string"
+	LinearizeAsGain : "boolean"
+	ZeroCross : "boolean"
+	SampleTime : "string"
+	OutMin : "string"
+	OutMax : "string"
+	OutDataTypeStr : "string"
+	LockScale : "boolean"
+	RndMeth : "enum"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Saturation Dynamic"
+	SourceBlock	"simulink/Discontinuities/Saturation\nDynamic"
+	Ports	[3,1]
+	BlockInterfaceParameters {
+	OutMin : "string"
+	OutMax : "string"
+	OutDataTypeStr : "string"
+	OutputDataTypeScalingMode : "enum"
+	OutDataType : "string"
+	OutScaling : "string"
+	LockScale : "boolean"
+	RndMeth : "enum"
+	DoSatur : "boolean"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Wrap To Zero"
+	SourceBlock	"simulink/Discontinuities/Wrap To Zero"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	Threshold : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Difference"
+	SourceBlock	"simulink/Discrete/Difference"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	ICPrevInput : "string"
+	OutMin : "string"
+	OutMax : "string"
+	OutDataTypeStr : "string"
+	OutputDataTypeScalingMode : "enum"
+	OutDataType : "string"
+	OutScaling : "string"
+	LockScale : "boolean"
+	RndMeth : "enum"
+	DoSatur : "boolean"
+ }
+}
+Block {
+	BlockType	DiscreteTransferFcn
+	SourceType	Simulink
+	SourceBlock	"simulink/Discrete/Discrete\nTransfer Fcn"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	Numerator : "string"
+	Denominator : "string"
+	SampleTime : "string"
+	StateIdentifier : "string"
+	StateMustResolveToSignalObject : "boolean"
+	RTWStateStorageClass : "enum"
+	RTWStateStorageTypeQualifier : "string"
+ }
+}
+Block {
+	BlockType	DiscreteZeroPole
+	SourceType	Simulink
+	SourceBlock	"simulink/Discrete/Discrete\nZero-Pole"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	Zeros : "string"
+	Poles : "string"
+	Gain : "string"
+	SampleTime : "string"
+	StateIdentifier : "string"
+	StateMustResolveToSignalObject : "boolean"
+	RTWStateStorageClass : "enum"
+	RTWStateStorageTypeQualifier : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Discrete Derivative"
+	SourceBlock	"simulink/Discrete/Discrete Derivative"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	gainval : "string"
+	ICPrevScaledInput : "string"
+	OutMin : "string"
+	OutMax : "string"
+	OutDataTypeStr : "string"
+	OutputDataTypeScalingMode : "enum"
+	OutDataType : "string"
+	OutScaling : "string"
+	LockScale : "boolean"
+	RndMeth : "enum"
+	DoSatur : "boolean"
+ }
+}
+Block {
+	BlockType	DiscreteFir
+	SourceType	Simulink
+	SourceBlock	"simulink/Discrete/Discrete FIR Filter"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	CoefSource : "enum"
+	enableDSPFilters : "boolean"
+	FirFiltStruct : "enum"
+	SlFirFiltStruct : "enum"
+	NumCoeffs : "string"
+	IC : "string"
+	SampleTime : "string"
+	CoefMin : "string"
+	CoefMax : "string"
+	OutMin : "string"
+	OutMax : "string"
+	TapSumDataTypeStr : "string"
+	CoefDataTypeStr : "string"
+	ProductDataTypeStr : "string"
+	AccumDataTypeStr : "string"
+	StateDataTypeStr : "string"
+	OutDataTypeStr : "string"
+	LockScale : "boolean"
+	RndMeth : "enum"
+	SaturateOnIntegerOverflow : "boolean"
+ }
+}
+Block {
+	BlockType	DiscreteFilter
+	SourceType	Simulink
+	SourceBlock	"simulink/Discrete/Discrete Filter"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	Numerator : "string"
+	Denominator : "string"
+	SampleTime : "string"
+	StateIdentifier : "string"
+	StateMustResolveToSignalObject : "boolean"
+	RTWStateStorageClass : "enum"
+	RTWStateStorageTypeQualifier : "string"
+ }
+}
+Block {
+	BlockType	DiscreteStateSpace
+	SourceType	Simulink
+	SourceBlock	"simulink/Discrete/Discrete State-Space"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	A : "string"
+	B : "string"
+	C : "string"
+	D : "string"
+	X0 : "string"
+	SampleTime : "string"
+	StateIdentifier : "string"
+	StateMustResolveToSignalObject : "boolean"
+	RTWStateStorageClass : "enum"
+	RTWStateStorageTypeQualifier : "string"
+ }
+}
+Block {
+	BlockType	DiscreteIntegrator
+	SourceType	Simulink
+	SourceBlock	"simulink/Discrete/Discrete-Time\nIntegrator"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	IntegratorMethod : "enum"
+	gainval : "string"
+	ExternalReset : "enum"
+	InitialConditionSource : "enum"
+	InitialCondition : "string"
+	InitialConditionMode : "enum"
+	SampleTime : "string"
+	OutMin : "string"
+	OutMax : "string"
+	OutDataTypeStr : "string"
+	LockScale : "boolean"
+	RndMeth : "enum"
+	SaturateOnIntegerOverflow : "boolean"
+	LimitOutput : "boolean"
+	UpperSaturationLimit : "string"
+	LowerSaturationLimit : "string"
+	ShowSaturationPort : "boolean"
+	ShowStatePort : "boolean"
+	IgnoreLimit : "boolean"
+	StateIdentifier : "string"
+	StateMustResolveToSignalObject : "boolean"
+	RTWStateStorageClass : "enum"
+	RTWStateStorageTypeQualifier : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"First-Order Hold"
+	SourceBlock	"simulink/Discrete/First-Order\nHold"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	Ts : "string"
+ }
+}
+Block {
+	BlockType	"S-Function"
+	SourceType	"Integer Delay"
+	SourceBlock	"simulink/Discrete/Integer Delay"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	vinit : "string"
+	samptime : "string"
+	NumDelays : "string"
+ }
+}
+Block {
+	BlockType	Memory
+	SourceType	Simulink
+	SourceBlock	"simulink/Discrete/Memory"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	X0 : "string"
+	InheritSampleTime : "boolean"
+	LinearizeMemory : "boolean"
+	LinearizeAsDelay : "boolean"
+	StateIdentifier : "string"
+	StateMustResolveToSignalObject : "boolean"
+	RTWStateStorageClass : "enum"
+	RTWStateStorageTypeQualifier : "string"
+ }
+}
+Block {
+	BlockType	"S-Function"
+	SourceType	"Tapped Delay Line"
+	SourceBlock	"simulink/Discrete/Tapped Delay"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	vinit : "string"
+	samptime : "string"
+	NumDelays : "string"
+	DelayOrder : "enum"
+	includeCurrent : "boolean"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"First Order Transfer Fcn"
+	SourceBlock	"simulink/Discrete/Transfer Fcn\nFirst Order"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	PoleZ : "string"
+	ICPrevOutput : "string"
+	RndMeth : "enum"
+	DoSatur : "boolean"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Lead or Lag Compensator"
+	SourceBlock	"simulink/Discrete/Transfer Fcn\nLead or Lag"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	PoleZ : "string"
+	ZeroZ : "string"
+	ICPrevOutput : "string"
+	ICPrevInput : "string"
+	RndMeth : "enum"
+	DoSatur : "boolean"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Transfer Fcn Real Zero"
+	SourceBlock	"simulink/Discrete/Transfer Fcn\nReal Zero"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	ZeroZ : "string"
+	ICPrevInput : "string"
+	RndMeth : "enum"
+	DoSatur : "boolean"
+ }
+}
+Block {
+	BlockType	UnitDelay
+	SourceType	Simulink
+	SourceBlock	"simulink/Discrete/Unit Delay"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	X0 : "string"
+	SampleTime : "string"
+	StateIdentifier : "string"
+	StateMustResolveToSignalObject : "boolean"
+	RTWStateStorageClass : "enum"
+	RTWStateStorageTypeQualifier : "string"
+ }
+}
+Block {
+	BlockType	ZeroOrderHold
+	SourceType	Simulink
+	SourceBlock	"simulink/Discrete/Zero-Order\nHold"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	SampleTime : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Bit Clear"
+	SourceBlock	"simulink/Logic and Bit\nOperations/Bit Clear"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	iBit : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Bit Set"
+	SourceBlock	"simulink/Logic and Bit\nOperations/Bit Set"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	iBit : "string"
+ }
+}
+Block {
+	BlockType	"S-Function"
+	SourceType	"Bitwise Operator"
+	SourceBlock	"simulink/Logic and Bit\nOperations/Bitwise\nOperator"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	logicop : "enum"
+	UseBitMask : "boolean"
+	NumInputPorts : "string"
+	BitMask : "string"
+	BitMaskRealWorld : "enum"
+ }
+}
+Block {
+	BlockType	CombinatorialLogic
+	SourceType	Simulink
+	SourceBlock	"simulink/Logic and Bit\nOperations/Combinatorial \nLogic"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	TruthTable : "string"
+	SampleTime : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Compare To Constant"
+	SourceBlock	"simulink/Logic and Bit\nOperations/Compare\nTo Constant"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	relop : "enum"
+	const : "string"
+	LogicOutDataTypeMode : "enum"
+	ZeroCross : "boolean"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Compare To Zero"
+	SourceBlock	"simulink/Logic and Bit\nOperations/Compare\nTo Zero"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	relop : "enum"
+	LogicOutDataTypeMode : "enum"
+	ZeroCross : "boolean"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Detect Change"
+	SourceBlock	"simulink/Logic and Bit\nOperations/Detect\nChange"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	vinit : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Detect Decrease"
+	SourceBlock	"simulink/Logic and Bit\nOperations/Detect\nDecrease"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	vinit : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Detect Increase"
+	SourceBlock	"simulink/Logic and Bit\nOperations/Detect\nIncrease"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	vinit : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Detect Fall Negative"
+	SourceBlock	"simulink/Logic and Bit\nOperations/Detect Fall\nNegative"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	vinit : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Detect Fall Nonpositive"
+	SourceBlock	"simulink/Logic and Bit\nOperations/Detect Fall\nNonpositive"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	vinit : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Detect Rise Nonnegative"
+	SourceBlock	"simulink/Logic and Bit\nOperations/Detect Rise\nNonnegative"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	vinit : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Detect Rise Positive"
+	SourceBlock	"simulink/Logic and Bit\nOperations/Detect Rise\nPositive"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	vinit : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Extract Bits"
+	SourceBlock	"simulink/Logic and Bit\nOperations/Extract Bits"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	bitsToExtract : "enum"
+	numBits : "string"
+	bitIdxRange : "string"
+	outScalingMode : "enum"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Interval Test"
+	SourceBlock	"simulink/Logic and Bit\nOperations/Interval Test"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	IntervalClosedRight : "boolean"
+	uplimit : "string"
+	IntervalClosedLeft : "boolean"
+	lowlimit : "string"
+	LogicOutDataTypeMode : "enum"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Interval Test Dynamic"
+	SourceBlock	"simulink/Logic and Bit\nOperations/Interval Test\nDynamic"
+	Ports	[3,1]
+	BlockInterfaceParameters {
+	IntervalClosedRight : "boolean"
+	IntervalClosedLeft : "boolean"
+	LogicOutDataTypeMode : "enum"
+ }
+}
+Block {
+	BlockType	Logic
+	SourceType	Simulink
+	SourceBlock	"simulink/Logic and Bit\nOperations/Logical\nOperator"
+	Ports	[2,1]
+	BlockInterfaceParameters {
+	Operator : "enum"
+	Inputs : "string"
+	IconShape : "enum"
+	AllPortsSameDT : "boolean"
+	OutDataTypeStr : "string"
+	SampleTime : "string"
+ }
+}
+Block {
+	BlockType	RelationalOperator
+	SourceType	Simulink
+	SourceBlock	"simulink/Logic and Bit\nOperations/Relational\nOperator"
+	Ports	[2,1]
+	BlockInterfaceParameters {
+	Operator : "enum"
+	InputSameDT : "boolean"
+	OutDataTypeStr : "string"
+	ZeroCross : "boolean"
+	SampleTime : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Shift Arithmetic"
+	SourceBlock	"simulink/Logic and Bit\nOperations/Shift\nArithmetic"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	nBitShiftRight : "string"
+	nBinPtShiftRight : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Sine and Cosine"
+	SourceBlock	"simulink/Lookup\nTables/Cosine"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	Formula : "enum"
+	NumDataPoints : "string"
+	OutputWordLength : "string"
+ }
+}
+Block {
+	BlockType	"S-Function"
+	SourceType	"LookupNDDirect"
+	SourceBlock	"simulink/Lookup\nTables/Direct Lookup\nTable (n-D)"
+	Ports	[2,1]
+	BlockInterfaceParameters {
+	maskTabDims : "enum"
+	explicitNumDims : "string"
+	outDims : "enum"
+	tabIsInput : "boolean"
+	mxTable : "string"
+	clipFlag : "enum"
+	samptime : "string"
+ }
+}
+Block {
+	BlockType	"Interpolation_n-D"
+	SourceType	Simulink
+	SourceBlock	"simulink/Lookup\nTables/Interpolation\nUsing Prelookup"
+	Ports	[4,1]
+	BlockInterfaceParameters {
+	NumberOfTableDimensions : "string"
+	Table : "string"
+	InterpMethod : "enum"
+	ExtrapMethod : "enum"
+	RangeErrorMode : "enum"
+	CheckIndexInCode : "boolean"
+	ValidIndexMayReachLast : "boolean"
+	NumSelectionDims : "string"
+	OutMin : "string"
+	OutMax : "string"
+	OutDataTypeStr : "string"
+	LockScale : "boolean"
+	RndMeth : "enum"
+	SampleTime : "string"
+ }
+}
+Block {
+	BlockType	"S-Function"
+	SourceType	"Lookup Table Dynamic"
+	SourceBlock	"simulink/Lookup\nTables/Lookup\nTable\nDynamic"
+	Ports	[3,1]
+	BlockInterfaceParameters {
+	LookUpMeth : "enum"
+	OutDataTypeStr : "string"
+	OutputDataTypeScalingMode : "enum"
+	OutDataType : "string"
+	OutScaling : "string"
+	LockScale : "boolean"
+	RndMeth : "enum"
+	DoSatur : "boolean"
+ }
+}
+Block {
+	BlockType	Lookup2D
+	SourceType	Simulink
+	SourceBlock	"simulink/Lookup\nTables/Lookup\nTable (2-D)"
+	Ports	[2,1]
+	BlockInterfaceParameters {
+	RowIndex : "string"
+	ColumnIndex : "string"
+	Table : "string"
+	LookUpMeth : "enum"
+	InputSameDT : "boolean"
+	OutMin : "string"
+	OutMax : "string"
+	OutDataTypeStr : "string"
+	LockScale : "boolean"
+	RndMeth : "enum"
+	SaturateOnIntegerOverflow : "boolean"
+	SampleTime : "string"
+ }
+}
+Block {
+	BlockType	"Lookup_n-D"
+	SourceType	Simulink
+	SourceBlock	"simulink/Lookup\nTables/Lookup\nTable (n-D)"
+	Ports	[2,1]
+	BlockInterfaceParameters {
+	NumberOfTableDimensions : "string"
+	BreakpointsForDimension1 : "string"
+	BreakpointsForDimension2 : "string"
+	BreakpointsForDimension3 : "string"
+	BreakpointsForDimension4 : "string"
+	BreakpointsForDimension5 : "string"
+	BreakpointsForDimension6 : "string"
+	BreakpointsForDimension7 : "string"
+	BreakpointsForDimension8 : "string"
+	BreakpointsForDimension9 : "string"
+	BreakpointsForDimension10 : "string"
+	BreakpointsForDimension11 : "string"
+	BreakpointsForDimension12 : "string"
+	BreakpointsForDimension13 : "string"
+	BreakpointsForDimension14 : "string"
+	BreakpointsForDimension15 : "string"
+	BreakpointsForDimension16 : "string"
+	BreakpointsForDimension17 : "string"
+	BreakpointsForDimension18 : "string"
+	BreakpointsForDimension19 : "string"
+	BreakpointsForDimension20 : "string"
+	BreakpointsForDimension21 : "string"
+	BreakpointsForDimension22 : "string"
+	BreakpointsForDimension23 : "string"
+	BreakpointsForDimension24 : "string"
+	BreakpointsForDimension25 : "string"
+	BreakpointsForDimension26 : "string"
+	BreakpointsForDimension27 : "string"
+	BreakpointsForDimension28 : "string"
+	BreakpointsForDimension29 : "string"
+	BreakpointsForDimension30 : "string"
+	IndexSearchMethod : "enum"
+	BeginIndexSearchUsingPreviousIndexResult : "boolean"
+	UseOneInputPortForAllInputData : "boolean"
+	Table : "string"
+	InterpMethod : "enum"
+	ExtrapMethod : "enum"
+	ProcessOutOfRangeInput : "enum"
+	UseLastTableValue : "boolean"
+	SampleTime : "string"
+	InputSameDT : "boolean"
+	OutMin : "string"
+	OutMax : "string"
+	OutDataTypeStr : "string"
+	LockScale : "boolean"
+	RndMeth : "enum"
+	FractionDataTypeStr : "string"
+ }
+}
+Block {
+	BlockType	Lookup
+	SourceType	Simulink
+	SourceBlock	"simulink/Lookup\nTables/Lookup Table"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	InputValues : "string"
+	Table : "string"
+	LookUpMeth : "enum"
+	OutMin : "string"
+	OutMax : "string"
+	OutDataTypeStr : "string"
+	LockScale : "boolean"
+	RndMeth : "enum"
+	SaturateOnIntegerOverflow : "boolean"
+	SampleTime : "string"
+ }
+}
+Block {
+	BlockType	PreLookup
+	SourceType	Simulink
+	SourceBlock	"simulink/Lookup\nTables/Prelookup"
+	Ports	[1,2]
+	BlockInterfaceParameters {
+	BreakpointsData : "string"
+	IndexSearchMethod : "enum"
+	BeginIndexSearchUsingPreviousIndexResult : "boolean"
+	OutputOnlyTheIndex : "boolean"
+	ProcessOutOfRangeInput : "enum"
+	UseLastBreakpoint : "boolean"
+	ActionForOutOfRangeInput : "enum"
+	SampleTime : "string"
+	OutDataTypeStr : "string"
+	Out2DataTypeStr : "string"
+	LockScale : "boolean"
+	RndMeth : "enum"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Sine and Cosine"
+	SourceBlock	"simulink/Lookup\nTables/Sine"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	Formula : "enum"
+	NumDataPoints : "string"
+	OutputWordLength : "string"
+ }
+}
+Block {
+	BlockType	Abs
+	SourceType	Simulink
+	SourceBlock	"simulink/Math\nOperations/Abs"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	ZeroCross : "boolean"
+	SampleTime : "string"
+	OutMax : "string"
+	OutDataTypeStr : "string"
+	LockScale : "boolean"
+	RndMeth : "enum"
+	SaturateOnIntegerOverflow : "boolean"
+ }
+}
+Block {
+	BlockType	Sum
+	SourceType	Simulink
+	SourceBlock	"simulink/Math\nOperations/Add"
+	Ports	[2,1]
+	BlockInterfaceParameters {
+	IconShape : "enum"
+	Inputs : "string"
+	CollapseMode : "enum"
+	CollapseDim : "string"
+	InputSameDT : "boolean"
+	AccumDataTypeStr : "string"
+	OutMin : "string"
+	OutMax : "string"
+	OutDataTypeStr : "string"
+	LockScale : "boolean"
+	RndMeth : "enum"
+	SaturateOnIntegerOverflow : "boolean"
+	SampleTime : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Algebraic Constraint"
+	SourceBlock	"simulink/Math\nOperations/Algebraic Constraint"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	z0 : "string"
+ }
+}
+Block {
+	BlockType	Assignment
+	SourceType	Simulink
+	SourceBlock	"simulink/Math\nOperations/Assignment"
+	Ports	[2,1]
+	BlockInterfaceParameters {
+	NumberOfDimensions : "string"
+	IndexMode : "enum"
+	OutputInitialize : "enum"
+	IndexOptionArray : "matrix"
+	IndexParamArray : "matrix"
+	OutputSizeArray : "matrix"
+	DiagnosticForDimensions : "enum"
+	SampleTime : "string"
+	IndexOptions : "string"
+	Indices : "string"
+	OutputSizes : "string"
+ }
+}
+Block {
+	BlockType	Bias
+	SourceType	Simulink
+	SourceBlock	"simulink/Math\nOperations/Bias"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	Bias : "string"
+	SaturateOnIntegerOverflow : "boolean"
+ }
+}
+Block {
+	BlockType	ComplexToMagnitudeAngle
+	SourceType	Simulink
+	SourceBlock	"simulink/Math\nOperations/Complex to\nMagnitude-Angle"
+	Ports	[1,2]
+	BlockInterfaceParameters {
+	Output : "enum"
+	SampleTime : "string"
+ }
+}
+Block {
+	BlockType	ComplexToRealImag
+	SourceType	Simulink
+	SourceBlock	"simulink/Math\nOperations/Complex to\nReal-Imag"
+	Ports	[1,2]
+	BlockInterfaceParameters {
+	Output : "enum"
+	SampleTime : "string"
+ }
+}
+Block {
+	BlockType	Product
+	SourceType	Simulink
+	SourceBlock	"simulink/Math\nOperations/Divide"
+	Ports	[2,1]
+	BlockInterfaceParameters {
+	Inputs : "string"
+	Multiplication : "enum"
+	CollapseMode : "enum"
+	CollapseDim : "string"
+	InputSameDT : "boolean"
+	OutMin : "string"
+	OutMax : "string"
+	OutDataTypeStr : "string"
+	LockScale : "boolean"
+	RndMeth : "enum"
+	SaturateOnIntegerOverflow : "boolean"
+	SampleTime : "string"
+ }
+}
+Block {
+	BlockType	"S-Function"
+	SourceType	"Dot Product"
+	SourceBlock	"simulink/Math\nOperations/Dot Product"
+	Ports	[2,1]
+	BlockInterfaceParameters {
+	InputSameDT : "boolean"
+	OutDataTypeStr : "string"
+	OutputDataTypeScalingMode : "enum"
+	OutDataType : "string"
+	OutScaling : "string"
+	LockScale : "boolean"
+	RndMeth : "enum"
+	DoSatur : "boolean"
+ }
+}
+Block {
+	BlockType	DotProduct
+	SourceType	Simulink
+	SourceBlock	"simulink/Math\nOperations/Dot Product"
+	Ports	[2,1]
+	BlockInterfaceParameters {
+	SampleTime : "string"
+	InputSameDT : "boolean"
+	OutMin : "string"
+	OutMax : "string"
+	OutDataTypeStr : "string"
+	LockScale : "boolean"
+	RndMeth : "enum"
+	SaturateOnIntegerOverflow : "boolean"
+ }
+}
+Block {
+	BlockType	Gain
+	SourceType	Simulink
+	SourceBlock	"simulink/Math\nOperations/Gain"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	Gain : "string"
+	Multiplication : "enum"
+	ParamMin : "string"
+	ParamMax : "string"
+	ParamDataTypeStr : "string"
+	OutMin : "string"
+	OutMax : "string"
+	OutDataTypeStr : "string"
+	LockScale : "boolean"
+	RndMeth : "enum"
+	SaturateOnIntegerOverflow : "boolean"
+	SampleTime : "string"
+ }
+}
+Block {
+	BlockType	MagnitudeAngleToComplex
+	SourceType	Simulink
+	SourceBlock	"simulink/Math\nOperations/Magnitude-Angle\nto Complex"
+	Ports	[2,1]
+	BlockInterfaceParameters {
+	Input : "enum"
+	ConstantPart : "string"
+	SampleTime : "string"
+ }
+}
+Block {
+	BlockType	Math
+	SourceType	Simulink
+	SourceBlock	"simulink/Math\nOperations/Math\nFunction"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	Operator : "enum"
+	OutputSignalType : "enum"
+	SampleTime : "string"
+	OutMin : "string"
+	OutMax : "string"
+	OutDataTypeStr : "string"
+	LockScale : "boolean"
+	RndMeth : "enum"
+	SaturateOnIntegerOverflow : "boolean"
+ }
+}
+Block {
+	BlockType	Concatenate
+	SourceType	Simulink
+	SourceBlock	"simulink/Math\nOperations/Matrix\nConcatenate"
+	Ports	[2,1]
+	BlockInterfaceParameters {
+	NumInputs : "string"
+	Mode : "enum"
+	ConcatenateDimension : "string"
+ }
+}
+Block {
+	BlockType	MinMax
+	SourceType	Simulink
+	SourceBlock	"simulink/Math\nOperations/MinMax"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	Function : "enum"
+	Inputs : "string"
+	InputSameDT : "boolean"
+	OutMin : "string"
+	OutMax : "string"
+	OutDataTypeStr : "string"
+	LockScale : "boolean"
+	RndMeth : "enum"
+	SaturateOnIntegerOverflow : "boolean"
+	ZeroCross : "boolean"
+	SampleTime : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"MinMax Running Resettable"
+	SourceBlock	"simulink/Math\nOperations/MinMax\nRunning\nResettable"
+	Ports	[2,1]
+	BlockInterfaceParameters {
+	Function : "enum"
+	vinit : "string"
+ }
+}
+Block {
+	BlockType	PermuteDimensions
+	SourceType	Simulink
+	SourceBlock	"simulink/Math\nOperations/Permute\nDimensions"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	Order : "string"
+ }
+}
+Block {
+	BlockType	Polyval
+	SourceType	Simulink
+	SourceBlock	"simulink/Math\nOperations/Polynomial"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	Coefs : "string"
+ }
+}
+Block {
+	BlockType	Product
+	SourceType	Simulink
+	SourceBlock	"simulink/Math\nOperations/Product"
+	Ports	[2,1]
+	BlockInterfaceParameters {
+	Inputs : "string"
+	Multiplication : "enum"
+	CollapseMode : "enum"
+	CollapseDim : "string"
+	InputSameDT : "boolean"
+	OutMin : "string"
+	OutMax : "string"
+	OutDataTypeStr : "string"
+	LockScale : "boolean"
+	RndMeth : "enum"
+	SaturateOnIntegerOverflow : "boolean"
+	SampleTime : "string"
+ }
+}
+Block {
+	BlockType	Product
+	SourceType	Simulink
+	SourceBlock	"simulink/Math\nOperations/Product of\nElements"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	Inputs : "string"
+	Multiplication : "enum"
+	CollapseMode : "enum"
+	CollapseDim : "string"
+	InputSameDT : "boolean"
+	OutMin : "string"
+	OutMax : "string"
+	OutDataTypeStr : "string"
+	LockScale : "boolean"
+	RndMeth : "enum"
+	SaturateOnIntegerOverflow : "boolean"
+	SampleTime : "string"
+ }
+}
+Block {
+	BlockType	RealImagToComplex
+	SourceType	Simulink
+	SourceBlock	"simulink/Math\nOperations/Real-Imag to\nComplex"
+	Ports	[2,1]
+	BlockInterfaceParameters {
+	Input : "enum"
+	ConstantPart : "string"
+	SampleTime : "string"
+ }
+}
+Block {
+	BlockType	Reshape
+	SourceType	Simulink
+	SourceBlock	"simulink/Math\nOperations/Reshape"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	OutputDimensionality : "enum"
+	OutputDimensions : "string"
+ }
+}
+Block {
+	BlockType	Rounding
+	SourceType	Simulink
+	SourceBlock	"simulink/Math\nOperations/Rounding\nFunction"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	Operator : "enum"
+	SampleTime : "string"
+ }
+}
+Block {
+	BlockType	Signum
+	SourceType	Simulink
+	SourceBlock	"simulink/Math\nOperations/Sign"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	ZeroCross : "boolean"
+	SampleTime : "string"
+ }
+}
+Block {
+	BlockType	Sin
+	SourceType	Simulink
+	SourceBlock	"simulink/Math\nOperations/Sine Wave\nFunction"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	SineType : "enum"
+	TimeSource : "enum"
+	Amplitude : "string"
+	Bias : "string"
+	Frequency : "string"
+	Phase : "string"
+	Samples : "string"
+	Offset : "string"
+	SampleTime : "string"
+	VectorParams1D : "boolean"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Slider Gain"
+	SourceBlock	"simulink/Math\nOperations/Slider\nGain"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	low : "string"
+	gain : "string"
+	high : "string"
+ }
+}
+Block {
+	BlockType	Squeeze
+	SourceType	Simulink
+	SourceBlock	"simulink/Math\nOperations/Squeeze"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+ }
+}
+Block {
+	BlockType	Sum
+	SourceType	Simulink
+	SourceBlock	"simulink/Math\nOperations/Subtract"
+	Ports	[2,1]
+	BlockInterfaceParameters {
+	IconShape : "enum"
+	Inputs : "string"
+	CollapseMode : "enum"
+	CollapseDim : "string"
+	InputSameDT : "boolean"
+	AccumDataTypeStr : "string"
+	OutMin : "string"
+	OutMax : "string"
+	OutDataTypeStr : "string"
+	LockScale : "boolean"
+	RndMeth : "enum"
+	SaturateOnIntegerOverflow : "boolean"
+	SampleTime : "string"
+ }
+}
+Block {
+	BlockType	Sum
+	SourceType	Simulink
+	SourceBlock	"simulink/Math\nOperations/Sum"
+	Ports	[2,1]
+	BlockInterfaceParameters {
+	IconShape : "enum"
+	Inputs : "string"
+	CollapseMode : "enum"
+	CollapseDim : "string"
+	InputSameDT : "boolean"
+	AccumDataTypeStr : "string"
+	OutMin : "string"
+	OutMax : "string"
+	OutDataTypeStr : "string"
+	LockScale : "boolean"
+	RndMeth : "enum"
+	SaturateOnIntegerOverflow : "boolean"
+	SampleTime : "string"
+ }
+}
+Block {
+	BlockType	Sum
+	SourceType	Simulink
+	SourceBlock	"simulink/Math\nOperations/Sum of\nElements"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	IconShape : "enum"
+	Inputs : "string"
+	CollapseMode : "enum"
+	CollapseDim : "string"
+	InputSameDT : "boolean"
+	AccumDataTypeStr : "string"
+	OutMin : "string"
+	OutMax : "string"
+	OutDataTypeStr : "string"
+	LockScale : "boolean"
+	RndMeth : "enum"
+	SaturateOnIntegerOverflow : "boolean"
+	SampleTime : "string"
+ }
+}
+Block {
+	BlockType	Trigonometry
+	SourceType	Simulink
+	SourceBlock	"simulink/Math\nOperations/Trigonometric\nFunction"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	Operator : "enum"
+	OutputSignalType : "enum"
+	SampleTime : "string"
+ }
+}
+Block {
+	BlockType	"S-Function"
+	SourceType	"Unary Minus"
+	SourceBlock	"simulink/Math\nOperations/Unary Minus"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	DoSatur : "boolean"
+ }
+}
+Block {
+	BlockType	Concatenate
+	SourceType	Simulink
+	SourceBlock	"simulink/Math\nOperations/Vector\nConcatenate"
+	Ports	[2,1]
+	BlockInterfaceParameters {
+	NumInputs : "string"
+	Mode : "enum"
+	ConcatenateDimension : "string"
+ }
+}
+Block {
+	BlockType	"S-Function"
+	SourceType	"Sample Time Math"
+	SourceBlock	"simulink/Math\nOperations/Weighted\nSample Time\nMath"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	TsampMathOp : "enum"
+	weightValue : "string"
+	TsampMathImp : "enum"
+	OutputDataTypeScalingMode : "enum"
+	RndMeth : "enum"
+	DoSatur : "boolean"
+ }
+}
+Block {
+	BlockType	Inport
+	SourceType	Simulink
+	SourceBlock	"simulink/Ports &\nSubsystems/In1"
+	Ports	[0,1]
+	BlockInterfaceParameters {
+	Port : "string"
+	IconDisplay : "enum"
+	UseBusObject : "boolean"
+	BusObject : "string"
+	BusOutputAsStruct : "boolean"
+	PortDimensions : "string"
+	SampleTime : "string"
+	OutMin : "string"
+	OutMax : "string"
+	OutDataTypeStr : "string"
+	SignalType : "enum"
+	SamplingMode : "enum"
+	LatchByDelayingOutsideSignal : "boolean"
+	LatchByCopyingInsideSignal : "boolean"
+	Interpolate : "boolean"
+ }
+}
+Block {
+	BlockType	InportShadow
+	SourceType	Simulink
+	SourceBlock	"simulink/Ports &\nSubsystems/In1"
+	Ports	[0,1]
+	BlockInterfaceParameters {
+	Port : "string"
+	IconDisplay : "enum"
+	UseBusObject : "boolean"
+	BusObject : "string"
+	BusOutputAsStruct : "boolean"
+	PortDimensions : "string"
+	SampleTime : "string"
+	OutMin : "string"
+	OutMax : "string"
+	OutDataTypeStr : "string"
+	SignalType : "enum"
+	SamplingMode : "enum"
+	LatchByDelayingOutsideSignal : "boolean"
+	LatchByCopyingInsideSignal : "boolean"
+	Interpolate : "boolean"
+ }
+}
+Block {
+	BlockType	EnablePort
+	SourceType	Simulink
+	SourceBlock	"simulink/Ports &\nSubsystems/Enable"
+	Ports	[]
+	BlockInterfaceParameters {
+	StatesWhenEnabling : "enum"
+	ShowOutputPort : "boolean"
+	ZeroCross : "boolean"
+ }
+}
+Block {
+	BlockType	TriggerPort
+	SourceType	Simulink
+	SourceBlock	"simulink/Ports &\nSubsystems/Trigger"
+	Ports	[]
+	BlockInterfaceParameters {
+	TriggerType : "enum"
+	StatesWhenEnabling : "enum"
+	ShowOutputPort : "boolean"
+	OutputDataType : "enum"
+	SampleTimeType : "enum"
+	SampleTime : "string"
+	ZeroCross : "boolean"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Atomic Subsystem"
+	SourceBlock	"simulink/Ports &\nSubsystems/Atomic Subsystem"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Code Reuse Subsystem"
+	SourceBlock	"simulink/Ports &\nSubsystems/CodeReuseSubsystem"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Enabled Subsystem"
+	SourceBlock	"simulink/Ports &\nSubsystems/Enabled\nSubsystem"
+	Ports	[1,1,1]
+	BlockInterfaceParameters {
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Enabled And Triggered Subsystem"
+	SourceBlock	"simulink/Ports &\nSubsystems/Enabled and\nTriggered Subsystem"
+	Ports	[1,1,1,1]
+	BlockInterfaceParameters {
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"For Iterator Subsystem"
+	SourceBlock	"simulink/Ports &\nSubsystems/For Iterator\nSubsystem"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+ }
+}
+Block {
+	BlockType	"S-Function"
+	SourceType	"Function-Call Generator"
+	SourceBlock	"simulink/Ports &\nSubsystems/Function-Call\nGenerator"
+	Ports	[0,1]
+	BlockInterfaceParameters {
+	sample_time : "string"
+	numberOfIterations : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Function-Call Subsystem"
+	SourceBlock	"simulink/Ports &\nSubsystems/Function-Call\nSubsystem"
+	Ports	[1,1,0,1]
+	BlockInterfaceParameters {
+ }
+}
+Block {
+	BlockType	If
+	SourceType	Simulink
+	SourceBlock	"simulink/Ports &\nSubsystems/If"
+	Ports	[1,2]
+	BlockInterfaceParameters {
+	NumInputs : "string"
+	IfExpression : "string"
+	ElseIfExpressions : "string"
+	ShowElse : "boolean"
+	ZeroCross : "boolean"
+	SampleTime : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"If Action Subsystem"
+	SourceBlock	"simulink/Ports &\nSubsystems/If Action\nSubsystem"
+	Ports	[1,1,0,0,0,0,0,1]
+	BlockInterfaceParameters {
+ }
+}
+Block {
+	BlockType	ModelReference
+	SourceType	Simulink
+	SourceBlock	"simulink/Ports &\nSubsystems/Model"
+	Ports	[]
+	BlockInterfaceParameters {
+	ModelName : "string"
+	ParameterArgumentNames : "string"
+	ParameterArgumentValues : "string"
+	SimulationMode : "enum"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Virtual Subsystem"
+	SourceBlock	"simulink/Ports &\nSubsystems/Subsystem"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Subsystem Examples"
+	SourceBlock	"simulink/Ports &\nSubsystems/Subsystem Examples"
+	Ports	[]
+	BlockInterfaceParameters {
+ }
+}
+Block {
+	BlockType	SwitchCase
+	SourceType	Simulink
+	SourceBlock	"simulink/Ports &\nSubsystems/Switch Case"
+	Ports	[1,2]
+	BlockInterfaceParameters {
+	CaseConditions : "string"
+	CaseShowDefault : "boolean"
+	ZeroCross : "boolean"
+	SampleTime : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Switch Case Action Subsystem"
+	SourceBlock	"simulink/Ports &\nSubsystems/Switch Case Action\nSubsystem"
+	Ports	[1,1,0,0,0,0,0,1]
+	BlockInterfaceParameters {
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Triggered Subsystem"
+	SourceBlock	"simulink/Ports &\nSubsystems/Triggered\nSubsystem"
+	Ports	[1,1,0,1]
+	BlockInterfaceParameters {
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"While Iterator Subsystem"
+	SourceBlock	"simulink/Ports &\nSubsystems/While Iterator\nSubsystem"
+	Ports	[2,1]
+	BlockInterfaceParameters {
+ }
+}
+Block {
+	BlockType	Outport
+	SourceType	Simulink
+	SourceBlock	"simulink/Ports &\nSubsystems/Out1"
+	Ports	[1]
+	BlockInterfaceParameters {
+	Port : "string"
+	IconDisplay : "enum"
+	UseBusObject : "boolean"
+	BusObject : "string"
+	BusOutputAsStruct : "boolean"
+	PortDimensions : "string"
+	SampleTime : "string"
+	OutMin : "string"
+	OutMax : "string"
+	OutDataTypeStr : "string"
+	SignalType : "enum"
+	SamplingMode : "enum"
+	OutputWhenDisabled : "enum"
+	InitialOutput : "string"
+ }
+}
+Block {
+	BlockType	BusAssignment
+	SourceType	Simulink
+	SourceBlock	"simulink/Signal\nRouting/Bus\nAssignment"
+	Ports	[2,1]
+	BlockInterfaceParameters {
+	AssignedSignals : "string"
+	InputSignals : "matrix"
+ }
+}
+Block {
+	BlockType	BusCreator
+	SourceType	Simulink
+	SourceBlock	"simulink/Signal\nRouting/Bus\nCreator"
+	Ports	[2,1]
+	BlockInterfaceParameters {
+	Inputs : "string"
+	DisplayOption : "enum"
+ }
+}
+Block {
+	BlockType	BusSelector
+	SourceType	Simulink
+	SourceBlock	"simulink/Signal\nRouting/Bus\nSelector"
+	Ports	[1,2]
+	BlockInterfaceParameters {
+	OutputSignals : "string"
+	OutputAsBus : "boolean"
+	InputSignals : "matrix"
+ }
+}
+Block {
+	BlockType	DataStoreMemory
+	SourceType	Simulink
+	SourceBlock	"simulink/Signal\nRouting/Data Store\nMemory"
+	Ports	[]
+	BlockInterfaceParameters {
+	DataStoreName : "string"
+	ReadBeforeWriteMsg : "enum"
+	WriteAfterWriteMsg : "enum"
+	WriteAfterReadMsg : "enum"
+	InitialValue : "string"
+	StateMustResolveToSignalObject : "boolean"
+	RTWStateStorageClass : "enum"
+	RTWStateStorageTypeQualifier : "string"
+	VectorParams1D : "boolean"
+	ShowAdditionalParam : "boolean"
+	OutMin : "string"
+	OutMax : "string"
+	OutDataTypeStr : "string"
+	SignalType : "enum"
+ }
+}
+Block {
+	BlockType	DataStoreRead
+	SourceType	Simulink
+	SourceBlock	"simulink/Signal\nRouting/Data Store\nRead"
+	Ports	[0,1]
+	BlockInterfaceParameters {
+	DataStoreName : "string"
+	SampleTime : "string"
+ }
+}
+Block {
+	BlockType	DataStoreWrite
+	SourceType	Simulink
+	SourceBlock	"simulink/Signal\nRouting/Data Store\nWrite"
+	Ports	[1]
+	BlockInterfaceParameters {
+	DataStoreName : "string"
+	SampleTime : "string"
+ }
+}
+Block {
+	BlockType	Demux
+	SourceType	Simulink
+	SourceBlock	"simulink/Signal\nRouting/Demux"
+	Ports	[1,2]
+	BlockInterfaceParameters {
+	Outputs : "string"
+	DisplayOption : "enum"
+	BusSelectionMode : "boolean"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Environment Controller"
+	SourceBlock	"simulink/Signal\nRouting/Environment\nController"
+	Ports	[2,1]
+	BlockInterfaceParameters {
+ }
+}
+Block {
+	BlockType	From
+	SourceType	Simulink
+	SourceBlock	"simulink/Signal\nRouting/From"
+	Ports	[0,1]
+	BlockInterfaceParameters {
+	GotoTag : "string"
+	IconDisplay : "enum"
+ }
+}
+Block {
+	BlockType	Goto
+	SourceType	Simulink
+	SourceBlock	"simulink/Signal\nRouting/Goto"
+	Ports	[1]
+	BlockInterfaceParameters {
+	GotoTag : "string"
+	IconDisplay : "enum"
+	TagVisibility : "enum"
+ }
+}
+Block {
+	BlockType	GotoTagVisibility
+	SourceType	Simulink
+	SourceBlock	"simulink/Signal\nRouting/Goto Tag\nVisibility"
+	Ports	[]
+	BlockInterfaceParameters {
+	GotoTag : "string"
+ }
+}
+Block {
+	BlockType	MultiPortSwitch
+	SourceType	Simulink
+	SourceBlock	"simulink/Signal\nRouting/Index\nVector"
+	Ports	[2,1]
+	BlockInterfaceParameters {
+	Inputs : "string"
+	zeroidx : "boolean"
+	InputSameDT : "boolean"
+	OutMin : "string"
+	OutMax : "string"
+	OutDataTypeStr : "string"
+	LockScale : "boolean"
+	RndMeth : "enum"
+	SaturateOnIntegerOverflow : "boolean"
+	SampleTime : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Manual Switch"
+	SourceBlock	"simulink/Signal\nRouting/Manual Switch"
+	Ports	[2,1]
+	BlockInterfaceParameters {
+	sw : "string"
+	action : "string"
+	varsize : "boolean"
+ }
+}
+Block {
+	BlockType	Merge
+	SourceType	Simulink
+	SourceBlock	"simulink/Signal\nRouting/Merge"
+	Ports	[2,1]
+	BlockInterfaceParameters {
+	Inputs : "string"
+	InitialOutput : "string"
+	AllowUnequalInputPortWidths : "boolean"
+	InputPortOffsets : "string"
+ }
+}
+Block {
+	BlockType	MultiPortSwitch
+	SourceType	Simulink
+	SourceBlock	"simulink/Signal\nRouting/Multiport\nSwitch"
+	Ports	[4,1]
+	BlockInterfaceParameters {
+	Inputs : "string"
+	zeroidx : "boolean"
+	InputSameDT : "boolean"
+	OutMin : "string"
+	OutMax : "string"
+	OutDataTypeStr : "string"
+	LockScale : "boolean"
+	RndMeth : "enum"
+	SaturateOnIntegerOverflow : "boolean"
+	SampleTime : "string"
+ }
+}
+Block {
+	BlockType	Mux
+	SourceType	Simulink
+	SourceBlock	"simulink/Signal\nRouting/Mux"
+	Ports	[2,1]
+	BlockInterfaceParameters {
+	Inputs : "string"
+	DisplayOption : "enum"
+ }
+}
+Block {
+	BlockType	Selector
+	SourceType	Simulink
+	SourceBlock	"simulink/Signal\nRouting/Selector"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	NumberOfDimensions : "string"
+	IndexMode : "enum"
+	IndexOptionArray : "matrix"
+	IndexParamArray : "matrix"
+	OutputSizeArray : "matrix"
+	InputPortWidth : "string"
+	SampleTime : "string"
+	IndexOptions : "string"
+	Indices : "string"
+	OutputSizes : "string"
+ }
+}
+Block {
+	BlockType	Switch
+	SourceType	Simulink
+	SourceBlock	"simulink/Signal\nRouting/Switch"
+	Ports	[3,1]
+	BlockInterfaceParameters {
+	Criteria : "enum"
+	Threshold : "string"
+	InputSameDT : "boolean"
+	OutMin : "string"
+	OutMax : "string"
+	OutDataTypeStr : "string"
+	LockScale : "boolean"
+	RndMeth : "enum"
+	SaturateOnIntegerOverflow : "boolean"
+	ZeroCross : "boolean"
+	SampleTime : "string"
+ }
+}
+Block {
+	BlockType	BusToVector
+	SourceType	Simulink
+	SourceBlock	"simulink/Signal\nAttributes/Bus to Vector"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Conversion Inherited"
+	SourceBlock	"simulink/Signal\nAttributes/Data Type\nConversion\nInherited"
+	Ports	[2,1]
+	BlockInterfaceParameters {
+	ConvertRealWorld : "enum"
+	RndMeth : "enum"
+	DoSatur : "boolean"
+ }
+}
+Block {
+	BlockType	"S-Function"
+	SourceType	"Data Type Duplicate"
+	SourceBlock	"simulink/Signal\nAttributes/Data Type\nDuplicate"
+	Ports	[2]
+	BlockInterfaceParameters {
+	NumInputPorts : "string"
+ }
+}
+Block {
+	BlockType	"S-Function"
+	SourceType	"Data Type Propagation"
+	SourceBlock	"simulink/Signal\nAttributes/Data Type\nPropagation"
+	Ports	[3]
+	BlockInterfaceParameters {
+	PropDataTypeMode : "enum"
+	PropDataType : "string"
+	IfRefDouble : "enum"
+	IfRefSingle : "enum"
+	IsSigned : "enum"
+	NumBitsBase : "enum"
+	NumBitsMult : "string"
+	NumBitsAdd : "string"
+	NumBitsAllowFinal : "string"
+	PropScalingMode : "enum"
+	PropScaling : "string"
+	ValuesUsedBestPrec : "string"
+	SlopeBase : "enum"
+	SlopeMult : "string"
+	SlopeAdd : "string"
+	BiasBase : "enum"
+	BiasMult : "string"
+	BiasAdd : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Data Type Propagation Examples"
+	SourceBlock	"simulink/Signal\nAttributes/Data Type\nPropagation Examples"
+	Ports	[]
+	BlockInterfaceParameters {
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Scaling Strip"
+	SourceBlock	"simulink/Signal\nAttributes/Data Type\nScaling Strip"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+ }
+}
+Block {
+	BlockType	DataTypeConversion
+	SourceType	Simulink
+	SourceBlock	"simulink/Signal\nAttributes/Data Type Conversion"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	OutMin : "string"
+	OutMax : "string"
+	OutDataTypeStr : "string"
+	LockScale : "boolean"
+	ConvertRealWorld : "enum"
+	RndMeth : "enum"
+	SaturateOnIntegerOverflow : "boolean"
+	SampleTime : "string"
+ }
+}
+Block {
+	BlockType	InitialCondition
+	SourceType	Simulink
+	SourceBlock	"simulink/Signal\nAttributes/IC"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	Value : "string"
+	SampleTime : "string"
+ }
+}
+Block {
+	BlockType	Probe
+	SourceType	Simulink
+	SourceBlock	"simulink/Signal\nAttributes/Probe"
+	Ports	[1,5]
+	BlockInterfaceParameters {
+	ProbeWidth : "boolean"
+	ProbeSampleTime : "boolean"
+	ProbeComplexSignal : "boolean"
+	ProbeSignalDimensions : "boolean"
+	ProbeFramedSignal : "boolean"
+	ProbeWidthDataType : "enum"
+	ProbeSampleTimeDataType : "enum"
+	ProbeComplexityDataType : "enum"
+	ProbeDimensionsDataType : "enum"
+	ProbeFrameDataType : "enum"
+ }
+}
+Block {
+	BlockType	RateTransition
+	SourceType	Simulink
+	SourceBlock	"simulink/Signal\nAttributes/Rate Transition"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	Integrity : "boolean"
+	Deterministic : "boolean"
+	X0 : "string"
+	OutPortSampleTimeOpt : "enum"
+	OutPortSampleTimeMultiple : "string"
+	OutPortSampleTime : "string"
+ }
+}
+Block {
+	BlockType	SignalConversion
+	SourceType	Simulink
+	SourceBlock	"simulink/Signal\nAttributes/Signal\nConversion"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	ConversionOutput : "enum"
+	OverrideOpt : "boolean"
+ }
+}
+Block {
+	BlockType	SignalSpecification
+	SourceType	Simulink
+	SourceBlock	"simulink/Signal\nAttributes/Signal Specification"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	Dimensions : "string"
+	SampleTime : "string"
+	OutMin : "string"
+	OutMax : "string"
+	OutDataTypeStr : "string"
+	SignalType : "enum"
+	SamplingMode : "enum"
+ }
+}
+Block {
+	BlockType	"S-Function"
+	SourceType	"Sample Time Math"
+	SourceBlock	"simulink/Signal\nAttributes/Weighted\nSample Time"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	TsampMathOp : "enum"
+	weightValue : "string"
+	TsampMathImp : "enum"
+	OutputDataTypeScalingMode : "enum"
+	RndMeth : "enum"
+	DoSatur : "boolean"
+ }
+}
+Block {
+	BlockType	Width
+	SourceType	Simulink
+	SourceBlock	"simulink/Signal\nAttributes/Width"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	OutDataTypeMode : "enum"
+	DataType : "enum"
+ }
+}
+Block {
+	BlockType	Display
+	SourceType	Simulink
+	SourceBlock	"simulink/Sinks/Display"
+	Ports	[1]
+	BlockInterfaceParameters {
+	Format : "enum"
+	Decimation : "string"
+	Floating : "boolean"
+ }
+}
+Block {
+	BlockType	Scope
+	SourceType	Simulink
+	SourceBlock	"simulink/Sinks/Floating\nScope"
+	Ports	[]
+	BlockInterfaceParameters {
+	Location : "rectangle"
+	Open : "boolean"
+	NumInputPorts : "string"
+	TickLabels : "enum"
+	ZoomMode : "enum"
+	AxesTitles : "list"
+	Grid : "enum"
+	TimeRange : "string"
+	YMin : "string"
+	YMax : "string"
+	SaveToWorkspace : "boolean"
+	SaveName : "string"
+	DataFormat : "enum"
+	LimitDataPoints : "boolean"
+	MaxDataPoints : "string"
+	Decimation : "string"
+	SampleInput : "boolean"
+	SampleTime : "string"
+ }
+}
+Block {
+	BlockType	Scope
+	SourceType	Simulink
+	SourceBlock	"simulink/Sinks/Scope"
+	Ports	[1]
+	BlockInterfaceParameters {
+	Location : "rectangle"
+	Open : "boolean"
+	NumInputPorts : "string"
+	TickLabels : "enum"
+	ZoomMode : "enum"
+	AxesTitles : "list"
+	Grid : "enum"
+	TimeRange : "string"
+	YMin : "string"
+	YMax : "string"
+	SaveToWorkspace : "boolean"
+	SaveName : "string"
+	DataFormat : "enum"
+	LimitDataPoints : "boolean"
+	MaxDataPoints : "string"
+	Decimation : "string"
+	SampleInput : "boolean"
+	SampleTime : "string"
+ }
+}
+Block {
+	BlockType	Stop
+	SourceType	Simulink
+	SourceBlock	"simulink/Sinks/Stop Simulation"
+	Ports	[1]
+	BlockInterfaceParameters {
+ }
+}
+Block {
+	BlockType	Terminator
+	SourceType	Simulink
+	SourceBlock	"simulink/Sinks/Terminator"
+	Ports	[1]
+	BlockInterfaceParameters {
+ }
+}
+Block {
+	BlockType	ToFile
+	SourceType	Simulink
+	SourceBlock	"simulink/Sinks/To File"
+	Ports	[1]
+	BlockInterfaceParameters {
+	Filename : "string"
+	MatrixName : "string"
+	Decimation : "string"
+	SampleTime : "string"
+ }
+}
+Block {
+	BlockType	ToWorkspace
+	SourceType	Simulink
+	SourceBlock	"simulink/Sinks/To Workspace"
+	Ports	[1]
+	BlockInterfaceParameters {
+	VariableName : "string"
+	MaxDataPoints : "string"
+	Decimation : "string"
+	SampleTime : "string"
+	SaveFormat : "enum"
+	FixptAsFi : "boolean"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"XY scope."
+	SourceBlock	"simulink/Sinks/XY Graph"
+	Ports	[2]
+	BlockInterfaceParameters {
+	xmin : "string"
+	xmax : "string"
+	ymin : "string"
+	ymax : "string"
+	st : "string"
+ }
+}
+Block {
+	BlockType	Outport
+	SourceType	Simulink
+	SourceBlock	"simulink/Sinks/Out1"
+	Ports	[1]
+	BlockInterfaceParameters {
+	Port : "string"
+	IconDisplay : "enum"
+	UseBusObject : "boolean"
+	BusObject : "string"
+	BusOutputAsStruct : "boolean"
+	PortDimensions : "string"
+	SampleTime : "string"
+	OutMin : "string"
+	OutMax : "string"
+	OutDataTypeStr : "string"
+	SignalType : "enum"
+	SamplingMode : "enum"
+	OutputWhenDisabled : "enum"
+	InitialOutput : "string"
+ }
+}
+Block {
+	BlockType	Inport
+	SourceType	Simulink
+	SourceBlock	"simulink/Sources/In1"
+	Ports	[0,1]
+	BlockInterfaceParameters {
+	Port : "string"
+	IconDisplay : "enum"
+	UseBusObject : "boolean"
+	BusObject : "string"
+	BusOutputAsStruct : "boolean"
+	PortDimensions : "string"
+	SampleTime : "string"
+	OutMin : "string"
+	OutMax : "string"
+	OutDataTypeStr : "string"
+	SignalType : "enum"
+	SamplingMode : "enum"
+	LatchByDelayingOutsideSignal : "boolean"
+	LatchByCopyingInsideSignal : "boolean"
+	Interpolate : "boolean"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Band-Limited White Noise."
+	SourceBlock	"simulink/Sources/Band-Limited\nWhite Noise"
+	Ports	[0,1]
+	BlockInterfaceParameters {
+	Cov : "string"
+	Ts : "string"
+	seed : "string"
+	VectorParams1D : "boolean"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"chirp"
+	SourceBlock	"simulink/Sources/Chirp Signal"
+	Ports	[0,1]
+	BlockInterfaceParameters {
+	f1 : "string"
+	T : "string"
+	f2 : "string"
+	VectorParams1D : "boolean"
+ }
+}
+Block {
+	BlockType	Clock
+	SourceType	Simulink
+	SourceBlock	"simulink/Sources/Clock"
+	Ports	[0,1]
+	BlockInterfaceParameters {
+	DisplayTime : "boolean"
+	Decimation : "string"
+ }
+}
+Block {
+	BlockType	Constant
+	SourceType	Simulink
+	SourceBlock	"simulink/Sources/Constant"
+	Ports	[0,1]
+	BlockInterfaceParameters {
+	Value : "string"
+	VectorParams1D : "boolean"
+	SamplingMode : "enum"
+	OutMin : "string"
+	OutMax : "string"
+	OutDataTypeStr : "string"
+	SampleTime : "string"
+	FramePeriod : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Counter Free-Running"
+	SourceBlock	"simulink/Sources/Counter\nFree-Running"
+	Ports	[0,1]
+	BlockInterfaceParameters {
+	NumBits : "string"
+	tsamp : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Counter Limited"
+	SourceBlock	"simulink/Sources/Counter\nLimited"
+	Ports	[0,1]
+	BlockInterfaceParameters {
+	uplimit : "string"
+	tsamp : "string"
+ }
+}
+Block {
+	BlockType	DigitalClock
+	SourceType	Simulink
+	SourceBlock	"simulink/Sources/Digital Clock"
+	Ports	[0,1]
+	BlockInterfaceParameters {
+	SampleTime : "string"
+ }
+}
+Block {
+	BlockType	FromWorkspace
+	SourceType	Simulink
+	SourceBlock	"simulink/Sources/From\nWorkspace"
+	Ports	[0,1]
+	BlockInterfaceParameters {
+	VariableName : "string"
+	SampleTime : "string"
+	Interpolate : "boolean"
+	ZeroCross : "boolean"
+	OutputAfterFinalValue : "enum"
+ }
+}
+Block {
+	BlockType	FromFile
+	SourceType	Simulink
+	SourceBlock	"simulink/Sources/From File"
+	Ports	[0,1]
+	BlockInterfaceParameters {
+	FileName : "string"
+	SampleTime : "string"
+ }
+}
+Block {
+	BlockType	Ground
+	SourceType	Simulink
+	SourceBlock	"simulink/Sources/Ground"
+	Ports	[0,1]
+	BlockInterfaceParameters {
+ }
+}
+Block {
+	BlockType	DiscretePulseGenerator
+	SourceType	Simulink
+	SourceBlock	"simulink/Sources/Pulse\nGenerator"
+	Ports	[0,1]
+	BlockInterfaceParameters {
+	PulseType : "enum"
+	TimeSource : "enum"
+	Amplitude : "string"
+	Period : "string"
+	PulseWidth : "string"
+	PhaseDelay : "string"
+	SampleTime : "string"
+	VectorParams1D : "boolean"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Ramp"
+	SourceBlock	"simulink/Sources/Ramp"
+	Ports	[0,1]
+	BlockInterfaceParameters {
+	slope : "string"
+	start : "string"
+	X0 : "string"
+	VectorParams1D : "boolean"
+ }
+}
+Block {
+	BlockType	RandomNumber
+	SourceType	Simulink
+	SourceBlock	"simulink/Sources/Random\nNumber"
+	Ports	[0,1]
+	BlockInterfaceParameters {
+	Mean : "string"
+	Variance : "string"
+	Seed : "string"
+	SampleTime : "string"
+	VectorParams1D : "boolean"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Repeating table"
+	SourceBlock	"simulink/Sources/Repeating\nSequence"
+	Ports	[0,1]
+	BlockInterfaceParameters {
+	rep_seq_t : "string"
+	rep_seq_y : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Repeating Sequence Interpolated"
+	SourceBlock	"simulink/Sources/Repeating\nSequence\nInterpolated"
+	Ports	[0,1]
+	BlockInterfaceParameters {
+	OutValues : "string"
+	TimeValues : "string"
+	LookUpMeth : "enum"
+	tsamp : "string"
+	OutMin : "string"
+	OutMax : "string"
+	OutDataTypeStr : "string"
+	OutputDataTypeScalingMode : "enum"
+	OutDataType : "string"
+	OutScaling : "string"
+	LockScale : "boolean"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Repeating Sequence Stair"
+	SourceBlock	"simulink/Sources/Repeating\nSequence\nStair"
+	Ports	[0,1]
+	BlockInterfaceParameters {
+	OutValues : "string"
+	tsamp : "string"
+	OutMin : "string"
+	OutMax : "string"
+	OutDataTypeStr : "string"
+	OutputDataTypeScalingMode : "enum"
+	OutDataType : "string"
+	ConRadixGroup : "enum"
+	OutScaling : "string"
+	LockScale : "boolean"
+ }
+}
+Block {
+	BlockType	SignalGenerator
+	SourceType	Simulink
+	SourceBlock	"simulink/Sources/Signal\nGenerator"
+	Ports	[0,1]
+	BlockInterfaceParameters {
+	WaveForm : "enum"
+	TimeSource : "enum"
+	Amplitude : "string"
+	Frequency : "string"
+	Units : "enum"
+	VectorParams1D : "boolean"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Sigbuilder block"
+	SourceBlock	"simulink/Sources/Signal Builder"
+	Ports	[0,1]
+	BlockInterfaceParameters {
+ }
+}
+Block {
+	BlockType	Sin
+	SourceType	Simulink
+	SourceBlock	"simulink/Sources/Sine Wave"
+	Ports	[0,1]
+	BlockInterfaceParameters {
+	SineType : "enum"
+	TimeSource : "enum"
+	Amplitude : "string"
+	Bias : "string"
+	Frequency : "string"
+	Phase : "string"
+	Samples : "string"
+	Offset : "string"
+	SampleTime : "string"
+	VectorParams1D : "boolean"
+ }
+}
+Block {
+	BlockType	Step
+	SourceType	Simulink
+	SourceBlock	"simulink/Sources/Step"
+	Ports	[0,1]
+	BlockInterfaceParameters {
+	Time : "string"
+	Before : "string"
+	After : "string"
+	SampleTime : "string"
+	VectorParams1D : "boolean"
+	ZeroCross : "boolean"
+ }
+}
+Block {
+	BlockType	UniformRandomNumber
+	SourceType	Simulink
+	SourceBlock	"simulink/Sources/Uniform Random\nNumber"
+	Ports	[0,1]
+	BlockInterfaceParameters {
+	Minimum : "string"
+	Maximum : "string"
+	Seed : "string"
+	SampleTime : "string"
+	VectorParams1D : "boolean"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Stateflow"
+	SourceBlock	"simulink/User-Defined\nFunctions/Embedded\nMATLAB Function"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+ }
+}
+Block {
+	BlockType	Fcn
+	SourceType	Simulink
+	SourceBlock	"simulink/User-Defined\nFunctions/Fcn"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	Expr : "string"
+	SampleTime : "string"
+ }
+}
+Block {
+	BlockType	"M-S-Function"
+	SourceType	Simulink
+	SourceBlock	"simulink/User-Defined\nFunctions/Level-2 M-file\nS-Function"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	FunctionName : "string"
+	Parameters : "string"
+ }
+}
+Block {
+	BlockType	MATLABFcn
+	SourceType	Simulink
+	SourceBlock	"simulink/User-Defined\nFunctions/MATLAB Fcn"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	MATLABFcn : "string"
+	OutputDimensions : "string"
+	OutputSignalType : "enum"
+	Output1D : "boolean"
+	SampleTime : "string"
+ }
+}
+Block {
+	BlockType	"S-Function"
+	SourceType	Simulink
+	SourceBlock	"simulink/User-Defined\nFunctions/S-Function"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	FunctionName : "string"
+	Parameters : "string"
+	SFunctionModules : "string"
+ }
+}
+Block {
+	BlockType	"S-Function"
+	SourceType	"S-Function Builder"
+	SourceBlock	"simulink/User-Defined\nFunctions/S-Function Builder"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"S-Function Examples"
+	SourceBlock	"simulink/User-Defined\nFunctions/S-Function Examples"
+	Ports	[]
+	BlockInterfaceParameters {
+ }
+}
+Block {
+	BlockType	Assertion
+	SourceType	Simulink
+	SourceBlock	"simulink/Model\nVerification/Assertion"
+	Ports	[1]
+	BlockInterfaceParameters {
+	Enabled : "boolean"
+	AssertionFailFcn : "string"
+	StopWhenAssertionFail : "boolean"
+	SampleTime : "string"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Checks_Gradient"
+	SourceBlock	"simulink/Model\nVerification/Check\nDiscrete Gradient"
+	Ports	[1]
+	BlockInterfaceParameters {
+	gradient : "string"
+	enabled : "boolean"
+	callback : "string"
+	stopWhenAssertionFail : "boolean"
+	export : "boolean"
+	icon : "enum"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Checks_DGap"
+	SourceBlock	"simulink/Model\nVerification/Check \nDynamic Gap"
+	Ports	[3]
+	BlockInterfaceParameters {
+	enabled : "boolean"
+	callback : "string"
+	stopWhenAssertionFail : "boolean"
+	export : "boolean"
+	icon : "enum"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Checks_DRange"
+	SourceBlock	"simulink/Model\nVerification/Check \nDynamic Range"
+	Ports	[3]
+	BlockInterfaceParameters {
+	enabled : "boolean"
+	callback : "string"
+	stopWhenAssertionFail : "boolean"
+	export : "boolean"
+	icon : "enum"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Checks_SGap"
+	SourceBlock	"simulink/Model\nVerification/Check \nStatic Gap"
+	Ports	[1]
+	BlockInterfaceParameters {
+	max : "string"
+	max_included : "boolean"
+	min : "string"
+	min_included : "boolean"
+	enabled : "boolean"
+	callback : "string"
+	stopWhenAssertionFail : "boolean"
+	export : "boolean"
+	icon : "enum"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Checks_SRange"
+	SourceBlock	"simulink/Model\nVerification/Check \nStatic Range"
+	Ports	[1]
+	BlockInterfaceParameters {
+	max : "string"
+	max_included : "boolean"
+	min : "string"
+	min_included : "boolean"
+	enabled : "boolean"
+	callback : "string"
+	stopWhenAssertionFail : "boolean"
+	export : "boolean"
+	icon : "enum"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Checks_DMin"
+	SourceBlock	"simulink/Model\nVerification/Check Dynamic \nLower Bound"
+	Ports	[2]
+	BlockInterfaceParameters {
+	Enabled : "boolean"
+	callback : "string"
+	stopWhenAssertionFail : "boolean"
+	export : "boolean"
+	icon : "enum"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Checks_DMax"
+	SourceBlock	"simulink/Model\nVerification/Check Dynamic \nUpper Bound"
+	Ports	[2]
+	BlockInterfaceParameters {
+	enabled : "boolean"
+	callback : "string"
+	stopWhenAssertionFail : "boolean"
+	export : "boolean"
+	icon : "enum"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Checks_Resolution"
+	SourceBlock	"simulink/Model\nVerification/Check Input \nResolution"
+	Ports	[1]
+	BlockInterfaceParameters {
+	resolution : "string"
+	enabled : "boolean"
+	callback : "string"
+	stopWhenAssertionFail : "boolean"
+	export : "boolean"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Checks_SMin"
+	SourceBlock	"simulink/Model\nVerification/Check Static \nLower Bound"
+	Ports	[1]
+	BlockInterfaceParameters {
+	min : "string"
+	min_included : "boolean"
+	enabled : "boolean"
+	callback : "string"
+	stopWhenAssertionFail : "boolean"
+	export : "boolean"
+	icon : "enum"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Checks_SMax"
+	SourceBlock	"simulink/Model\nVerification/Check Static \nUpper Bound"
+	Ports	[1]
+	BlockInterfaceParameters {
+	max : "string"
+	max_included : "boolean"
+	enabled : "boolean"
+	callback : "string"
+	stopWhenAssertionFail : "boolean"
+	export : "boolean"
+	icon : "enum"
+ }
+}
+Block {
+	BlockType	"S-Function"
+	SourceType	"Constant Ramp"
+	SourceBlock	"dspsigops/Constant Ramp"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	L : "enum"
+	dim : "string"
+	Slope : "string"
+	Offset : "string"
+	additionalParams : "boolean"
+	allowOverrides : "boolean"
+	dataType : "enum"
+	isSigned : "boolean"
+	wordLen : "string"
+	udDataType : "string"
+	fracBitsMode : "enum"
+	numFracBits : "string"
+ }
+}
+Block {
+	BlockType	"S-Function"
+	SourceType	"Convolution"
+	SourceBlock	"dspsigops/Convolution"
+	Ports	[2,1]
+	BlockInterfaceParameters {
+	domain : "enum"
+	additionalParams : "boolean"
+	allowOverrides : "boolean"
+	outputMode : "enum"
+	outputWordLength : "string"
+	outputFracLength : "string"
+	accumMode : "enum"
+	accumWordLength : "string"
+	accumFracLength : "string"
+	prodOutputMode : "enum"
+	prodOutputWordLength : "string"
+	prodOutputFracLength : "string"
+	roundingMode : "enum"
+	overflowMode : "boolean"
+	LockScale : "boolean"
+ }
+}
+Block {
+	BlockType	"S-Function"
+	SourceType	"Delay"
+	SourceBlock	"dspsigops/Delay"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	dly_unit : "enum"
+	delay : "string"
+	ic_detail : "boolean"
+	dif_ic_for_ch : "boolean"
+	dif_ic_for_dly : "boolean"
+	ic : "string"
+	reset_popup : "enum"
+ }
+}
+Block {
+	BlockType	"S-Function"
+	SourceType	"Downsample"
+	SourceBlock	"dspsigops/Downsample"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	N : "string"
+	phase : "string"
+	ic : "string"
+	smode : "enum"
+	fmode : "enum"
+ }
+}
+Block {
+	BlockType	"S-Function"
+	SourceType	"Interpolation"
+	SourceBlock	"dspsigops/Interpolation"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	InterpSource : "enum"
+	InterpPoints : "string"
+	InterpMode : "enum"
+	InterpL : "string"
+	InterpR : "string"
+	InterpAlpha : "string"
+	InvalidMode : "enum"
+ }
+}
+Block {
+	BlockType	"S-Function"
+	SourceType	"NCO"
+	SourceBlock	"dspsigops/NCO"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	AccIncSrc : "enum"
+	AccInc : "string"
+	PhaseOffsetSrc : "enum"
+	PhaseOffset : "string"
+	AccumWL : "string"
+	HasDither : "boolean"
+	DitherWL : "string"
+	PNgeneratorLength : "string"
+	HasPhaseQuantizer : "boolean"
+	TableDepth : "string"
+	HasOutputPhaseError : "boolean"
+	Formula : "enum"
+	DataType : "enum"
+	OutputWL : "string"
+	OutputFL : "string"
+	CompMethod : "enum"
+	SampleTime : "string"
+	SamplesPerFrame : "string"
+ }
+}
+Block {
+	BlockType	"S-Function"
+	SourceType	"Offset"
+	SourceBlock	"dspsigops/Offset"
+	Ports	[4,2]
+	BlockInterfaceParameters {
+	mode : "enum"
+	numDatOffPair : "string"
+	outWidthSpec : "enum"
+	outWidth : "string"
+	actionOutRange : "enum"
+ }
+}
+Block {
+	BlockType	"S-Function"
+	SourceType	"Pad"
+	SourceBlock	"dspsigops/Pad"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	padAlong : "enum"
+	dimsToPad : "string"
+	valSrc : "enum"
+	padVal : "string"
+	spec : "enum"
+	padNumOutRowsSpecMethod : "enum"
+	numOutRows : "string"
+	padNumOutColsSpecMethod : "enum"
+	numOutCols : "string"
+	isVarDimsMode : "boolean"
+	padBeginning : "string"
+	padEnd : "string"
+	outSizeMode : "enum"
+	outSize : "string"
+	padSigAt : "enum"
+	trunc_flag : "enum"
+	outputMode : "enum"
+	outputWordLength : "string"
+	outputFracLength : "string"
+	accumMode : "enum"
+	accumWordLength : "string"
+	accumFracLength : "string"
+	roundingMode : "enum"
+	overflowMode : "boolean"
+	LockScale : "boolean"
+	truncOrWrapMode : "enum"
+	wrap_flag : "enum"
+ }
+}
+Block {
+	BlockType	"S-Function"
+	SourceType	"Peak Finder"
+	SourceBlock	"dspsigops/Peak Finder"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	polarity : "enum"
+	outputIdx : "boolean"
+	outputVal : "boolean"
+	maxPeaks : "string"
+	NoiseDistinguish : "boolean"
+	thresh : "string"
+	additionalParams : "boolean"
+	allowOverrides : "boolean"
+	roundingMode : "enum"
+	overflowMode : "boolean"
+ }
+}
+Block {
+	BlockType	"S-Function"
+	SourceType	"Repeat"
+	SourceBlock	"dspsigops/Repeat"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	N : "string"
+	ic : "string"
+	mode : "enum"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Sample and Hold"
+	SourceBlock	"dspsigops/Sample\nand Hold"
+	Ports	[1,1,0,1]
+	BlockInterfaceParameters {
+	trig : "enum"
+	initCond : "string"
+	latchinput : "boolean"
+ }
+}
+Block {
+	BlockType	SubSystem
+	SourceType	"Triggered Signal From Workspace"
+	SourceBlock	"dspsigops/Triggered Signal\nFrom Workspace"
+	Ports	[0,1,0,1]
+	BlockInterfaceParameters {
+	Signal : "string"
+	TriggerType : "enum"
+	ic : "string"
+	SamplesPerFrame : "string"
+	OutputAfterFinalValue : "enum"
+ }
+}
+Block {
+	BlockType	"S-Function"
+	SourceType	"Unwrap"
+	SourceBlock	"dspsigops/Unwrap"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	running : "boolean"
+	tol : "string"
+ }
+}
+Block {
+	BlockType	"S-Function"
+	SourceType	"Upsample"
+	SourceBlock	"dspsigops/Upsample"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	N : "string"
+	phase : "string"
+	ic : "string"
+	mode : "enum"
+ }
+}
+Block {
+	BlockType	"S-Function"
+	SourceType	"Variable Fractional Delay"
+	SourceBlock	"dspsigops/Variable\nFractional Delay"
+	Ports	[2,1]
+	BlockInterfaceParameters {
+	mode : "enum"
+	dmax : "string"
+	L : "string"
+	R : "string"
+	alpha : "string"
+	ic : "string"
+ }
+}
+Block {
+	BlockType	"S-Function"
+	SourceType	"Variable Integer Delay"
+	SourceBlock	"dspsigops/Variable\nInteger Delay"
+	Ports	[2,1]
+	BlockInterfaceParameters {
+	dmax : "string"
+	ic : "string"
+ }
+}
+Block {
+	BlockType	"S-Function"
+	SourceType	"Window Function"
+	SourceBlock	"dspsigops/Window\nFunction"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+	winmode : "enum"
+	wintype : "enum"
+	sampmode : "enum"
+	samptime : "string"
+	N : "string"
+	Rs : "string"
+	beta : "string"
+	winsamp : "enum"
+	UserWindow : "string"
+	OptParams : "boolean"
+	UserParams : "string"
+	additionalParams : "boolean"
+	allowOverrides : "boolean"
+	dataType : "enum"
+	isSigned : "boolean"
+	wordLen : "string"
+	udDataType : "string"
+	fracBitsMode : "enum"
+	numFracBits : "string"
+	firstCoeffMode : "enum"
+	firstCoeffWordLength : "string"
+	firstCoeffFracLength : "string"
+	prodOutputMode : "enum"
+	prodOutputWordLength : "string"
+	prodOutputFracLength : "string"
+	outputMode : "enum"
+	outputWordLength : "string"
+	outputFracLength : "string"
+	roundingMode : "enum"
+	overflowMode : "boolean"
+	LockScale : "boolean"
+	numSidelobes : "string"
+	sidelobeLevel : "string"
+ }
+}
+Block {
+	BlockType	"S-Function"
+	SourceType	"Zero Crossing"
+	SourceBlock	"dspsigops/Zero Crossing"
+	Ports	[1,1]
+	BlockInterfaceParameters {
+ }
+}
+}
