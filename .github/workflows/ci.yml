@@ -1,0 +1,33 @@
+name: Compilation of ScicosLab
+on:
+  workflow_dispatch:
+    branches:
+      - master
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  compilation_ubuntu:
+    name: Compilation for Ubuntu 20.04
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Install system packages
+        run: |
+          sudo apt-get update
+          sudo apt-get install ocaml gfortran tcl8.6-dev tk8.6-dev tcl8.6 tk8.6
+          sudo apt-get install libgtk2.0-dev libvte-dev
+      - name: Install Num library for arithmetic on big integers and rationals
+          git clone https://github.com/ocaml/num.git --depth=1
+          cd num && make all -j1 && sudo make install
+        run: |
+      - name: Checkout ScicosLab
+        uses: actions/checkout@v3
+      - name: Compile ScicosLab
+        run: |
+          ./configure
+          make -j1
+          sudo make install
